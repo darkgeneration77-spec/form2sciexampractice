@@ -39,6 +39,24 @@ main{max-width:1180px;margin:auto;padding:22px 20px 60px}
 .qvisual img{display:block;width:100%;height:auto;max-height:390px;object-fit:contain;border:1px solid var(--line);border-radius:12px;background:#fff}
 
 </style>
+
+<style id="ui-large-text-patch">
+body{font-size:18px!important;line-height:1.6!important}
+.stem{font-size:22px!important;line-height:1.55!important}
+.option{font-size:18px!important;line-height:1.5!important;padding:14px 16px!important}
+.qnum{font-size:18px!important}
+.feedback{font-size:17px!important;line-height:1.55!important}
+.feedback small{font-size:14px!important}
+button,select{font-size:18px!important}
+#submitBtn{font-size:20px!important;font-weight:700!important;padding:18px!important}
+.final{font-size:19px!important;line-height:1.55!important}
+.final h3{font-size:28px!important;margin-bottom:14px!important}
+.result-grid{display:grid;grid-template-columns:repeat(4,minmax(120px,1fr));gap:12px;margin:16px 0}
+.result-card{padding:14px;border:1px solid #d9dee7;border-radius:12px;background:#fff}
+.result-card b{display:block;font-size:13px;color:#667085;margin-bottom:4px}
+.result-card span{font-size:24px;font-weight:800}
+@media(max-width:700px){body{font-size:17px!important}.stem{font-size:20px!important}.option{font-size:17px!important}.result-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
 </head>
 <body>
 <header><div class="wrap top">
@@ -116,23 +134,29 @@ function renderPal(){document.querySelectorAll('.pill').forEach((p,i)=>{p.classN
 function update(){
   let answered=0,correct=0,ch={};for(let c=1;c<=10;c++)ch[c]={right:0,checked:0};
   SETS[current].forEach((it,i)=>{if(state[i]?.chosen!==undefined)answered++;if(state[i]?.checked){ch[it.chapter].checked++;if(state[i].chosen===it.answer){correct++;ch[it.chapter].right++}}});
-  document.getElementById('progText').textContent=`${answered} / 20 answered`;document.getElementById('progBar').style.width=(answered*5)+'%';document.getElementById('scoreNow').textContent=correct;
+  document.getElementById('progText').textContent=`${answered} / 20 answered`;document.getElementById('progBar').style.width=(answered*5)+'%';document.getElementById('scoreNow').textContent=correct;const sb=document.getElementById('submitBtn');if(sb){sb.disabled=answered<20;sb.textContent=answered<20?`Answer all questions (${answered}/20)`:'Submit & Check Answers';sb.style.opacity=answered<20?'0.55':'1';sb.style.cursor=answered<20?'not-allowed':'pointer';}
   let h='';for(let c=1;c<=10;c++){let pct=ch[c].right*50;h+=`<div class="chapter"><div class="chrow"><span>Ch ${c} · ${chapterNames[c]}</span><span>${ch[c].right}/2</span></div><div class="mini"><div style="width:${pct}%"></div></div></div>`}
   document.getElementById('chapterStats').innerHTML=h;
 }
 function submit(){
   let miss=[];for(let i=0;i<20;i++)if(state[i]?.chosen===undefined)miss.push(i+1);
-  if(miss.length){alert('Please answer all questions first. Unanswered: '+miss.join(', '));return}
+  if(miss.length){
+    let f=document.getElementById('finalBox');f.style.display='block';
+    f.innerHTML=`<h3>Not submitted yet</h3><div><b>Answered:</b> ${20-miss.length} / 20</div><div><b>Unanswered:</b> ${miss.length}</div><div style="margin-top:10px">Please answer every question before submitting. Unanswered questions: ${miss.join(', ')}</div>`;
+    document.getElementById('q'+(miss[0]-1))?.scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
   for(let i=0;i<20;i++){state[i]=state[i]||{};state[i].checked=true}save();render();
   let correct=0,ch={};for(let c=1;c<=10;c++)ch[c]=0;
   SETS[current].forEach((it,i)=>{if(state[i].chosen===it.answer){correct++;ch[it.chapter]++}});
+  let wrong=20-correct,accuracy=Math.round(correct/20*100);
   let weak=Object.entries(ch).filter(([c,n])=>n<2).sort((a,b)=>a[1]-b[1]);
   let finalMsg=correct>=18?"Excellent result. Your understanding is very strong."
     :correct>=16?"Well done. A strong result. Review the few questions you missed."
     :correct>=12?"Good effort. You have a solid base, and targeted revision can raise this quickly."
     :"Keep going. Review the weaker chapters, correct the mistakes, and try another set.";
   let f=document.getElementById('finalBox');f.style.display='block';
-  f.innerHTML=`<h3>Set ${current+1}: ${correct} / 20</h3><div>${finalMsg}</div><div style="margin-top:9px;font-size:13px">${weak.length?'Priority review: '+weak.map(x=>'Chapter '+x[0]+' ('+chapterNames[x[0]]+')').join(', '):'Excellent. No weak chapter was detected in this set.'}</div>`;
+  f.innerHTML=`<h3>Set ${current+1} Result</h3><div class="result-grid"><div class="result-card"><b>Total Questions</b><span>20</span></div><div class="result-card"><b>Correct</b><span>${correct}</span></div><div class="result-card"><b>Wrong</b><span>${wrong}</span></div><div class="result-card"><b>Accuracy</b><span>${accuracy}%</span></div></div><div><b>Completed:</b> 20 / 20 questions answered.</div><div style="margin-top:10px">${finalMsg}</div><div style="margin-top:12px;font-size:15px">${weak.length?'Priority review: '+weak.map(x=>'Chapter '+x[0]+' ('+chapterNames[x[0]]+')').join(', '):'Excellent. No weak chapter was detected in this set.'}</div>`;
   f.scrollIntoView({behavior:'smooth',block:'center'});
 }
 sel.onchange=e=>{current=+e.target.value;document.getElementById('finalBox').style.display='none';render();scrollTo({top:0,behavior:'smooth'})};
