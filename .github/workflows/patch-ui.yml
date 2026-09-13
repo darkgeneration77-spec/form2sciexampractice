@@ -1,0 +1,67 @@
+name: Patch exam UI
+
+on:
+  push:
+    paths:
+      - 'patch-trigger.txt'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch index.html
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+
+          style = '''\n<style id="ui-large-text-patch">\nbody{font-size:18px!important;line-height:1.6!important}\n.stem{font-size:22px!important;line-height:1.55!important}\n.option{font-size:18px!important;line-height:1.5!important;padding:14px 16px!important}\n.qnum{font-size:18px!important}\n.feedback{font-size:17px!important;line-height:1.55!important}\n.feedback small{font-size:14px!important}\nbutton,select{font-size:18px!important}\n#submitBtn{font-size:20px!important;font-weight:700!important;padding:18px!important}\n.final{font-size:19px!important;line-height:1.55!important}\n.final h3{font-size:28px!important;margin-bottom:14px!important}\n.result-grid{display:grid;grid-template-columns:repeat(4,minmax(120px,1fr));gap:12px;margin:16px 0}\n.result-card{padding:14px;border:1px solid #d9dee7;border-radius:12px;background:#fff}\n.result-card b{display:block;font-size:13px;color:#667085;margin-bottom:4px}\n.result-card span{font-size:24px;font-weight:800}\n@media(max-width:700px){body{font-size:17px!important}.stem{font-size:20px!important}.option{font-size:17px!important}.result-grid{grid-template-columns:repeat(2,1fr)}}\n</style>\n'''
+          if 'id="ui-large-text-patch"' not in s:
+              s = s.replace('</head>', style + '</head>')
+
+          old = "document.getElementById('progText').textContent=`${answered} / 20 answered`;document.getElementById('progBar').style.width=(answered*5)+'%';document.getElementById('scoreNow').textContent=correct;"
+          new = "document.getElementById('progText').textContent=`${answered} / 20 answered`;document.getElementById('progBar').style.width=(answered*5)+'%';document.getElementById('scoreNow').textContent=correct;const sb=document.getElementById('submitBtn');if(sb){sb.disabled=answered<20;sb.textContent=answered<20?`Answer all questions (${answered}/20)`:'Submit & Check Answers';sb.style.opacity=answered<20?'0.55':'1';sb.style.cursor=answered<20?'not-allowed':'pointer';}"
+          if old in s:
+              s = s.replace(old, new, 1)
+
+          pattern = re.compile(r"function submit\(\)\{.*?\n\}", re.S)
+          replacement = r'''function submit(){
+  let miss=[];for(let i=0;i<20;i++)if(state[i]?.chosen===undefined)miss.push(i+1);
+  if(miss.length){
+    let f=document.getElementById('finalBox');f.style.display='block';
+    f.innerHTML=`<h3>Not submitted yet</h3><div><b>Answered:</b> ${20-miss.length} / 20</div><div><b>Unanswered:</b> ${miss.length}</div><div style="margin-top:10px">Please answer every question before submitting. Unanswered questions: ${miss.join(', ')}</div>`;
+    document.getElementById('q'+(miss[0]-1))?.scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+  for(let i=0;i<20;i++){state[i]=state[i]||{};state[i].checked=true}save();render();
+  let correct=0,ch={};for(let c=1;c<=10;c++)ch[c]=0;
+  SETS[current].forEach((it,i)=>{if(state[i].chosen===it.answer){correct++;ch[it.chapter]++}});
+  let wrong=20-correct,accuracy=Math.round(correct/20*100);
+  let weak=Object.entries(ch).filter(([c,n])=>n<2).sort((a,b)=>a[1]-b[1]);
+  let finalMsg=correct>=18?"Excellent result. Your understanding is very strong."
+    :correct>=16?"Well done. A strong result. Review the few questions you missed."
+    :correct>=12?"Good effort. You have a solid base, and targeted revision can raise this quickly."
+    :"Keep going. Review the weaker chapters, correct the mistakes, and try another set.";
+  let f=document.getElementById('finalBox');f.style.display='block';
+  f.innerHTML=`<h3>Set ${current+1} Result</h3><div class="result-grid"><div class="result-card"><b>Total Questions</b><span>20</span></div><div class="result-card"><b>Correct</b><span>${correct}</span></div><div class="result-card"><b>Wrong</b><span>${wrong}</span></div><div class="result-card"><b>Accuracy</b><span>${accuracy}%</span></div></div><div><b>Completed:</b> 20 / 20 questions answered.</div><div style="margin-top:10px">${finalMsg}</div><div style="margin-top:12px;font-size:15px">${weak.length?'Priority review: '+weak.map(x=>'Chapter '+x[0]+' ('+chapterNames[x[0]]+')').join(', '):'Excellent. No weak chapter was detected in this set.'}</div>`;
+  f.scrollIntoView({behavior:'smooth',block:'center'});
+}'''
+          s, n = pattern.subn(replacement, s, count=1)
+          if n != 1:
+              raise SystemExit('submit() patch failed')
+
+          p.write_text(s, encoding='utf-8')
+      - name: Commit patched HTML
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet && exit 0
+          git commit -m "Enlarge text and add complete submit score summary [skip ci]"
+          git push
