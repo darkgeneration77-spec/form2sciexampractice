@@ -1,0 +1,6309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,
+initial-scale=1">
+<title>Form 2 Science Section A · 20 Interactive Sets</title>
+<style>
+:root{
+--bg:#f6f8fb;
+--card:#fff;
+--ink:#111827;
+--muted:#667085;
+--line:#dfe4ea;
+--accent:#1d4ed8;
+--good:#13795b;
+--bad:#b42318;
+--soft:#eef4ff}
+
+*{
+box-sizing:border-box}
+
+body{
+margin:0;
+font-family:Inter,
+system-ui,
+-apple-system,
+"Segoe UI",
+Arial,
+sans-serif;
+background:var(--bg);
+color:var(--ink)}
+
+header{
+position:sticky;
+top:0;
+z-index:10;
+background:#fffffff2;
+border-bottom:1px solid var(--line);
+backdrop-filter:blur(8px)}
+
+.wrap{
+max-width:1180px;
+margin:auto;
+padding:16px 20px}
+
+.top{
+display:flex;
+gap:16px;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap}
+
+h1{
+font-size:22px;
+margin:0}
+ .sub{
+font-size:13px;
+color:var(--muted);
+margin-top:5px}
+
+.controls{
+display:flex;
+gap:8px;
+align-items:center;
+flex-wrap:wrap}
+
+select,
+button{
+font:inherit}
+ select{
+padding:9px 11px;
+border:1px solid var(--line);
+border-radius:10px;
+background:#fff}
+
+button{
+border:0;
+border-radius:10px;
+padding:10px 13px;
+font-weight:700;
+cursor:pointer}
+
+.primary{
+background:var(--accent);
+color:#fff}
+ .secondary{
+background:#fff;
+border:1px solid var(--line)}
+ .danger{
+background:#fff1f1;
+color:var(--bad);
+border:1px solid #ffd7d7}
+
+main{
+max-width:1180px;
+margin:auto;
+padding:22px 20px 60px}
+
+.layout{
+display:grid;
+grid-template-columns:1fr 300px;
+gap:20px;
+align-items:start}
+
+@media(max-width:900px){
+.layout{
+grid-template-columns:1fr}
+.side{
+position:static!important}
+}
+
+.card,
+.qcard,
+.side{
+background:var(--card);
+border:1px solid var(--line);
+border-radius:16px;
+box-shadow:0 3px 14px #1118270a}
+
+.card{
+padding:17px;
+margin-bottom:17px}
+ .qcard{
+padding:20px;
+margin-bottom:15px}
+ .side{
+position:sticky;
+top:90px;
+padding:17px}
+
+.meta{
+display:flex;
+justify-content:space-between;
+color:var(--muted);
+font-size:13px}
+
+.bar{
+height:9px;
+background:#e9edf3;
+border-radius:999px;
+overflow:hidden;
+margin-top:9px}
+ .bar>div{
+height:100%;
+width:0;
+background:var(--accent)}
+
+.qnum{
+font-weight:800}
+ .stem{
+font-size:17px;
+line-height:1.55;
+margin:14px 0}
+
+.option{
+display:flex;
+gap:10px;
+padding:12px;
+border:1px solid var(--line);
+border-radius:12px;
+margin:8px 0;
+cursor:pointer;
+background:#fff}
+
+.option:hover{
+background:#fbfdff;
+border-color:#b8c2d1}
+ .option.correct{
+background:#effaf5;
+border-color:#9ed8c5}
+ .option.wrong{
+background:#fff4f2;
+border-color:#f0aaa4}
+
+.option input{
+margin-top:3px}
+ .feedback{
+display:none;
+margin-top:11px;
+padding:12px 14px;
+border-radius:11px;
+font-size:14px;
+line-height:1.5}
+
+.feedback.ok{
+display:block;
+background:#effaf5;
+color:#0e684c}
+ .feedback.bad{
+display:block;
+background:#fff3f2;
+color:#8f2018}
+
+.feedback .tag{
+font-weight:800}
+ .small{
+font-size:12px;
+color:var(--muted)}
+ .score{
+font-size:42px;
+font-weight:900;
+margin:6px 0}
+
+.chapter{
+margin:10px 0}
+ .chrow{
+display:flex;
+justify-content:space-between;
+font-size:12px;
+margin-bottom:4px}
+ .mini{
+height:6px;
+background:#edf1f5;
+border-radius:99px;
+overflow:hidden}
+ .mini div{
+height:100%;
+background:#64748b}
+
+.palette{
+display:grid;
+grid-template-columns:repeat(5,
+1fr);
+gap:6px;
+margin-top:15px}
+ .pill{
+padding:7px 0;
+text-align:center;
+border:1px solid var(--line);
+border-radius:8px;
+font-size:12px;
+background:#fff;
+cursor:pointer}
+
+.pill.done{
+background:#eef4ff}
+ .pill.right{
+background:#effaf5}
+ .pill.wrong{
+background:#fff3f2}
+
+.final{
+display:none;
+background:#111827;
+color:#fff;
+border-radius:14px;
+padding:17px;
+margin-top:17px}
+ .final h3{
+margin:0 0 8px}
+
+.note{
+font-size:12px;
+color:var(--muted);
+margin-top:10px}
+ footer{
+text-align:center;
+color:var(--muted);
+font-size:12px;
+padding:25px}
+
+
+.qvisual{
+margin:12px auto 15px;
+max-width:680px;
+text-align:center}
+
+.qvisual img{
+display:block;
+width:100%;
+height:auto;
+max-height:390px;
+object-fit:contain;
+border:1px solid var(--line);
+border-radius:12px;
+background:#fff}
+
+
+</style>
+
+<style id="ui-large-text-patch">
+body{
+font-size:18px!important;
+line-height:1.6!important}
+
+.stem{
+font-size:22px!important;
+line-height:1.55!important}
+
+.option{
+font-size:18px!important;
+line-height:1.5!important;
+padding:14px 16px!important}
+
+.qnum{
+font-size:18px!important}
+
+.feedback{
+font-size:17px!important;
+line-height:1.55!important}
+
+.feedback small{
+font-size:14px!important}
+
+button,
+select{
+font-size:18px!important}
+
+#submitBtn{
+font-size:20px!important;
+font-weight:700!important;
+padding:18px!important}
+
+.final{
+font-size:19px!important;
+line-height:1.55!important}
+
+.final h3{
+font-size:28px!important;
+margin-bottom:14px!important}
+
+.result-grid{
+display:grid;
+grid-template-columns:repeat(4,
+minmax(120px,
+1fr));
+gap:12px;
+margin:16px 0}
+
+.result-card{
+padding:14px;
+border:1px solid #d9dee7;
+border-radius:12px;
+background:#fff}
+
+.result-card b{
+display:block;
+font-size:13px;
+color:#667085;
+margin-bottom:4px}
+
+.result-card span{
+font-size:24px;
+font-weight:800}
+
+@media(max-width:700px){
+body{
+font-size:17px!important}
+.stem{
+font-size:20px!important}
+.option{
+font-size:17px!important}
+.result-grid{
+grid-template-columns:repeat(2,
+1fr)}
+}
+
+</style>
+
+<style id="academic-dashboard-theme">
+:root{
+--navy:#08152f;
+--navy2:#10264f;
+--blue:#2563eb;
+--page:#f4f7fb;
+--ink:#152238}
+
+html{
+scroll-behavior:smooth}
+
+body{
+background:linear-gradient(180deg,
+#edf3fb 0,
+#f7f9fc 260px,
+#f4f7fb 100%)!important;
+color:var(--ink)!important}
+
+header{
+background:linear-gradient(135deg,
+var(--navy),
+var(--navy2))!important;
+border-bottom:0!important;
+box-shadow:0 10px 35px rgba(8,
+21,
+47,
+.18)!important}
+
+header .wrap{
+padding-top:20px!important;
+padding-bottom:20px!important}
+
+header h1{
+color:#fff!important;
+font-size:25px!important;
+letter-spacing:-.3px}
+
+header .sub{
+color:#b9c7df!important;
+font-size:14px!important}
+
+header .controls label{
+color:#dbe7fb;
+font-weight:700}
+
+header select{
+background:#fff!important;
+border:0!important;
+color:#10264f!important;
+font-weight:800!important;
+padding:11px 38px 11px 14px!important;
+box-shadow:0 4px 14px rgba(0,
+0,
+0,
+.15)}
+
+header .secondary{
+background:rgba(255,
+255,
+255,
+.11)!important;
+border:1px solid rgba(255,
+255,
+255,
+.2)!important;
+color:#fff!important}
+
+header .danger{
+background:rgba(239,
+68,
+68,
+.13)!important;
+border:1px solid rgba(248,
+113,
+113,
+.35)!important;
+color:#fecaca!important}
+
+main{
+max-width:1240px!important;
+padding-top:28px!important}
+.layout{
+grid-template-columns:minmax(0,
+1fr) 320px!important;
+gap:24px!important}
+
+.card,
+.qcard,
+.side{
+border:1px solid #d5dfec!important;
+box-shadow:0 8px 24px rgba(31,
+50,
+81,
+.07)!important}
+
+.card{
+border-radius:18px!important;
+padding:18px 20px!important;
+background:linear-gradient(135deg,
+#fff,
+#f8fbff)!important}
+
+.meta{
+font-size:14px!important;
+font-weight:800!important;
+color:#60708a!important}
+.bar{
+height:11px!important;
+background:#e5ebf4!important;
+margin-top:12px!important}
+.bar>div{
+background:linear-gradient(90deg,
+#2563eb,
+#4f8df7)!important}
+
+.qcard{
+border-radius:22px!important;
+padding:25px!important;
+margin-bottom:20px!important;
+transition:.18s ease}
+.qcard:hover{
+transform:translateY(-1px);
+box-shadow:0 14px 34px rgba(31,
+50,
+81,
+.10)!important}
+
+.qnum{
+display:inline-flex;
+align-items:center;
+min-height:34px;
+padding:5px 11px;
+border-radius:999px;
+background:#eef4ff;
+color:#1d4ed8;
+font-size:15px!important;
+font-weight:900!important}
+
+.stem{
+color:#14213a!important;
+font-size:22px!important;
+font-weight:750!important;
+line-height:1.5!important;
+margin:18px 0 16px!important}
+
+.option{
+border:1.5px solid #dbe4ef!important;
+border-radius:15px!important;
+padding:15px 17px!important;
+margin:10px 0!important;
+background:#fff!important;
+transition:.15s ease}
+.option:hover{
+background:#f8fbff!important;
+border-color:#9db9eb!important;
+transform:translateX(2px)}
+
+.option:has(input:checked){
+background:#eef5ff!important;
+border-color:#4c83e6!important;
+box-shadow:0 0 0 3px rgba(37,
+99,
+235,
+.08)!important}
+.option input{
+accent-color:#2563eb;
+width:18px;
+height:18px}
+.option.correct{
+background:#eefbf6!important;
+border-color:#73caaa!important}
+.option.wrong{
+background:#fff2f1!important;
+border-color:#ef9d97!important}
+
+.qvisual{
+padding:10px!important;
+background:#f8fafc;
+border:1px solid #e4eaf2;
+border-radius:16px!important}
+.qvisual img{
+border:0!important;
+border-radius:11px!important}
+
+.feedback{
+border-radius:15px!important;
+padding:16px 18px!important}
+.feedback.ok{
+background:#edf9f4!important;
+border:1px solid #c4eadb!important}
+.feedback.bad{
+background:#fff5f4!important;
+border:1px solid #f2cbc7!important}
+
+.side{
+top:108px!important;
+border-radius:22px!important;
+padding:22px!important;
+background:linear-gradient(180deg,
+#fff,
+#f9fbfe)!important}
+.score{
+color:#0f2654!important;
+font-size:48px!important;
+letter-spacing:-2px}
+
+.chapter{
+padding:10px 0;
+border-bottom:1px solid #edf1f6;
+margin:0!important}
+.mini div{
+background:linear-gradient(90deg,
+#254f99,
+#3b82f6)!important}
+
+.palette{
+gap:8px!important;
+margin-top:18px!important}
+.pill{
+border:1px solid #d7e0ec!important;
+border-radius:10px!important;
+font-size:13px!important;
+font-weight:800!important;
+padding:9px 0!important;
+color:#536176!important}
+.pill.done{
+background:#eaf2ff!important;
+color:#1d4ed8!important}
+.pill.right{
+background:#ebf9f3!important;
+color:#147554!important}
+.pill.wrong{
+background:#fff0ef!important;
+color:#a12b23!important}
+
+#submitBtn{
+border-radius:16px!important;
+background:linear-gradient(135deg,
+#0e2d65,
+#2563eb)!important;
+box-shadow:0 10px 24px rgba(37,
+99,
+235,
+.22)!important;
+transition:.16s ease}
+#submitBtn:not(:disabled):hover{
+transform:translateY(-1px)}
+#submitBtn:disabled{
+background:#9aa9bd!important;
+box-shadow:none!important}
+
+.final{
+border-radius:22px!important;
+padding:24px!important;
+background:linear-gradient(135deg,
+#08152f,
+#102c61)!important;
+box-shadow:0 16px 36px rgba(8,
+21,
+47,
+.2)!important}
+.result-card{
+border:1px solid rgba(255,
+255,
+255,
+.17)!important;
+border-radius:15px!important;
+background:rgba(255,
+255,
+255,
+.09)!important;
+color:#fff!important}
+.result-card b{
+color:#bcd0ee!important}
+.result-card span{
+color:#fff!important;
+font-size:28px!important}
+
+@media(max-width:900px){
+.layout{
+grid-template-columns:1fr!important}
+.side{
+position:static!important;
+order:-1}
+.side .chapter,
+#chapterStats,
+.side .note{
+display:none}
+.palette{
+grid-template-columns:repeat(10,
+1fr)!important}
+}
+
+@media(max-width:700px){
+header .wrap{
+padding:15px 16px!important}
+header h1{
+font-size:21px!important}
+.controls{
+width:100%}
+main{
+padding:18px 12px 50px!important}
+.qcard{
+padding:18px!important}
+.stem{
+font-size:20px!important}
+.option{
+font-size:17px!important}
+.palette{
+grid-template-columns:repeat(5,
+1fr)!important}
+}
+
+</style></head>
+<body>
+<header><div class="wrap top">
+<div><h1>Form 2 Science · Section A</h1><div class="sub">20 interactive sets · Chapters 1–10 · 20 questions · 20 marks</div></div>
+<div class="controls"><label>Set <select id="setSel"></select></label><button class="secondary" id="saveBtn">Save Progress</button><button class="danger" id="resetBtn">Reset Set</button></div>
+</div></header>
+
+<main><div class="layout">
+<section>
+<div class="card"><div class="meta"><span id="progText">0 / 20 answered</span><span id="setLabel">Set 1</span></div><div class="bar"><div id="progBar"></div></div></div>
+<div id="questions"></div>
+<button class="primary" id="submitBtn" style="width:100%;
+padding:14px;
+font-size:16px">Submit Set</button>
+<div class="final" id="finalBox"></div>
+</section>
+<aside class="side">
+<div class="small">Current checked score</div><div class="score"><span id="scoreNow">0</span><span style="font-size:18px;
+color:#98a2b3">/20</span></div>
+<div class="small">Chapter analysis appears as answers are checked.</div>
+<div id="chapterStats" style="margin-top:15px"></div>
+<div class="palette" id="palette"></div>
+<div class="note">Question difficulty in every set is internally balanced at 10 low,
+ 6 medium and 4 high. Difficulty labels are hidden from students during the attempt.</div>
+</aside>
+</div></main>
+<footer>English student version · self-contained HTML</footer>
+
+<script>
+const SETS=[[{
+"chapter": 7,
+ "topic": "Circuits and electromagnets",
+ "difficulty": "Medium",
+ "stem": "What happens if one bulb in a simple series circuit burns out?",
+ "options": ["The remaining bulbs are unaffected",
+ "The broken bulb produces current",
+ "The battery becomes an electromagnet",
+ "All bulbs in that circuit go out"],
+ "answer": 3,
+ "explanation": "The answer follows the behaviour of series or parallel circuits and electromagnets."}
+,
+ {
+"chapter": 5,
+ "topic": "Water and solutions",
+ "difficulty": "Low",
+ "stem": "Which term describes a homogeneous mixture formed when a solute dissolves?",
+ "options": ["Solvent",
+ "Suspension",
+ "Surface tension",
+ "Solution"],
+ "answer": 3,
+ "explanation": "The term is identified from the stated property or behaviour."}
+,
+ {
+"chapter": 1,
+ "topic": "Classification",
+ "difficulty": "Low",
+ "stem": "Which group does a spider belong to?",
+ "options": ["Mollusc",
+ "Insect",
+ "Amphibian",
+ "Arachnid"],
+ "answer": 3,
+ "explanation": "A spider is classified as a arachnid based on characteristics such as 4 pairs of legs."}
+,
+ {
+"chapter": 1,
+ "topic": "Biodiversity application",
+ "difficulty": "High",
+ "stem": "A rare orchid is protected in its natural forest,
+ while some seeds are also stored in a seed bank. Which statement is correct?",
+ "options": ["Only ex-situ conservation is being used",
+ "Only in-situ conservation is being used",
+ "Neither method is conservation",
+ "Both in-situ and ex-situ conservation are being used"],
+ "answer": 3,
+ "explanation": "Protection in the natural habitat is in-situ,
+ while a seed bank is ex-situ."}
+,
+ {
+"chapter": 2,
+ "topic": "Interactions",
+ "difficulty": "Low",
+ "stem": "Which type of interaction is shown when a remora obtains food scraps from a shark while the shark is unaffected?",
+ "options": ["Competition",
+ "Parasitism",
+ "Commensalism",
+ "Mutualism"],
+ "answer": 2,
+ "explanation": "The interaction is identified by whether each organism benefits,
+ is harmed or competes for the same resource."}
+,
+ {
+"chapter": 8,
+ "topic": "Pressure and stability",
+ "difficulty": "Medium",
+ "stem": "Why do tractors use wide tyres on soft ground?",
+ "options": ["To increase pressure by reducing contact area",
+ "To raise the centre of gravity",
+ "To reduce pressure by increasing contact area",
+ "To increase gravitational force"],
+ "answer": 2,
+ "explanation": "Pressure depends on force and contact area,
+ while stability generally improves with a lower centre of gravity and wider base."}
+,
+ {
+"chapter": 5,
+ "topic": "Water treatment",
+ "difficulty": "Medium",
+ "stem": "Which water-treatment process allows heavier suspended particles to settle?",
+ "options": ["Sedimentation",
+ "Screening",
+ "Chlorination",
+ "Filtration"],
+ "answer": 0,
+ "explanation": "Each water-treatment stage has a specific function."}
+,
+ {
+"chapter": 6,
+ "topic": "pH scale",
+ "difficulty": "Low",
+ "stem": "A solution has a pH of 4. How should it be classified?",
+ "options": ["Neutral",
+ "Cannot be determined",
+ "Alkaline",
+ "Acidic"],
+ "answer": 3,
+ "explanation": "A pH of 4 indicates a acidic solution."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound properties",
+ "difficulty": "Low",
+ "stem": "A higher-pitched sound has which characteristic?",
+ "options": ["Zero frequency",
+ "Smaller amplitude only",
+ "Higher frequency",
+ "Lower frequency"],
+ "answer": 2,
+ "explanation": "Sound is produced by vibrations;
+ loudness is related to amplitude and pitch to frequency."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat applications",
+ "difficulty": "Medium",
+ "stem": "Why are gaps left between railway-track sections?",
+ "options": ["To reduce the mass of the rail",
+ "To increase friction",
+ "To stop conduction completely",
+ "To allow thermal expansion"],
+ "answer": 3,
+ "explanation": "The answer follows thermal expansion,
+ convection and radiation principles."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound applications",
+ "difficulty": "Medium",
+ "stem": "What causes an echo?",
+ "options": ["Reflection of sound",
+ "Conduction of heat",
+ "Electric current",
+ "Chemical reaction"],
+ "answer": 0,
+ "explanation": "Sound is a mechanical wave;
+ its behaviour depends on the medium and on reflection or absorption."}
+,
+ {
+"chapter": 7,
+ "topic": "Electricity",
+ "difficulty": "Low",
+ "stem": "When a voltmeter is connected across a bulb,
+ which statement is correct?",
+ "options": ["It measures temperature",
+ "It measures current",
+ "It measures potential difference",
+ "It measures mass"],
+ "answer": 2,
+ "explanation": "The answer follows the basic rules of charge and electrical measurement."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat transfer",
+ "difficulty": "Low",
+ "stem": "Which process or statement best describes warm water rises while cooler water sinks in a beaker?",
+ "options": ["Convection",
+ "Radiation",
+ "Conduction",
+ "Evaporation"],
+ "answer": 0,
+ "explanation": "Heat may be transferred by conduction,
+ convection or radiation. At thermal equilibrium there is no net heat flow."}
+,
+ {
+"chapter": 6,
+ "topic": "Indicators and neutralisation",
+ "difficulty": "Medium",
+ "stem": "What is the expected result for universal indicator in a neutral solution?",
+ "options": ["Orange",
+ "Green",
+ "Purple",
+ "Red"],
+ "answer": 1,
+ "explanation": "Indicators show characteristic colours,
+ and acid-alkali neutralisation produces salt and water."}
+,
+ {
+"chapter": 8,
+ "topic": "Resultant force",
+ "difficulty": "Low",
+ "stem": "A force of 90 N acts to the right and a force of 25 N acts to the left. What is the resultant force?",
+ "options": ["115 N to the right",
+ "25 N to the right",
+ "65 N to the right",
+ "65 N to the left"],
+ "answer": 2,
+ "explanation": "For opposite forces,
+ subtract the smaller force from the larger one. The larger force gives the direction."}
+,
+ {
+"chapter": 3,
+ "topic": "Food tests",
+ "difficulty": "Low",
+ "stem": "A food sample is tested and a persistent translucent spot is seen on filter paper. Which nutrient is present?",
+ "options": ["Starch",
+ "Protein",
+ "Reducing sugar",
+ "Fat"],
+ "answer": 3,
+ "explanation": "The observation matches the standard food test for this nutrient."}
+,
+ {
+"chapter": 2,
+ "topic": "Food web analysis",
+ "difficulty": "High",
+ "stem": "Study the food chain: Leaves → Caterpillar → Bird → Hawk. A disease causes the bird population to fall sharply. Which change is most likely to occur first?",
+ "options": ["All producers disappear immediately",
+ "Every population remains constant",
+ "The caterpillar population decreases",
+ "The caterpillar population increases"],
+ "answer": 3,
+ "explanation": "With fewer birds,
+ fewer caterpillars are eaten,
+ so the caterpillar population is likely to increase."}
+,
+ {
+"chapter": 3,
+ "topic": "Nutrition application",
+ "difficulty": "High",
+ "stem": "A student eats enough carbohydrate but very little protein for several months. Which effect is most likely?",
+ "options": ["Stronger bones from extra calcium",
+ "Immediate scurvy",
+ "Poor growth and slower tissue repair",
+ "Excessive blood clotting"],
+ "answer": 2,
+ "explanation": "Protein is required for growth and repair of body tissues."}
+,
+ {
+"chapter": 4,
+ "topic": "Pathogens",
+ "difficulty": "Low",
+ "stem": "Which type of pathogen causes Tuberculosis?",
+ "options": ["Virus",
+ "Fungus",
+ "Bacterium",
+ "Protozoan"],
+ "answer": 2,
+ "explanation": "Tuberculosis is caused by a bacterium."}
+,
+ {
+"chapter": 4,
+ "topic": "Disease prevention",
+ "difficulty": "High",
+ "stem": "A student with influenza coughs openly in a crowded room. Which combination best reduces transmission?",
+ "options": ["Take antibiotics without medical advice",
+ "Touch the face frequently",
+ "Share drinking bottles and close all windows",
+ "Cover coughs,
+ improve ventilation and avoid close contact"],
+ "answer": 3,
+ "explanation": "Respiratory infections spread through droplets and close contact,
+ so cough hygiene and ventilation reduce transmission."}
+],
+ [{
+"chapter": 5,
+ "topic": "Water and solutions",
+ "difficulty": "Low",
+ "stem": "Which term describes the substance that dissolves a solute?",
+ "options": ["Suspension",
+ "Solvent",
+ "Solution",
+ "Surface tension"],
+ "answer": 1,
+ "explanation": "The term is identified from the stated property or behaviour."}
+,
+ {
+"chapter": 4,
+ "topic": "Prevention",
+ "difficulty": "Medium",
+ "stem": "Which action best reduces the risk related to droplets from coughing?",
+ "options": ["Share utensils",
+ "Leave water containers uncovered",
+ "Cover the mouth and nose when coughing or sneezing",
+ "Ignore hygiene"],
+ "answer": 2,
+ "explanation": "The best prevention method targets the relevant transmission route or improves specific immunity."}
+,
+ {
+"chapter": 8,
+ "topic": "Pressure and stability",
+ "difficulty": "High",
+ "stem": "Two blocks have the same weight. Block X rests on a smaller base area than Block Y. Which statement is correct?",
+ "options": ["Block X exerts greater pressure",
+ "Both exert zero pressure",
+ "Block Y exerts greater pressure",
+ "Pressure is independent of contact area"],
+ "answer": 0,
+ "explanation": "For the same force,
+ a smaller contact area produces greater pressure."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound applications",
+ "difficulty": "Medium",
+ "stem": "In which medium does sound generally travel fastest?",
+ "options": ["Empty space",
+ "Gas",
+ "Vacuum",
+ "Solid"],
+ "answer": 3,
+ "explanation": "Sound is a mechanical wave;
+ its behaviour depends on the medium and on reflection or absorption."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat transfer",
+ "difficulty": "Low",
+ "stem": "Which process causes a metal spoon to become hot when one end is placed in hot water?",
+ "options": ["Evaporation",
+ "Convection",
+ "Conduction",
+ "Radiation"],
+ "answer": 2,
+ "explanation": "Heat may be transferred by conduction,
+ convection or radiation. At thermal equilibrium there is no net heat flow."}
+,
+ {
+"chapter": 7,
+ "topic": "Circuits and electromagnets",
+ "difficulty": "High",
+ "stem": "Two identical bulbs are connected in parallel to a battery. One bulb burns out. What happens to the other bulb?",
+ "options": ["It also goes out because all current stops",
+ "It remains lit because its branch is still complete",
+ "It becomes an open switch",
+ "The battery voltage becomes zero"],
+ "answer": 1,
+ "explanation": "In a parallel circuit,
+ each branch provides an independent path for current."}
+,
+ {
+"chapter": 8,
+ "topic": "Resultant force",
+ "difficulty": "Low",
+ "stem": "A force of 75 N acts to the right and a force of 30 N acts to the left. What is the resultant force?",
+ "options": ["105 N to the right",
+ "30 N to the right",
+ "45 N to the right",
+ "45 N to the left"],
+ "answer": 2,
+ "explanation": "For opposite forces,
+ subtract the smaller force from the larger one. The larger force gives the direction."}
+,
+ {
+"chapter": 1,
+ "topic": "Classification",
+ "difficulty": "Low",
+ "stem": "Which group does a lizard belong to?",
+ "options": ["Reptile",
+ "Arachnid",
+ "Mollusc",
+ "Insect"],
+ "answer": 0,
+ "explanation": "A lizard is classified as a reptile based on characteristics such as dry scaly skin."}
+,
+ {
+"chapter": 4,
+ "topic": "Pathogens",
+ "difficulty": "Low",
+ "stem": "Which type of pathogen causes Malaria?",
+ "options": ["Virus",
+ "Fungus",
+ "Protozoan",
+ "Bacterium"],
+ "answer": 2,
+ "explanation": "Malaria is caused by a protozoan."}
+,
+ {
+"chapter": 5,
+ "topic": "Water treatment analysis",
+ "difficulty": "High",
+ "stem": "Raw water contains leaves,
+ fine suspended particles and harmful microorganisms. Which sequence is most suitable?",
+ "options": ["Chlorination → screening → sedimentation → filtration",
+ "Filtration → screening → chlorination → sedimentation",
+ "Screening → sedimentation → filtration → chlorination",
+ "Sedimentation → chlorination → screening → filtration"],
+ "answer": 2,
+ "explanation": "Large debris is removed first,
+ heavier particles settle,
+ fine particles are filtered,
+ and disinfection is carried out near the end."}
+,
+ {
+"chapter": 1,
+ "topic": "Conservation",
+ "difficulty": "Medium",
+ "stem": "Which conservation method is best represented by storing seeds of rare plants in a seed bank?",
+ "options": ["Deforestation",
+ "Ex-situ conservation",
+ "Competition",
+ "In-situ conservation"],
+ "answer": 1,
+ "explanation": "In-situ conservation protects organisms in their natural habitat,
+ whereas ex-situ conservation protects them outside it."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound properties",
+ "difficulty": "Low",
+ "stem": "A louder sound has which characteristic?",
+ "options": ["Larger amplitude",
+ "Lower frequency only",
+ "Smaller amplitude",
+ "No vibration"],
+ "answer": 0,
+ "explanation": "Sound is produced by vibrations;
+ loudness is related to amplitude and pitch to frequency."}
+,
+ {
+"chapter": 6,
+ "topic": "Acid-alkali application",
+ "difficulty": "High",
+ "stem": "Blue litmus turns red in solution X,
+ while red litmus turns blue in solution Y. Which statement is correct?",
+ "options": ["Both are acidic",
+ "Both are alkaline",
+ "X is neutral and Y is acidic",
+ "X is acidic and Y is alkaline"],
+ "answer": 3,
+ "explanation": "Acids turn blue litmus red,
+ while alkalis turn red litmus blue."}
+,
+ {
+"chapter": 2,
+ "topic": "Food chain",
+ "difficulty": "Medium",
+ "stem": "Study the food chain: Grass → Rabbit → Fox. If the rabbit population decreases,
+ what is most likely to happen to the grass population?",
+ "options": ["It increases",
+ "It becomes extinct immediately",
+ "It remains exactly the same",
+ "It decreases"],
+ "answer": 0,
+ "explanation": "Fewer rabbits feed on the grass,
+ so its population is likely to increase."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat applications",
+ "difficulty": "Medium",
+ "stem": "Why does hot air rise?",
+ "options": ["It contracts and becomes denser",
+ "It expands and becomes less dense",
+ "Gravity stops acting",
+ "Its mass becomes zero"],
+ "answer": 1,
+ "explanation": "The answer follows thermal expansion,
+ convection and radiation principles."}
+,
+ {
+"chapter": 6,
+ "topic": "pH scale",
+ "difficulty": "Low",
+ "stem": "A solution has a pH of 12. How should it be classified?",
+ "options": ["Acidic",
+ "Cannot be determined",
+ "Alkaline",
+ "Neutral"],
+ "answer": 2,
+ "explanation": "A pH of 12 indicates an alkaline solution."}
+,
+ {
+"chapter": 3,
+ "topic": "Nutrient functions",
+ "difficulty": "Medium",
+ "stem": "Which nutrient is mainly associated with growth and repair of body tissues?",
+ "options": ["Protein",
+ "Carbohydrate",
+ "Fibre",
+ "Vitamin C"],
+ "answer": 0,
+ "explanation": "Each nutrient has a specific major function in maintaining health."}
+,
+ {
+"chapter": 3,
+ "topic": "Food tests",
+ "difficulty": "Low",
+ "stem": "A food sample is tested and Biuret reagent turns purple. Which nutrient is present?",
+ "options": ["Starch",
+ "Fat",
+ "Reducing sugar",
+ "Protein"],
+ "answer": 3,
+ "explanation": "The observation matches the standard food test for this nutrient."}
+,
+ {
+"chapter": 7,
+ "topic": "Electricity",
+ "difficulty": "Low",
+ "stem": "When an ammeter is used in a circuit,
+ which statement is correct?",
+ "options": ["It measures force",
+ "It measures temperature",
+ "It measures potential difference",
+ "It measures electric current"],
+ "answer": 3,
+ "explanation": "The answer follows the basic rules of charge and electrical measurement."}
+,
+ {
+"chapter": 2,
+ "topic": "Interactions",
+ "difficulty": "Low",
+ "stem": "Which type of interaction is shown when a tapeworm lives in a human intestine?",
+ "options": ["Parasitism",
+ "Competition",
+ "Commensalism",
+ "Mutualism"],
+ "answer": 0,
+ "explanation": "The interaction is identified by whether each organism benefits,
+ is harmed or competes for the same resource."}
+],
+ [{
+"chapter": 3,
+ "topic": "Nutrient functions",
+ "difficulty": "Medium",
+ "stem": "Which nutrient is the body's main immediate source of energy?",
+ "options": ["Carbohydrate",
+ "Vitamin C",
+ "Fibre",
+ "Protein"],
+ "answer": 0,
+ "explanation": "Each nutrient has a specific major function in maintaining health."}
+,
+ {
+"chapter": 4,
+ "topic": "Pathogens",
+ "difficulty": "Low",
+ "stem": "Which type of pathogen causes Ringworm?",
+ "options": ["Protozoan",
+ "Fungus",
+ "Virus",
+ "Bacterium"],
+ "answer": 1,
+ "explanation": "Ringworm is caused by a fungus."}
+,
+ {
+"chapter": 6,
+ "topic": "pH scale",
+ "difficulty": "Low",
+ "stem": "A solution has a pH of 7. How should it be classified?",
+ "options": ["Alkaline",
+ "Neutral",
+ "Cannot be determined",
+ "Acidic"],
+ "answer": 1,
+ "explanation": "A pH of 7 indicates a neutral solution."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat application",
+ "difficulty": "High",
+ "stem": "A black metal can and a shiny metal can are placed under the same heat lamp. Which one is expected to warm faster at first?",
+ "options": ["Both must always warm at exactly the same rate",
+ "Neither can absorb radiation",
+ "The shiny can because shiny surfaces absorb radiation best",
+ "The black can because dull black surfaces absorb radiation better"],
+ "answer": 3,
+ "explanation": "Dull black surfaces are better absorbers of thermal radiation."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat transfer",
+ "difficulty": "Low",
+ "stem": "What happens when two objects at the same temperature are in contact?",
+ "options": ["Radiation",
+ "There is no net heat flow",
+ "Conduction",
+ "Convection"],
+ "answer": 1,
+ "explanation": "Heat may be transferred by conduction,
+ convection or radiation. At thermal equilibrium there is no net heat flow."}
+,
+ {
+"chapter": 1,
+ "topic": "Classification",
+ "difficulty": "Low",
+ "stem": "Which group does a butterfly belong to?",
+ "options": ["Amphibian",
+ "Arachnid",
+ "Insect",
+ "Mollusc"],
+ "answer": 2,
+ "explanation": "A butterfly is classified as an insect based on characteristics such as 3 pairs of legs."}
+,
+ {
+"chapter": 5,
+ "topic": "Water treatment",
+ "difficulty": "Medium",
+ "stem": "Which water-treatment process kills harmful microorganisms?",
+ "options": ["Filtration",
+ "Chlorination",
+ "Sedimentation",
+ "Screening"],
+ "answer": 1,
+ "explanation": "Each water-treatment stage has a specific function."}
+,
+ {
+"chapter": 7,
+ "topic": "Electricity",
+ "difficulty": "Low",
+ "stem": "When two objects with opposite charges are brought close,
+ which statement is correct?",
+ "options": ["No force acts",
+ "They repel each other",
+ "Both become neutral",
+ "They attract each other"],
+ "answer": 3,
+ "explanation": "The answer follows the basic rules of charge and electrical measurement."}
+,
+ {
+"chapter": 2,
+ "topic": "Interactions",
+ "difficulty": "Low",
+ "stem": "Which type of interaction is shown when a bee obtains nectar while pollinating a flower?",
+ "options": ["Commensalism",
+ "Parasitism",
+ "Mutualism",
+ "Competition"],
+ "answer": 2,
+ "explanation": "The interaction is identified by whether each organism benefits,
+ is harmed or competes for the same resource."}
+,
+ {
+"chapter": 2,
+ "topic": "Food web analysis",
+ "difficulty": "High",
+ "stem": "Study the food chain: Grass → Grasshopper → Frog → Snake. A disease causes the frog population to fall sharply. Which change is most likely to occur first?",
+ "options": ["The grasshopper population decreases",
+ "All producers disappear immediately",
+ "Every population remains constant",
+ "The grasshopper population increases"],
+ "answer": 3,
+ "explanation": "With fewer frogs,
+ fewer grasshoppers are eaten,
+ so the grasshopper population is likely to increase."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound properties",
+ "difficulty": "Low",
+ "stem": "Which application uses reflection of sound waves?",
+ "options": ["Transformer",
+ "Thermometer",
+ "Electromagnet",
+ "SONAR"],
+ "answer": 3,
+ "explanation": "Sound is produced by vibrations;
+ loudness is related to amplitude and pitch to frequency."}
+,
+ {
+"chapter": 1,
+ "topic": "Biodiversity application",
+ "difficulty": "High",
+ "stem": "Scientists find two animals with jointed legs. Animal X has three pairs of legs and Animal Y has four pairs. Which classification is correct?",
+ "options": ["Both are arachnids",
+ "X is an arachnid and Y is an insect",
+ "Both are insects",
+ "X is an insect and Y is an arachnid"],
+ "answer": 3,
+ "explanation": "Insects have three pairs of legs,
+ while arachnids have four pairs."}
+,
+ {
+"chapter": 3,
+ "topic": "Food tests",
+ "difficulty": "Low",
+ "stem": "A food sample is tested and Benedict's solution forms a brick-red precipitate after heating. Which nutrient is present?",
+ "options": ["Fat",
+ "Starch",
+ "Protein",
+ "Reducing sugar"],
+ "answer": 3,
+ "explanation": "The observation matches the standard food test for this nutrient."}
+,
+ {
+"chapter": 8,
+ "topic": "Pressure and stability",
+ "difficulty": "Medium",
+ "stem": "Which change increases pressure for the same force?",
+ "options": ["Increase the contact area",
+ "Increase area and reduce force",
+ "Use a wider base",
+ "Decrease the contact area"],
+ "answer": 3,
+ "explanation": "Pressure depends on force and contact area,
+ while stability generally improves with a lower centre of gravity and wider base."}
+,
+ {
+"chapter": 6,
+ "topic": "Indicators and neutralisation",
+ "difficulty": "Medium",
+ "stem": "What is the expected result for blue litmus paper in an acid?",
+ "options": ["Turns red",
+ "Remains blue",
+ "Turns blue",
+ "Turns green"],
+ "answer": 0,
+ "explanation": "Indicators show characteristic colours,
+ and acid-alkali neutralisation produces salt and water."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound application",
+ "difficulty": "High",
+ "stem": "Two tuning forks produce different pitches. Fork X has a higher frequency than Fork Y. Which statement is correct?",
+ "options": ["Pitch is unrelated to frequency",
+ "Fork X produces the higher-pitched sound",
+ "Fork X must have a smaller amplitude",
+ "Fork Y must be louder"],
+ "answer": 1,
+ "explanation": "Higher frequency corresponds to higher pitch."}
+,
+ {
+"chapter": 5,
+ "topic": "Water and solutions",
+ "difficulty": "Low",
+ "stem": "Which term describes the effect that allows some small insects to remain on the water surface?",
+ "options": ["Solvent",
+ "Surface tension",
+ "Suspension",
+ "Solution"],
+ "answer": 1,
+ "explanation": "The term is identified from the stated property or behaviour."}
+,
+ {
+"chapter": 8,
+ "topic": "Resultant force",
+ "difficulty": "Low",
+ "stem": "A force of 45 N acts to the right and a force of 15 N acts to the left. What is the resultant force?",
+ "options": ["60 N to the right",
+ "30 N to the left",
+ "30 N to the right",
+ "15 N to the right"],
+ "answer": 2,
+ "explanation": "For opposite forces,
+ subtract the smaller force from the larger one. The larger force gives the direction."}
+,
+ {
+"chapter": 4,
+ "topic": "Prevention",
+ "difficulty": "Medium",
+ "stem": "Which action best reduces the risk related to contaminated food?",
+ "options": ["Practise good food and hand hygiene",
+ "Ignore hygiene",
+ "Leave water containers uncovered",
+ "Share utensils"],
+ "answer": 0,
+ "explanation": "The best prevention method targets the relevant transmission route or improves specific immunity."}
+,
+ {
+"chapter": 7,
+ "topic": "Circuits and electromagnets",
+ "difficulty": "Medium",
+ "stem": "How can an electromagnet be made stronger?",
+ "options": ["Increase the number of turns in the coil",
+ "Use a wooden core",
+ "Open the switch",
+ "Remove the current"],
+ "answer": 0,
+ "explanation": "The answer follows the behaviour of series or parallel circuits and electromagnets."}
+],
+ [{
+"chapter": 10,
+ "topic": "Sound properties",
+ "difficulty": "Low",
+ "stem": "Sound is produced when an object does what?",
+ "options": ["Melts",
+ "Vibrates",
+ "Stops moving completely",
+ "Becomes electrically neutral"],
+ "answer": 1,
+ "explanation": "Sound is produced by vibrations;
+ loudness is related to amplitude and pitch to frequency."}
+,
+ {
+"chapter": 3,
+ "topic": "Food tests",
+ "difficulty": "Low",
+ "stem": "A food sample is tested and iodine solution turns blue-black. Which nutrient is present?",
+ "options": ["Reducing sugar",
+ "Fat",
+ "Starch",
+ "Protein"],
+ "answer": 2,
+ "explanation": "The observation matches the standard food test for this nutrient."}
+,
+ {
+"chapter": 4,
+ "topic": "Disease prevention",
+ "difficulty": "High",
+ "stem": "A student with influenza coughs openly in a crowded room. Which combination best reduces transmission?",
+ "options": ["Take antibiotics without medical advice",
+ "Cover coughs,
+ improve ventilation and avoid close contact",
+ "Touch the face frequently",
+ "Share drinking bottles and close all windows"],
+ "answer": 1,
+ "explanation": "Respiratory infections spread through droplets and close contact,
+ so cough hygiene and ventilation reduce transmission."}
+,
+ {
+"chapter": 1,
+ "topic": "Conservation",
+ "difficulty": "Medium",
+ "stem": "Which conservation method is best represented by protecting tigers in a national park?",
+ "options": ["Deforestation",
+ "Ex-situ conservation",
+ "Competition",
+ "In-situ conservation"],
+ "answer": 3,
+ "explanation": "In-situ conservation protects organisms in their natural habitat,
+ whereas ex-situ conservation protects them outside it."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat applications",
+ "difficulty": "Medium",
+ "stem": "Which surface is the best absorber of heat radiation?",
+ "options": ["Dull black surface",
+ "Polished white surface",
+ "Shiny silver surface",
+ "Smooth reflective surface"],
+ "answer": 0,
+ "explanation": "The answer follows thermal expansion,
+ convection and radiation principles."}
+,
+ {
+"chapter": 4,
+ "topic": "Pathogens",
+ "difficulty": "Low",
+ "stem": "Which type of pathogen causes Dengue?",
+ "options": ["Virus",
+ "Bacterium",
+ "Protozoan",
+ "Fungus"],
+ "answer": 0,
+ "explanation": "Dengue is caused by a virus."}
+,
+ {
+"chapter": 5,
+ "topic": "Water and solutions",
+ "difficulty": "Low",
+ "stem": "Which term describes a mixture containing particles that can settle?",
+ "options": ["Surface tension",
+ "Suspension",
+ "Solution",
+ "Solvent"],
+ "answer": 1,
+ "explanation": "The term is identified from the stated property or behaviour."}
+,
+ {
+"chapter": 3,
+ "topic": "Nutrition application",
+ "difficulty": "High",
+ "stem": "A student eats enough carbohydrate but very little protein for several months. Which effect is most likely?",
+ "options": ["Excessive blood clotting",
+ "Stronger bones from extra calcium",
+ "Poor growth and slower tissue repair",
+ "Immediate scurvy"],
+ "answer": 2,
+ "explanation": "Protein is required for growth and repair of body tissues."}
+,
+ {
+"chapter": 2,
+ "topic": "Interactions",
+ "difficulty": "Low",
+ "stem": "Which type of interaction is shown when two plants grow close together and compete for sunlight?",
+ "options": ["Commensalism",
+ "Parasitism",
+ "Competition",
+ "Mutualism"],
+ "answer": 2,
+ "explanation": "The interaction is identified by whether each organism benefits,
+ is harmed or competes for the same resource."}
+,
+ {
+"chapter": 6,
+ "topic": "pH scale",
+ "difficulty": "Low",
+ "stem": "A solution has a pH of 2. How should it be classified?",
+ "options": ["Alkaline",
+ "Neutral",
+ "Acidic",
+ "Cannot be determined"],
+ "answer": 2,
+ "explanation": "A pH of 2 indicates a acidic solution."}
+,
+ {
+"chapter": 1,
+ "topic": "Classification",
+ "difficulty": "Low",
+ "stem": "Which group does a frog belong to?",
+ "options": ["Insect",
+ "Arachnid",
+ "Mollusc",
+ "Amphibian"],
+ "answer": 3,
+ "explanation": "A frog is classified as a amphibian based on characteristics such as moist skin."}
+,
+ {
+"chapter": 7,
+ "topic": "Electricity",
+ "difficulty": "Low",
+ "stem": "When two objects with the same type of charge are brought close,
+ which statement is correct?",
+ "options": ["They attract each other",
+ "Both become neutral",
+ "They repel each other",
+ "No force acts"],
+ "answer": 2,
+ "explanation": "The answer follows the basic rules of charge and electrical measurement."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound applications",
+ "difficulty": "Medium",
+ "stem": "Which material is most suitable for reducing echoes?",
+ "options": ["Polished metal",
+ "Soft,
+ porous material",
+ "Glass",
+ "Smooth concrete"],
+ "answer": 1,
+ "explanation": "Sound is a mechanical wave;
+ its behaviour depends on the medium and on reflection or absorption."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat transfer",
+ "difficulty": "Low",
+ "stem": "Which process or statement best describes heat from the Sun reaches Earth?",
+ "options": ["Radiation",
+ "Evaporation",
+ "Conduction",
+ "Convection"],
+ "answer": 0,
+ "explanation": "Heat may be transferred by conduction,
+ convection or radiation. At thermal equilibrium there is no net heat flow."}
+,
+ {
+"chapter": 7,
+ "topic": "Circuits and electromagnets",
+ "difficulty": "Medium",
+ "stem": "What happens to an electromagnet when the switch is opened?",
+ "options": ["Its current increases",
+ "Its poles become electrically charged",
+ "It becomes a stronger permanent magnet",
+ "It loses most of its magnetism"],
+ "answer": 3,
+ "explanation": "The answer follows the behaviour of series or parallel circuits and electromagnets."}
+,
+ {
+"chapter": 5,
+ "topic": "Water treatment analysis",
+ "difficulty": "High",
+ "stem": "Raw water contains leaves,
+ fine suspended particles and harmful microorganisms. Which sequence is most suitable?",
+ "options": ["Sedimentation → chlorination → screening → filtration",
+ "Screening → sedimentation → filtration → chlorination",
+ "Chlorination → screening → sedimentation → filtration",
+ "Filtration → screening → chlorination → sedimentation"],
+ "answer": 1,
+ "explanation": "Large debris is removed first,
+ heavier particles settle,
+ fine particles are filtered,
+ and disinfection is carried out near the end."}
+,
+ {
+"chapter": 8,
+ "topic": "Resultant force",
+ "difficulty": "Low",
+ "stem": "A force of 50 N acts to the right and a force of 80 N acts to the left. What is the resultant force?",
+ "options": ["50 N to the right",
+ "130 N to the right",
+ "30 N to the right",
+ "30 N to the left"],
+ "answer": 3,
+ "explanation": "For opposite forces,
+ subtract the smaller force from the larger one. The larger force gives the direction."}
+,
+ {
+"chapter": 2,
+ "topic": "Food chain",
+ "difficulty": "Medium",
+ "stem": "Study the food chain: Paddy → Rat → Snake → Eagle. If the snake population decreases,
+ what is most likely to happen to the rat population?",
+ "options": ["It decreases",
+ "It becomes extinct immediately",
+ "It increases",
+ "It remains exactly the same"],
+ "answer": 2,
+ "explanation": "Fewer snakes means less predation on the rat,
+ so its population is likely to increase."}
+,
+ {
+"chapter": 8,
+ "topic": "Pressure and stability",
+ "difficulty": "Medium",
+ "stem": "Which change generally makes an object more stable?",
+ "options": ["Raise the centre of gravity",
+ "Make the base narrower",
+ "Reduce the base area",
+ "Lower the centre of gravity"],
+ "answer": 3,
+ "explanation": "Pressure depends on force and contact area,
+ while stability generally improves with a lower centre of gravity and wider base."}
+,
+ {
+"chapter": 6,
+ "topic": "Acid-alkali application",
+ "difficulty": "High",
+ "stem": "Equal volumes of an acid and an alkali are mixed and the final solution has pH 7. What has most likely occurred?",
+ "options": ["Only hydrogen gas has formed",
+ "The solution must contain no ions",
+ "The acid has become a metal",
+ "Neutralisation has produced salt and water"],
+ "answer": 3,
+ "explanation": "A neutralisation reaction between an acid and an alkali produces salt and water."}
+],
+ [{
+"chapter": 8,
+ "topic": "Resultant force",
+ "difficulty": "Low",
+ "stem": "A force of 60 N acts to the right and a force of 20 N acts to the left. What is the resultant force?",
+ "options": ["80 N to the right",
+ "20 N to the right",
+ "40 N to the left",
+ "40 N to the right"],
+ "answer": 3,
+ "explanation": "For opposite forces,
+ subtract the smaller force from the larger one. The larger force gives the direction."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat transfer",
+ "difficulty": "Low",
+ "stem": "Which process or statement best describes warm water rises while cooler water sinks in a beaker?",
+ "options": ["Evaporation",
+ "Radiation",
+ "Convection",
+ "Conduction"],
+ "answer": 2,
+ "explanation": "Heat may be transferred by conduction,
+ convection or radiation. At thermal equilibrium there is no net heat flow."}
+,
+ {
+"chapter": 2,
+ "topic": "Food chain",
+ "difficulty": "Medium",
+ "stem": "Study the food chain: Leaves → Caterpillar → Bird → Hawk. If the bird population decreases,
+ what is most likely to happen to the caterpillar population?",
+ "options": ["It becomes extinct immediately",
+ "It remains exactly the same",
+ "It decreases",
+ "It increases"],
+ "answer": 3,
+ "explanation": "Fewer birds means less predation on the caterpillar,
+ so its population is likely to increase."}
+,
+ {
+"chapter": 6,
+ "topic": "Indicators and neutralisation",
+ "difficulty": "Medium",
+ "stem": "What is the expected result for universal indicator in a neutral solution?",
+ "options": ["Purple",
+ "Green",
+ "Red",
+ "Orange"],
+ "answer": 1,
+ "explanation": "Indicators show characteristic colours,
+ and acid-alkali neutralisation produces salt and water."}
+,
+ {
+"chapter": 2,
+ "topic": "Interactions",
+ "difficulty": "Low",
+ "stem": "Which type of interaction is shown when a remora obtains food scraps from a shark while the shark is unaffected?",
+ "options": ["Commensalism",
+ "Parasitism",
+ "Mutualism",
+ "Competition"],
+ "answer": 0,
+ "explanation": "The interaction is identified by whether each organism benefits,
+ is harmed or competes for the same resource."}
+,
+ {
+"chapter": 5,
+ "topic": "Water and solutions",
+ "difficulty": "Low",
+ "stem": "Which term describes a homogeneous mixture formed when a solute dissolves?",
+ "options": ["Surface tension",
+ "Suspension",
+ "Solution",
+ "Solvent"],
+ "answer": 2,
+ "explanation": "The term is identified from the stated property or behaviour."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound properties",
+ "difficulty": "Low",
+ "stem": "A higher-pitched sound has which characteristic?",
+ "options": ["Zero frequency",
+ "Higher frequency",
+ "Smaller amplitude only",
+ "Lower frequency"],
+ "answer": 1,
+ "explanation": "Sound is produced by vibrations;
+ loudness is related to amplitude and pitch to frequency."}
+,
+ {
+"chapter": 1,
+ "topic": "Conservation",
+ "difficulty": "Medium",
+ "stem": "Which conservation method is best represented by keeping endangered turtles in a conservation centre?",
+ "options": ["Competition",
+ "Ex-situ conservation",
+ "Deforestation",
+ "In-situ conservation"],
+ "answer": 1,
+ "explanation": "In-situ conservation protects organisms in their natural habitat,
+ whereas ex-situ conservation protects them outside it."}
+,
+ {
+"chapter": 3,
+ "topic": "Food tests",
+ "difficulty": "Low",
+ "stem": "A food sample is tested and a persistent translucent spot is seen on filter paper. Which nutrient is present?",
+ "options": ["Fat",
+ "Protein",
+ "Starch",
+ "Reducing sugar"],
+ "answer": 0,
+ "explanation": "The observation matches the standard food test for this nutrient."}
+,
+ {
+"chapter": 1,
+ "topic": "Classification",
+ "difficulty": "Low",
+ "stem": "Which group does a cat belong to?",
+ "options": ["Arachnid",
+ "Mammal",
+ "Mollusc",
+ "Insect"],
+ "answer": 1,
+ "explanation": "A cat is classified as a mammal based on characteristics such as hair or fur and mammary glands."}
+,
+ {
+"chapter": 6,
+ "topic": "pH scale",
+ "difficulty": "Low",
+ "stem": "A solution has a pH of 9. How should it be classified?",
+ "options": ["Acidic",
+ "Cannot be determined",
+ "Alkaline",
+ "Neutral"],
+ "answer": 2,
+ "explanation": "A pH of 9 indicates an alkaline solution."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat application",
+ "difficulty": "High",
+ "stem": "Warm air rises above a heater. What causes this movement?",
+ "options": ["Air changes into a solid",
+ "The air becomes denser and rises",
+ "The air expands,
+ becomes less dense and rises",
+ "The heater removes gravity"],
+ "answer": 2,
+ "explanation": "Heating causes air to expand and become less dense,
+ producing convection."}
+,
+ {
+"chapter": 5,
+ "topic": "Water treatment",
+ "difficulty": "Medium",
+ "stem": "Which water-treatment process allows heavier suspended particles to settle?",
+ "options": ["Sedimentation",
+ "Chlorination",
+ "Filtration",
+ "Screening"],
+ "answer": 0,
+ "explanation": "Each water-treatment stage has a specific function."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound application",
+ "difficulty": "High",
+ "stem": "A ship sends a sound pulse downward and detects the reflected pulse later. What principle is being used?",
+ "options": ["Refraction of light only",
+ "Conduction of heat",
+ "Electrostatic attraction",
+ "Reflection of sound to determine distance"],
+ "answer": 3,
+ "explanation": "SONAR uses reflected sound and the time delay to determine distance."}
+,
+ {
+"chapter": 3,
+ "topic": "Nutrient functions",
+ "difficulty": "Medium",
+ "stem": "Which nutrient is mainly associated with preventing scurvy?",
+ "options": ["Fibre",
+ "Protein",
+ "Vitamin C",
+ "Carbohydrate"],
+ "answer": 2,
+ "explanation": "Each nutrient has a specific major function in maintaining health."}
+,
+ {
+"chapter": 7,
+ "topic": "Electricity",
+ "difficulty": "Low",
+ "stem": "When a voltmeter is connected across a bulb,
+ which statement is correct?",
+ "options": ["It measures current",
+ "It measures potential difference",
+ "It measures temperature",
+ "It measures mass"],
+ "answer": 1,
+ "explanation": "The answer follows the basic rules of charge and electrical measurement."}
+,
+ {
+"chapter": 7,
+ "topic": "Circuits and electromagnets",
+ "difficulty": "High",
+ "stem": "Two identical bulbs are connected in parallel to a battery. One bulb burns out. What happens to the other bulb?",
+ "options": ["It becomes an open switch",
+ "The battery voltage becomes zero",
+ "It also goes out because all current stops",
+ "It remains lit because its branch is still complete"],
+ "answer": 3,
+ "explanation": "In a parallel circuit,
+ each branch provides an independent path for current."}
+,
+ {
+"chapter": 8,
+ "topic": "Pressure and stability",
+ "difficulty": "High",
+ "stem": "Two blocks have the same weight. Block X rests on a smaller base area than Block Y. Which statement is correct?",
+ "options": ["Block Y exerts greater pressure",
+ "Pressure is independent of contact area",
+ "Both exert zero pressure",
+ "Block X exerts greater pressure"],
+ "answer": 3,
+ "explanation": "For the same force,
+ a smaller contact area produces greater pressure."}
+,
+ {
+"chapter": 4,
+ "topic": "Pathogens",
+ "difficulty": "Low",
+ "stem": "Which type of pathogen causes Tuberculosis?",
+ "options": ["Fungus",
+ "Protozoan",
+ "Bacterium",
+ "Virus"],
+ "answer": 2,
+ "explanation": "Tuberculosis is caused by a bacterium."}
+,
+ {
+"chapter": 4,
+ "topic": "Prevention",
+ "difficulty": "Medium",
+ "stem": "Which action best reduces the risk related to Aedes mosquitoes?",
+ "options": ["Remove stagnant water",
+ "Ignore hygiene",
+ "Leave water containers uncovered",
+ "Share utensils"],
+ "answer": 0,
+ "explanation": "The best prevention method targets the relevant transmission route or improves specific immunity."}
+],
+ [{
+"chapter": 2,
+ "topic": "Food web analysis",
+ "difficulty": "High",
+ "stem": "Study the food chain: Grass → Rabbit → Fox. A disease causes the rabbit population to fall sharply. Which change is most likely to occur first?",
+ "options": ["The grass population increases",
+ "All producers disappear immediately",
+ "Every population remains constant",
+ "The grass population decreases"],
+ "answer": 0,
+ "explanation": "With fewer rabbits,
+ fewer grasss are eaten,
+ so the grass population is likely to increase."}
+,
+ {
+"chapter": 4,
+ "topic": "Pathogens",
+ "difficulty": "Low",
+ "stem": "Which type of pathogen causes Malaria?",
+ "options": ["Virus",
+ "Protozoan",
+ "Fungus",
+ "Bacterium"],
+ "answer": 1,
+ "explanation": "Malaria is caused by a protozoan."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat applications",
+ "difficulty": "Medium",
+ "stem": "Why does hot air rise?",
+ "options": ["Gravity stops acting",
+ "Its mass becomes zero",
+ "It contracts and becomes denser",
+ "It expands and becomes less dense"],
+ "answer": 3,
+ "explanation": "The answer follows thermal expansion,
+ convection and radiation principles."}
+,
+ {
+"chapter": 5,
+ "topic": "Water and solutions",
+ "difficulty": "Low",
+ "stem": "Which term describes the substance that dissolves a solute?",
+ "options": ["Solution",
+ "Surface tension",
+ "Suspension",
+ "Solvent"],
+ "answer": 3,
+ "explanation": "The term is identified from the stated property or behaviour."}
+,
+ {
+"chapter": 1,
+ "topic": "Classification",
+ "difficulty": "Low",
+ "stem": "Which group does a snail belong to?",
+ "options": ["Amphibian",
+ "Insect",
+ "Mollusc",
+ "Arachnid"],
+ "answer": 2,
+ "explanation": "A snail is classified as a mollusc based on characteristics such as soft body."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound applications",
+ "difficulty": "Medium",
+ "stem": "In which medium does sound generally travel fastest?",
+ "options": ["Empty space",
+ "Vacuum",
+ "Solid",
+ "Gas"],
+ "answer": 2,
+ "explanation": "Sound is a mechanical wave;
+ its behaviour depends on the medium and on reflection or absorption."}
+,
+ {
+"chapter": 7,
+ "topic": "Electricity",
+ "difficulty": "Low",
+ "stem": "When an ammeter is used in a circuit,
+ which statement is correct?",
+ "options": ["It measures force",
+ "It measures potential difference",
+ "It measures electric current",
+ "It measures temperature"],
+ "answer": 2,
+ "explanation": "The answer follows the basic rules of charge and electrical measurement."}
+,
+ {
+"chapter": 7,
+ "topic": "Circuits and electromagnets",
+ "difficulty": "Medium",
+ "stem": "Why are household appliances connected in parallel?",
+ "options": ["The potential difference becomes zero",
+ "Each appliance can operate independently",
+ "All appliances must switch on together",
+ "One faulty appliance stops all others"],
+ "answer": 1,
+ "explanation": "The answer follows the behaviour of series or parallel circuits and electromagnets."}
+,
+ {
+"chapter": 5,
+ "topic": "Water treatment",
+ "difficulty": "Medium",
+ "stem": "Which water-treatment process removes fine suspended particles through filter layers?",
+ "options": ["Sedimentation",
+ "Chlorination",
+ "Screening",
+ "Filtration"],
+ "answer": 3,
+ "explanation": "Each water-treatment stage has a specific function."}
+,
+ {
+"chapter": 2,
+ "topic": "Interactions",
+ "difficulty": "Low",
+ "stem": "Which type of interaction is shown when a tapeworm lives in a human intestine?",
+ "options": ["Mutualism",
+ "Parasitism",
+ "Competition",
+ "Commensalism"],
+ "answer": 1,
+ "explanation": "The interaction is identified by whether each organism benefits,
+ is harmed or competes for the same resource."}
+,
+ {
+"chapter": 8,
+ "topic": "Resultant force",
+ "difficulty": "Low",
+ "stem": "A force of 90 N acts to the right and a force of 25 N acts to the left. What is the resultant force?",
+ "options": ["65 N to the left",
+ "65 N to the right",
+ "115 N to the right",
+ "25 N to the right"],
+ "answer": 1,
+ "explanation": "For opposite forces,
+ subtract the smaller force from the larger one. The larger force gives the direction."}
+,
+ {
+"chapter": 3,
+ "topic": "Food tests",
+ "difficulty": "Low",
+ "stem": "A food sample is tested and Biuret reagent turns purple. Which nutrient is present?",
+ "options": ["Starch",
+ "Protein",
+ "Fat",
+ "Reducing sugar"],
+ "answer": 1,
+ "explanation": "The observation matches the standard food test for this nutrient."}
+,
+ {
+"chapter": 1,
+ "topic": "Biodiversity application",
+ "difficulty": "High",
+ "stem": "Scientists find two animals with jointed legs. Animal X has three pairs of legs and Animal Y has four pairs. Which classification is correct?",
+ "options": ["Both are arachnids",
+ "X is an arachnid and Y is an insect",
+ "X is an insect and Y is an arachnid",
+ "Both are insects"],
+ "answer": 2,
+ "explanation": "Insects have three pairs of legs,
+ while arachnids have four pairs."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat transfer",
+ "difficulty": "Low",
+ "stem": "Which process causes a metal spoon to become hot when one end is placed in hot water?",
+ "options": ["Evaporation",
+ "Convection",
+ "Radiation",
+ "Conduction"],
+ "answer": 3,
+ "explanation": "Heat may be transferred by conduction,
+ convection or radiation. At thermal equilibrium there is no net heat flow."}
+,
+ {
+"chapter": 6,
+ "topic": "pH scale",
+ "difficulty": "Low",
+ "stem": "A solution has a pH of 4. How should it be classified?",
+ "options": ["Cannot be determined",
+ "Acidic",
+ "Neutral",
+ "Alkaline"],
+ "answer": 1,
+ "explanation": "A pH of 4 indicates a acidic solution."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound properties",
+ "difficulty": "Low",
+ "stem": "A louder sound has which characteristic?",
+ "options": ["Lower frequency only",
+ "No vibration",
+ "Larger amplitude",
+ "Smaller amplitude"],
+ "answer": 2,
+ "explanation": "Sound is produced by vibrations;
+ loudness is related to amplitude and pitch to frequency."}
+,
+ {
+"chapter": 4,
+ "topic": "Disease prevention",
+ "difficulty": "High",
+ "stem": "A vaccinated person is exposed to a pathogen that the vaccine targets. Why can the body respond faster?",
+ "options": ["The vaccine permanently raises body temperature",
+ "Red blood cells destroy all pathogens",
+ "The pathogen can no longer enter the body",
+ "The immune system has developed a specific memory response"],
+ "answer": 3,
+ "explanation": "Vaccination prepares the immune system to recognise and respond more rapidly to a specific pathogen."}
+,
+ {
+"chapter": 8,
+ "topic": "Pressure and stability",
+ "difficulty": "Medium",
+ "stem": "Why does a sharp knife cut more easily?",
+ "options": ["A larger contact area produces greater pressure",
+ "Its mass disappears",
+ "A smaller contact area produces greater pressure",
+ "Its force becomes zero"],
+ "answer": 2,
+ "explanation": "Pressure depends on force and contact area,
+ while stability generally improves with a lower centre of gravity and wider base."}
+,
+ {
+"chapter": 3,
+ "topic": "Nutrition application",
+ "difficulty": "High",
+ "stem": "Sample X turns blue-black with iodine and also gives a brick-red precipitate with Benedict's solution after heating. What can be concluded?",
+ "options": ["Sample X contains only protein",
+ "Sample X contains starch and reducing sugar",
+ "Sample X contains fat only",
+ "Sample X contains no carbohydrate"],
+ "answer": 1,
+ "explanation": "Positive iodine and Benedict's tests show starch and reducing sugar are both present."}
+,
+ {
+"chapter": 6,
+ "topic": "Indicators and neutralisation",
+ "difficulty": "Medium",
+ "stem": "What is the expected result for an acid reacting with an alkali?",
+ "options": ["Hydrogen only",
+ "Oxygen only",
+ "Salt and water",
+ "Carbon dioxide only"],
+ "answer": 2,
+ "explanation": "Indicators show characteristic colours,
+ and acid-alkali neutralisation produces salt and water."}
+],
+ [{
+"chapter": 3,
+ "topic": "Food tests",
+ "difficulty": "Low",
+ "stem": "A food sample is tested and Benedict's solution forms a brick-red precipitate after heating. Which nutrient is present?",
+ "options": ["Starch",
+ "Reducing sugar",
+ "Protein",
+ "Fat"],
+ "answer": 1,
+ "explanation": "The observation matches the standard food test for this nutrient."}
+,
+ {
+"chapter": 4,
+ "topic": "Prevention",
+ "difficulty": "Medium",
+ "stem": "Which action best reduces the risk related to contaminated food?",
+ "options": ["Ignore hygiene",
+ "Share utensils",
+ "Leave water containers uncovered",
+ "Practise good food and hand hygiene"],
+ "answer": 3,
+ "explanation": "The best prevention method targets the relevant transmission route or improves specific immunity."}
+,
+ {
+"chapter": 7,
+ "topic": "Electricity",
+ "difficulty": "Low",
+ "stem": "When two objects with opposite charges are brought close,
+ which statement is correct?",
+ "options": ["No force acts",
+ "They attract each other",
+ "They repel each other",
+ "Both become neutral"],
+ "answer": 1,
+ "explanation": "The answer follows the basic rules of charge and electrical measurement."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound applications",
+ "difficulty": "Medium",
+ "stem": "Why can sound not travel through a vacuum?",
+ "options": ["Gravity is absent",
+ "Sound needs particles in a medium to transfer vibrations",
+ "Sound is a type of light",
+ "A vacuum is always too cold"],
+ "answer": 1,
+ "explanation": "Sound is a mechanical wave;
+ its behaviour depends on the medium and on reflection or absorption."}
+,
+ {
+"chapter": 8,
+ "topic": "Pressure and stability",
+ "difficulty": "High",
+ "stem": "A tall object is made more stable by changing its design. Which combination is best?",
+ "options": ["Higher centre of gravity and smaller base",
+ "Narrower base and higher centre of gravity",
+ "Wider base and lower centre of gravity",
+ "Narrower base and lower mass only"],
+ "answer": 2,
+ "explanation": "A wide base and low centre of gravity improve stability."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat applications",
+ "difficulty": "Medium",
+ "stem": "Which vacuum-flask feature reduces heat transfer by radiation?",
+ "options": ["A black rough inner wall",
+ "An open lid",
+ "A metal bridge between walls",
+ "Shiny silver surfaces"],
+ "answer": 3,
+ "explanation": "The answer follows thermal expansion,
+ convection and radiation principles."}
+,
+ {
+"chapter": 3,
+ "topic": "Nutrient functions",
+ "difficulty": "Medium",
+ "stem": "Which nutrient is the body's main immediate source of energy?",
+ "options": ["Carbohydrate",
+ "Vitamin C",
+ "Fibre",
+ "Protein"],
+ "answer": 0,
+ "explanation": "Each nutrient has a specific major function in maintaining health."}
+,
+ {
+"chapter": 5,
+ "topic": "Water and solutions",
+ "difficulty": "Low",
+ "stem": "Which term describes the effect that allows some small insects to remain on the water surface?",
+ "options": ["Solution",
+ "Solvent",
+ "Surface tension",
+ "Suspension"],
+ "answer": 2,
+ "explanation": "The term is identified from the stated property or behaviour."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat transfer",
+ "difficulty": "Low",
+ "stem": "What happens when two objects at the same temperature are in contact?",
+ "options": ["There is no net heat flow",
+ "Convection",
+ "Conduction",
+ "Radiation"],
+ "answer": 0,
+ "explanation": "Heat may be transferred by conduction,
+ convection or radiation. At thermal equilibrium there is no net heat flow."}
+,
+ {
+"chapter": 7,
+ "topic": "Circuits and electromagnets",
+ "difficulty": "High",
+ "stem": "An electromagnet has 20 turns of wire and attracts 6 paper clips. Which change is most likely to make it stronger?",
+ "options": ["Replace the iron core with wood",
+ "Increase the number of turns while keeping the circuit complete",
+ "Open the switch",
+ "Reduce the current to zero"],
+ "answer": 1,
+ "explanation": "Increasing the number of turns strengthens the magnetic field of an electromagnet."}
+,
+ {
+"chapter": 6,
+ "topic": "Acid-alkali application",
+ "difficulty": "High",
+ "stem": "Equal volumes of an acid and an alkali are mixed and the final solution has pH 7. What has most likely occurred?",
+ "options": ["The acid has become a metal",
+ "Neutralisation has produced salt and water",
+ "Only hydrogen gas has formed",
+ "The solution must contain no ions"],
+ "answer": 1,
+ "explanation": "A neutralisation reaction between an acid and an alkali produces salt and water."}
+,
+ {
+"chapter": 1,
+ "topic": "Conservation",
+ "difficulty": "Medium",
+ "stem": "Which conservation method is best represented by protecting mangrove species in a gazetted reserve?",
+ "options": ["In-situ conservation",
+ "Ex-situ conservation",
+ "Deforestation",
+ "Competition"],
+ "answer": 0,
+ "explanation": "In-situ conservation protects organisms in their natural habitat,
+ whereas ex-situ conservation protects them outside it."}
+,
+ {
+"chapter": 6,
+ "topic": "pH scale",
+ "difficulty": "Low",
+ "stem": "A solution has a pH of 12. How should it be classified?",
+ "options": ["Neutral",
+ "Cannot be determined",
+ "Alkaline",
+ "Acidic"],
+ "answer": 2,
+ "explanation": "A pH of 12 indicates an alkaline solution."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound properties",
+ "difficulty": "Low",
+ "stem": "Which application uses reflection of sound waves?",
+ "options": ["Electromagnet",
+ "Thermometer",
+ "Transformer",
+ "SONAR"],
+ "answer": 3,
+ "explanation": "Sound is produced by vibrations;
+ loudness is related to amplitude and pitch to frequency."}
+,
+ {
+"chapter": 4,
+ "topic": "Pathogens",
+ "difficulty": "Low",
+ "stem": "Which type of pathogen causes Ringworm?",
+ "options": ["Bacterium",
+ "Protozoan",
+ "Fungus",
+ "Virus"],
+ "answer": 2,
+ "explanation": "Ringworm is caused by a fungus."}
+,
+ {
+"chapter": 1,
+ "topic": "Classification",
+ "difficulty": "Low",
+ "stem": "Which group does a pigeon belong to?",
+ "options": ["Arachnid",
+ "Bird",
+ "Mollusc",
+ "Insect"],
+ "answer": 1,
+ "explanation": "A pigeon is classified as a bird based on characteristics such as feathers."}
+,
+ {
+"chapter": 5,
+ "topic": "Water treatment analysis",
+ "difficulty": "High",
+ "stem": "A muddy water sample is left undisturbed and some particles settle at the bottom. Which statement is correct?",
+ "options": ["The sample is a suspension and can be partly separated by sedimentation",
+ "The sample is a pure substance",
+ "Chlorination alone removes all suspended solids",
+ "The particles are completely dissolved"],
+ "answer": 0,
+ "explanation": "Suspended particles can settle,
+ so sedimentation can remove part of the solid matter."}
+,
+ {
+"chapter": 8,
+ "topic": "Resultant force",
+ "difficulty": "Low",
+ "stem": "A force of 75 N acts to the right and a force of 30 N acts to the left. What is the resultant force?",
+ "options": ["30 N to the right",
+ "45 N to the left",
+ "45 N to the right",
+ "105 N to the right"],
+ "answer": 2,
+ "explanation": "For opposite forces,
+ subtract the smaller force from the larger one. The larger force gives the direction."}
+,
+ {
+"chapter": 2,
+ "topic": "Interactions",
+ "difficulty": "Low",
+ "stem": "Which type of interaction is shown when a bee obtains nectar while pollinating a flower?",
+ "options": ["Mutualism",
+ "Competition",
+ "Commensalism",
+ "Parasitism"],
+ "answer": 0,
+ "explanation": "The interaction is identified by whether each organism benefits,
+ is harmed or competes for the same resource."}
+,
+ {
+"chapter": 2,
+ "topic": "Food chain",
+ "difficulty": "Medium",
+ "stem": "Study the food chain: Grass → Grasshopper → Frog → Snake. If the frog population decreases,
+ what is most likely to happen to the grasshopper population?",
+ "options": ["It remains exactly the same",
+ "It decreases",
+ "It becomes extinct immediately",
+ "It increases"],
+ "answer": 3,
+ "explanation": "Fewer frogs means less predation on the grasshopper,
+ so its population is likely to increase."}
+],
+ [{
+"chapter": 3,
+ "topic": "Food tests",
+ "difficulty": "Low",
+ "stem": "A food sample is tested and iodine solution turns blue-black. Which nutrient is present?",
+ "options": ["Starch",
+ "Reducing sugar",
+ "Fat",
+ "Protein"],
+ "answer": 0,
+ "explanation": "The observation matches the standard food test for this nutrient."}
+,
+ {
+"chapter": 2,
+ "topic": "Food web analysis",
+ "difficulty": "High",
+ "stem": "Study the food chain: Paddy → Rat → Snake → Eagle. A disease causes the snake population to fall sharply. Which change is most likely to occur first?",
+ "options": ["All producers disappear immediately",
+ "The rat population increases",
+ "Every population remains constant",
+ "The rat population decreases"],
+ "answer": 1,
+ "explanation": "With fewer snakes,
+ fewer rats are eaten,
+ so the rat population is likely to increase."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound application",
+ "difficulty": "High",
+ "stem": "A ship sends a sound pulse downward and detects the reflected pulse later. What principle is being used?",
+ "options": ["Electrostatic attraction",
+ "Refraction of light only",
+ "Reflection of sound to determine distance",
+ "Conduction of heat"],
+ "answer": 2,
+ "explanation": "SONAR uses reflected sound and the time delay to determine distance."}
+,
+ {
+"chapter": 7,
+ "topic": "Electricity",
+ "difficulty": "Low",
+ "stem": "When two objects with the same type of charge are brought close,
+ which statement is correct?",
+ "options": ["No force acts",
+ "They repel each other",
+ "They attract each other",
+ "Both become neutral"],
+ "answer": 1,
+ "explanation": "The answer follows the basic rules of charge and electrical measurement."}
+,
+ {
+"chapter": 8,
+ "topic": "Pressure and stability",
+ "difficulty": "Medium",
+ "stem": "Which change generally makes an object more stable?",
+ "options": ["Make the base narrower",
+ "Lower the centre of gravity",
+ "Raise the centre of gravity",
+ "Reduce the base area"],
+ "answer": 1,
+ "explanation": "Pressure depends on force and contact area,
+ while stability generally improves with a lower centre of gravity and wider base."}
+,
+ {
+"chapter": 3,
+ "topic": "Nutrient functions",
+ "difficulty": "Medium",
+ "stem": "Which nutrient is mainly associated with adding bulk to faeces and helping prevent constipation?",
+ "options": ["Fibre",
+ "Protein",
+ "Vitamin C",
+ "Carbohydrate"],
+ "answer": 0,
+ "explanation": "Each nutrient has a specific major function in maintaining health."}
+,
+ {
+"chapter": 7,
+ "topic": "Circuits and electromagnets",
+ "difficulty": "Medium",
+ "stem": "What happens to an electromagnet when the switch is opened?",
+ "options": ["Its current increases",
+ "It loses most of its magnetism",
+ "It becomes a stronger permanent magnet",
+ "Its poles become electrically charged"],
+ "answer": 1,
+ "explanation": "The answer follows the behaviour of series or parallel circuits and electromagnets."}
+,
+ {
+"chapter": 5,
+ "topic": "Water and solutions",
+ "difficulty": "Low",
+ "stem": "Which term describes a mixture containing particles that can settle?",
+ "options": ["Solution",
+ "Surface tension",
+ "Suspension",
+ "Solvent"],
+ "answer": 2,
+ "explanation": "The term is identified from the stated property or behaviour."}
+,
+ {
+"chapter": 6,
+ "topic": "Indicators and neutralisation",
+ "difficulty": "Medium",
+ "stem": "What is the expected result for red litmus paper in an alkali?",
+ "options": ["Turns red",
+ "Turns green",
+ "Remains red",
+ "Turns blue"],
+ "answer": 3,
+ "explanation": "Indicators show characteristic colours,
+ and acid-alkali neutralisation produces salt and water."}
+,
+ {
+"chapter": 4,
+ "topic": "Prevention",
+ "difficulty": "Medium",
+ "stem": "Which action best reduces the risk related to low immunity to a specific infectious disease?",
+ "options": ["Ignore hygiene",
+ "Share utensils",
+ "Leave water containers uncovered",
+ "Vaccination"],
+ "answer": 3,
+ "explanation": "The best prevention method targets the relevant transmission route or improves specific immunity."}
+,
+ {
+"chapter": 5,
+ "topic": "Water treatment",
+ "difficulty": "Medium",
+ "stem": "Which water-treatment process removes large floating debris?",
+ "options": ["Chlorination",
+ "Filtration",
+ "Screening",
+ "Sedimentation"],
+ "answer": 2,
+ "explanation": "Each water-treatment stage has a specific function."}
+,
+ {
+"chapter": 4,
+ "topic": "Pathogens",
+ "difficulty": "Low",
+ "stem": "Which type of pathogen causes Dengue?",
+ "options": ["Virus",
+ "Protozoan",
+ "Bacterium",
+ "Fungus"],
+ "answer": 0,
+ "explanation": "Dengue is caused by a virus."}
+,
+ {
+"chapter": 1,
+ "topic": "Biodiversity application",
+ "difficulty": "High",
+ "stem": "A forest reserve contains many native species. A road project divides the forest into small isolated patches. Which is the most likely long-term effect?",
+ "options": ["Biodiversity decreases because habitats are fragmented",
+ "No change occurs because roads do not affect habitats",
+ "All species immediately become extinct",
+ "Biodiversity increases because organisms have less space"],
+ "answer": 0,
+ "explanation": "Habitat fragmentation separates populations and reduces suitable habitat,
+ which can reduce biodiversity."}
+,
+ {
+"chapter": 1,
+ "topic": "Classification",
+ "difficulty": "Low",
+ "stem": "Which group does a spider belong to?",
+ "options": ["Arachnid",
+ "Insect",
+ "Amphibian",
+ "Mollusc"],
+ "answer": 0,
+ "explanation": "A spider is classified as a arachnid based on characteristics such as 4 pairs of legs."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat transfer",
+ "difficulty": "Low",
+ "stem": "Which process or statement best describes heat from the Sun reaches Earth?",
+ "options": ["Radiation",
+ "Conduction",
+ "Convection",
+ "Evaporation"],
+ "answer": 0,
+ "explanation": "Heat may be transferred by conduction,
+ convection or radiation. At thermal equilibrium there is no net heat flow."}
+,
+ {
+"chapter": 8,
+ "topic": "Resultant force",
+ "difficulty": "Low",
+ "stem": "A force of 45 N acts to the right and a force of 15 N acts to the left. What is the resultant force?",
+ "options": ["15 N to the right",
+ "30 N to the right",
+ "60 N to the right",
+ "30 N to the left"],
+ "answer": 1,
+ "explanation": "For opposite forces,
+ subtract the smaller force from the larger one. The larger force gives the direction."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat application",
+ "difficulty": "High",
+ "stem": "Warm air rises above a heater. What causes this movement?",
+ "options": ["The air expands,
+ becomes less dense and rises",
+ "The heater removes gravity",
+ "The air becomes denser and rises",
+ "Air changes into a solid"],
+ "answer": 0,
+ "explanation": "Heating causes air to expand and become less dense,
+ producing convection."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound properties",
+ "difficulty": "Low",
+ "stem": "Sound is produced when an object does what?",
+ "options": ["Vibrates",
+ "Stops moving completely",
+ "Melts",
+ "Becomes electrically neutral"],
+ "answer": 0,
+ "explanation": "Sound is produced by vibrations;
+ loudness is related to amplitude and pitch to frequency."}
+,
+ {
+"chapter": 6,
+ "topic": "pH scale",
+ "difficulty": "Low",
+ "stem": "A solution has a pH of 7. How should it be classified?",
+ "options": ["Acidic",
+ "Neutral",
+ "Alkaline",
+ "Cannot be determined"],
+ "answer": 1,
+ "explanation": "A pH of 7 indicates a neutral solution."}
+,
+ {
+"chapter": 2,
+ "topic": "Interactions",
+ "difficulty": "Low",
+ "stem": "Which type of interaction is shown when two plants grow close together and compete for sunlight?",
+ "options": ["Commensalism",
+ "Mutualism",
+ "Parasitism",
+ "Competition"],
+ "answer": 3,
+ "explanation": "The interaction is identified by whether each organism benefits,
+ is harmed or competes for the same resource."}
+],
+ [{
+"chapter": 6,
+ "topic": "Acid-alkali application",
+ "difficulty": "High",
+ "stem": "A farmer finds that soil is too acidic for a crop. Which treatment is most suitable?",
+ "options": ["Add distilled water only and expect permanent neutralisation",
+ "Add sugar",
+ "Add a suitable alkaline material to reduce the acidity",
+ "Add more acid"],
+ "answer": 2,
+ "explanation": "An alkaline material can neutralise excess acidity in soil."}
+,
+ {
+"chapter": 7,
+ "topic": "Electricity",
+ "difficulty": "Low",
+ "stem": "When a voltmeter is connected across a bulb,
+ which statement is correct?",
+ "options": ["It measures temperature",
+ "It measures current",
+ "It measures potential difference",
+ "It measures mass"],
+ "answer": 2,
+ "explanation": "The answer follows the basic rules of charge and electrical measurement."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat transfer",
+ "difficulty": "Low",
+ "stem": "Which process or statement best describes warm water rises while cooler water sinks in a beaker?",
+ "options": ["Convection",
+ "Conduction",
+ "Evaporation",
+ "Radiation"],
+ "answer": 0,
+ "explanation": "Heat may be transferred by conduction,
+ convection or radiation. At thermal equilibrium there is no net heat flow."}
+,
+ {
+"chapter": 3,
+ "topic": "Nutrition application",
+ "difficulty": "High",
+ "stem": "Sample X turns blue-black with iodine and also gives a brick-red precipitate with Benedict's solution after heating. What can be concluded?",
+ "options": ["Sample X contains only protein",
+ "Sample X contains starch and reducing sugar",
+ "Sample X contains no carbohydrate",
+ "Sample X contains fat only"],
+ "answer": 1,
+ "explanation": "Positive iodine and Benedict's tests show starch and reducing sugar are both present."}
+,
+ {
+"chapter": 5,
+ "topic": "Water and solutions",
+ "difficulty": "Low",
+ "stem": "Which term describes a homogeneous mixture formed when a solute dissolves?",
+ "options": ["Solution",
+ "Solvent",
+ "Suspension",
+ "Surface tension"],
+ "answer": 0,
+ "explanation": "The term is identified from the stated property or behaviour."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat applications",
+ "difficulty": "Medium",
+ "stem": "Why are gaps left between railway-track sections?",
+ "options": ["To increase friction",
+ "To allow thermal expansion",
+ "To stop conduction completely",
+ "To reduce the mass of the rail"],
+ "answer": 1,
+ "explanation": "The answer follows thermal expansion,
+ convection and radiation principles."}
+,
+ {
+"chapter": 8,
+ "topic": "Resultant force",
+ "difficulty": "Low",
+ "stem": "A force of 50 N acts to the right and a force of 80 N acts to the left. What is the resultant force?",
+ "options": ["30 N to the right",
+ "30 N to the left",
+ "130 N to the right",
+ "50 N to the right"],
+ "answer": 1,
+ "explanation": "For opposite forces,
+ subtract the smaller force from the larger one. The larger force gives the direction."}
+,
+ {
+"chapter": 6,
+ "topic": "pH scale",
+ "difficulty": "Low",
+ "stem": "A solution has a pH of 2. How should it be classified?",
+ "options": ["Acidic",
+ "Neutral",
+ "Alkaline",
+ "Cannot be determined"],
+ "answer": 0,
+ "explanation": "A pH of 2 indicates a acidic solution."}
+,
+ {
+"chapter": 2,
+ "topic": "Interactions",
+ "difficulty": "Low",
+ "stem": "Which type of interaction is shown when a remora obtains food scraps from a shark while the shark is unaffected?",
+ "options": ["Commensalism",
+ "Competition",
+ "Parasitism",
+ "Mutualism"],
+ "answer": 0,
+ "explanation": "The interaction is identified by whether each organism benefits,
+ is harmed or competes for the same resource."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound properties",
+ "difficulty": "Low",
+ "stem": "A higher-pitched sound has which characteristic?",
+ "options": ["Higher frequency",
+ "Zero frequency",
+ "Smaller amplitude only",
+ "Lower frequency"],
+ "answer": 0,
+ "explanation": "Sound is produced by vibrations;
+ loudness is related to amplitude and pitch to frequency."}
+,
+ {
+"chapter": 4,
+ "topic": "Disease prevention",
+ "difficulty": "High",
+ "stem": "A vaccinated person is exposed to a pathogen that the vaccine targets. Why can the body respond faster?",
+ "options": ["The pathogen can no longer enter the body",
+ "Red blood cells destroy all pathogens",
+ "The immune system has developed a specific memory response",
+ "The vaccine permanently raises body temperature"],
+ "answer": 2,
+ "explanation": "Vaccination prepares the immune system to recognise and respond more rapidly to a specific pathogen."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound applications",
+ "difficulty": "Medium",
+ "stem": "What causes an echo?",
+ "options": ["Electric current",
+ "Reflection of sound",
+ "Conduction of heat",
+ "Chemical reaction"],
+ "answer": 1,
+ "explanation": "Sound is a mechanical wave;
+ its behaviour depends on the medium and on reflection or absorption."}
+,
+ {
+"chapter": 2,
+ "topic": "Food chain",
+ "difficulty": "Medium",
+ "stem": "Study the food chain: Leaves → Caterpillar → Bird → Hawk. If the bird population decreases,
+ what is most likely to happen to the caterpillar population?",
+ "options": ["It increases",
+ "It remains exactly the same",
+ "It becomes extinct immediately",
+ "It decreases"],
+ "answer": 0,
+ "explanation": "Fewer birds means less predation on the caterpillar,
+ so its population is likely to increase."}
+,
+ {
+"chapter": 8,
+ "topic": "Pressure and stability",
+ "difficulty": "Medium",
+ "stem": "Why do tractors use wide tyres on soft ground?",
+ "options": ["To increase pressure by reducing contact area",
+ "To increase gravitational force",
+ "To reduce pressure by increasing contact area",
+ "To raise the centre of gravity"],
+ "answer": 2,
+ "explanation": "Pressure depends on force and contact area,
+ while stability generally improves with a lower centre of gravity and wider base."}
+,
+ {
+"chapter": 1,
+ "topic": "Classification",
+ "difficulty": "Low",
+ "stem": "Which group does a lizard belong to?",
+ "options": ["Arachnid",
+ "Mollusc",
+ "Insect",
+ "Reptile"],
+ "answer": 3,
+ "explanation": "A lizard is classified as a reptile based on characteristics such as dry scaly skin."}
+,
+ {
+"chapter": 4,
+ "topic": "Pathogens",
+ "difficulty": "Low",
+ "stem": "Which type of pathogen causes Tuberculosis?",
+ "options": ["Fungus",
+ "Protozoan",
+ "Virus",
+ "Bacterium"],
+ "answer": 3,
+ "explanation": "Tuberculosis is caused by a bacterium."}
+,
+ {
+"chapter": 3,
+ "topic": "Food tests",
+ "difficulty": "Low",
+ "stem": "A food sample is tested and a persistent translucent spot is seen on filter paper. Which nutrient is present?",
+ "options": ["Starch",
+ "Protein",
+ "Reducing sugar",
+ "Fat"],
+ "answer": 3,
+ "explanation": "The observation matches the standard food test for this nutrient."}
+,
+ {
+"chapter": 1,
+ "topic": "Conservation",
+ "difficulty": "Medium",
+ "stem": "Which conservation method is best represented by keeping endangered turtles in a conservation centre?",
+ "options": ["Competition",
+ "In-situ conservation",
+ "Deforestation",
+ "Ex-situ conservation"],
+ "answer": 3,
+ "explanation": "In-situ conservation protects organisms in their natural habitat,
+ whereas ex-situ conservation protects them outside it."}
+,
+ {
+"chapter": 5,
+ "topic": "Water treatment analysis",
+ "difficulty": "High",
+ "stem": "A muddy water sample is left undisturbed and some particles settle at the bottom. Which statement is correct?",
+ "options": ["The sample is a pure substance",
+ "The sample is a suspension and can be partly separated by sedimentation",
+ "The particles are completely dissolved",
+ "Chlorination alone removes all suspended solids"],
+ "answer": 1,
+ "explanation": "Suspended particles can settle,
+ so sedimentation can remove part of the solid matter."}
+,
+ {
+"chapter": 7,
+ "topic": "Circuits and electromagnets",
+ "difficulty": "Medium",
+ "stem": "What happens if one bulb in a simple series circuit burns out?",
+ "options": ["All bulbs in that circuit go out",
+ "The battery becomes an electromagnet",
+ "The remaining bulbs are unaffected",
+ "The broken bulb produces current"],
+ "answer": 0,
+ "explanation": "The answer follows the behaviour of series or parallel circuits and electromagnets."}
+],
+ [{
+"chapter": 10,
+ "topic": "Sound properties",
+ "difficulty": "Low",
+ "stem": "A louder sound has which characteristic?",
+ "options": ["No vibration",
+ "Smaller amplitude",
+ "Lower frequency only",
+ "Larger amplitude"],
+ "answer": 3,
+ "explanation": "Sound is produced by vibrations;
+ loudness is related to amplitude and pitch to frequency."}
+,
+ {
+"chapter": 2,
+ "topic": "Food chain",
+ "difficulty": "Medium",
+ "stem": "Study the food chain: Grass → Rabbit → Fox. If the rabbit population decreases,
+ what is most likely to happen to the grass population?",
+ "options": ["It increases",
+ "It becomes extinct immediately",
+ "It decreases",
+ "It remains exactly the same"],
+ "answer": 0,
+ "explanation": "Fewer rabbits feed on the grass,
+ so its population is likely to increase."}
+,
+ {
+"chapter": 3,
+ "topic": "Nutrient functions",
+ "difficulty": "Medium",
+ "stem": "Which nutrient is mainly associated with growth and repair of body tissues?",
+ "options": ["Protein",
+ "Vitamin C",
+ "Carbohydrate",
+ "Fibre"],
+ "answer": 0,
+ "explanation": "Each nutrient has a specific major function in maintaining health."}
+,
+ {
+"chapter": 7,
+ "topic": "Electricity",
+ "difficulty": "Low",
+ "stem": "When an ammeter is used in a circuit,
+ which statement is correct?",
+ "options": ["It measures temperature",
+ "It measures force",
+ "It measures potential difference",
+ "It measures electric current"],
+ "answer": 3,
+ "explanation": "The answer follows the basic rules of charge and electrical measurement."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound application",
+ "difficulty": "High",
+ "stem": "A school hall produces too much echo. Which modification is most effective?",
+ "options": ["Cover the walls with polished metal",
+ "Remove all fabric from the room",
+ "Add more glass surfaces",
+ "Add curtains and other soft,
+ porous materials"],
+ "answer": 3,
+ "explanation": "Soft,
+ porous materials absorb sound and reduce reflections."}
+,
+ {
+"chapter": 8,
+ "topic": "Resultant force",
+ "difficulty": "Low",
+ "stem": "A force of 60 N acts to the right and a force of 20 N acts to the left. What is the resultant force?",
+ "options": ["20 N to the right",
+ "80 N to the right",
+ "40 N to the left",
+ "40 N to the right"],
+ "answer": 3,
+ "explanation": "For opposite forces,
+ subtract the smaller force from the larger one. The larger force gives the direction."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat application",
+ "difficulty": "High",
+ "stem": "A metal bridge has expansion joints. Why are the joints necessary?",
+ "options": ["They make the bridge lighter only",
+ "They increase friction between vehicles and the road",
+ "They allow the bridge to expand when heated without buckling",
+ "They stop all heat transfer"],
+ "answer": 2,
+ "explanation": "Solids expand when heated,
+ so expansion joints prevent damage."}
+,
+ {
+"chapter": 2,
+ "topic": "Interactions",
+ "difficulty": "Low",
+ "stem": "Which type of interaction is shown when a tapeworm lives in a human intestine?",
+ "options": ["Mutualism",
+ "Parasitism",
+ "Commensalism",
+ "Competition"],
+ "answer": 1,
+ "explanation": "The interaction is identified by whether each organism benefits,
+ is harmed or competes for the same resource."}
+,
+ {
+"chapter": 5,
+ "topic": "Water and solutions",
+ "difficulty": "Low",
+ "stem": "Which term describes the substance that dissolves a solute?",
+ "options": ["Solvent",
+ "Suspension",
+ "Solution",
+ "Surface tension"],
+ "answer": 0,
+ "explanation": "The term is identified from the stated property or behaviour."}
+,
+ {
+"chapter": 1,
+ "topic": "Conservation",
+ "difficulty": "Medium",
+ "stem": "Which conservation method is best represented by storing seeds of rare plants in a seed bank?",
+ "options": ["Competition",
+ "In-situ conservation",
+ "Ex-situ conservation",
+ "Deforestation"],
+ "answer": 2,
+ "explanation": "In-situ conservation protects organisms in their natural habitat,
+ whereas ex-situ conservation protects them outside it."}
+,
+ {
+"chapter": 4,
+ "topic": "Pathogens",
+ "difficulty": "Low",
+ "stem": "Which type of pathogen causes Malaria?",
+ "options": ["Virus",
+ "Protozoan",
+ "Bacterium",
+ "Fungus"],
+ "answer": 1,
+ "explanation": "Malaria is caused by a protozoan."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat transfer",
+ "difficulty": "Low",
+ "stem": "Which process causes a metal spoon to become hot when one end is placed in hot water?",
+ "options": ["Radiation",
+ "Conduction",
+ "Evaporation",
+ "Convection"],
+ "answer": 1,
+ "explanation": "Heat may be transferred by conduction,
+ convection or radiation. At thermal equilibrium there is no net heat flow."}
+,
+ {
+"chapter": 7,
+ "topic": "Circuits and electromagnets",
+ "difficulty": "High",
+ "stem": "An electromagnet has 20 turns of wire and attracts 6 paper clips. Which change is most likely to make it stronger?",
+ "options": ["Replace the iron core with wood",
+ "Open the switch",
+ "Reduce the current to zero",
+ "Increase the number of turns while keeping the circuit complete"],
+ "answer": 3,
+ "explanation": "Increasing the number of turns strengthens the magnetic field of an electromagnet."}
+,
+ {
+"chapter": 4,
+ "topic": "Prevention",
+ "difficulty": "Medium",
+ "stem": "Which action best reduces the risk related to droplets from coughing?",
+ "options": ["Ignore hygiene",
+ "Leave water containers uncovered",
+ "Share utensils",
+ "Cover the mouth and nose when coughing or sneezing"],
+ "answer": 3,
+ "explanation": "The best prevention method targets the relevant transmission route or improves specific immunity."}
+,
+ {
+"chapter": 5,
+ "topic": "Water treatment",
+ "difficulty": "Medium",
+ "stem": "Which water-treatment process removes fine suspended particles through filter layers?",
+ "options": ["Sedimentation",
+ "Chlorination",
+ "Screening",
+ "Filtration"],
+ "answer": 3,
+ "explanation": "Each water-treatment stage has a specific function."}
+,
+ {
+"chapter": 8,
+ "topic": "Pressure and stability",
+ "difficulty": "High",
+ "stem": "A tall object is made more stable by changing its design. Which combination is best?",
+ "options": ["Narrower base and higher centre of gravity",
+ "Higher centre of gravity and smaller base",
+ "Narrower base and lower mass only",
+ "Wider base and lower centre of gravity"],
+ "answer": 3,
+ "explanation": "A wide base and low centre of gravity improve stability."}
+,
+ {
+"chapter": 3,
+ "topic": "Food tests",
+ "difficulty": "Low",
+ "stem": "A food sample is tested and Biuret reagent turns purple. Which nutrient is present?",
+ "options": ["Reducing sugar",
+ "Starch",
+ "Protein",
+ "Fat"],
+ "answer": 2,
+ "explanation": "The observation matches the standard food test for this nutrient."}
+,
+ {
+"chapter": 6,
+ "topic": "Indicators and neutralisation",
+ "difficulty": "Medium",
+ "stem": "What is the expected result for an acid reacting with an alkali?",
+ "options": ["Hydrogen only",
+ "Carbon dioxide only",
+ "Oxygen only",
+ "Salt and water"],
+ "answer": 3,
+ "explanation": "Indicators show characteristic colours,
+ and acid-alkali neutralisation produces salt and water."}
+,
+ {
+"chapter": 1,
+ "topic": "Classification",
+ "difficulty": "Low",
+ "stem": "Which group does a butterfly belong to?",
+ "options": ["Insect",
+ "Amphibian",
+ "Arachnid",
+ "Mollusc"],
+ "answer": 0,
+ "explanation": "A butterfly is classified as an insect based on characteristics such as 3 pairs of legs."}
+,
+ {
+"chapter": 6,
+ "topic": "pH scale",
+ "difficulty": "Low",
+ "stem": "A solution has a pH of 9. How should it be classified?",
+ "options": ["Neutral",
+ "Alkaline",
+ "Cannot be determined",
+ "Acidic"],
+ "answer": 1,
+ "explanation": "A pH of 9 indicates an alkaline solution."}
+],
+ [{
+"chapter": 1,
+ "topic": "Classification",
+ "difficulty": "Low",
+ "stem": "Which group does a frog belong to?",
+ "options": ["Amphibian",
+ "Insect",
+ "Arachnid",
+ "Mollusc"],
+ "answer": 0,
+ "explanation": "A frog is classified as a amphibian based on characteristics such as moist skin."}
+,
+ {
+"chapter": 1,
+ "topic": "Biodiversity application",
+ "difficulty": "High",
+ "stem": "A forest reserve contains many native species. A road project divides the forest into small isolated patches. Which is the most likely long-term effect?",
+ "options": ["No change occurs because roads do not affect habitats",
+ "All species immediately become extinct",
+ "Biodiversity increases because organisms have less space",
+ "Biodiversity decreases because habitats are fragmented"],
+ "answer": 3,
+ "explanation": "Habitat fragmentation separates populations and reduces suitable habitat,
+ which can reduce biodiversity."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat applications",
+ "difficulty": "Medium",
+ "stem": "Which vacuum-flask feature reduces heat transfer by radiation?",
+ "options": ["An open lid",
+ "A black rough inner wall",
+ "Shiny silver surfaces",
+ "A metal bridge between walls"],
+ "answer": 2,
+ "explanation": "The answer follows thermal expansion,
+ convection and radiation principles."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound properties",
+ "difficulty": "Low",
+ "stem": "Which application uses reflection of sound waves?",
+ "options": ["Electromagnet",
+ "Transformer",
+ "SONAR",
+ "Thermometer"],
+ "answer": 2,
+ "explanation": "Sound is produced by vibrations;
+ loudness is related to amplitude and pitch to frequency."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat transfer",
+ "difficulty": "Low",
+ "stem": "What happens when two objects at the same temperature are in contact?",
+ "options": ["There is no net heat flow",
+ "Conduction",
+ "Radiation",
+ "Convection"],
+ "answer": 0,
+ "explanation": "Heat may be transferred by conduction,
+ convection or radiation. At thermal equilibrium there is no net heat flow."}
+,
+ {
+"chapter": 5,
+ "topic": "Water and solutions",
+ "difficulty": "Low",
+ "stem": "Which term describes the effect that allows some small insects to remain on the water surface?",
+ "options": ["Solvent",
+ "Surface tension",
+ "Solution",
+ "Suspension"],
+ "answer": 1,
+ "explanation": "The term is identified from the stated property or behaviour."}
+,
+ {
+"chapter": 2,
+ "topic": "Food web analysis",
+ "difficulty": "High",
+ "stem": "Study the food chain: Grass → Grasshopper → Frog → Snake. A disease causes the frog population to fall sharply. Which change is most likely to occur first?",
+ "options": ["All producers disappear immediately",
+ "Every population remains constant",
+ "The grasshopper population decreases",
+ "The grasshopper population increases"],
+ "answer": 3,
+ "explanation": "With fewer frogs,
+ fewer grasshoppers are eaten,
+ so the grasshopper population is likely to increase."}
+,
+ {
+"chapter": 6,
+ "topic": "pH scale",
+ "difficulty": "Low",
+ "stem": "A solution has a pH of 4. How should it be classified?",
+ "options": ["Neutral",
+ "Cannot be determined",
+ "Alkaline",
+ "Acidic"],
+ "answer": 3,
+ "explanation": "A pH of 4 indicates a acidic solution."}
+,
+ {
+"chapter": 2,
+ "topic": "Interactions",
+ "difficulty": "Low",
+ "stem": "Which type of interaction is shown when a bee obtains nectar while pollinating a flower?",
+ "options": ["Parasitism",
+ "Competition",
+ "Mutualism",
+ "Commensalism"],
+ "answer": 2,
+ "explanation": "The interaction is identified by whether each organism benefits,
+ is harmed or competes for the same resource."}
+,
+ {
+"chapter": 4,
+ "topic": "Pathogens",
+ "difficulty": "Low",
+ "stem": "Which type of pathogen causes Ringworm?",
+ "options": ["Protozoan",
+ "Virus",
+ "Bacterium",
+ "Fungus"],
+ "answer": 3,
+ "explanation": "Ringworm is caused by a fungus."}
+,
+ {
+"chapter": 6,
+ "topic": "Indicators and neutralisation",
+ "difficulty": "Medium",
+ "stem": "What is the expected result for blue litmus paper in an acid?",
+ "options": ["Remains blue",
+ "Turns red",
+ "Turns blue",
+ "Turns green"],
+ "answer": 1,
+ "explanation": "Indicators show characteristic colours,
+ and acid-alkali neutralisation produces salt and water."}
+,
+ {
+"chapter": 3,
+ "topic": "Nutrition application",
+ "difficulty": "High",
+ "stem": "A student has difficulty passing faeces regularly. Which dietary change is most suitable?",
+ "options": ["Increase fat only",
+ "Increase fibre and water intake",
+ "Remove all carbohydrates",
+ "Reduce water intake"],
+ "answer": 1,
+ "explanation": "Fibre adds bulk while water helps soften faeces and supports movement through the intestine."}
+,
+ {
+"chapter": 7,
+ "topic": "Circuits and electromagnets",
+ "difficulty": "Medium",
+ "stem": "How can an electromagnet be made stronger?",
+ "options": ["Remove the current",
+ "Open the switch",
+ "Use a wooden core",
+ "Increase the number of turns in the coil"],
+ "answer": 3,
+ "explanation": "The answer follows the behaviour of series or parallel circuits and electromagnets."}
+,
+ {
+"chapter": 5,
+ "topic": "Water treatment",
+ "difficulty": "Medium",
+ "stem": "Which water-treatment process kills harmful microorganisms?",
+ "options": ["Chlorination",
+ "Sedimentation",
+ "Screening",
+ "Filtration"],
+ "answer": 0,
+ "explanation": "Each water-treatment stage has a specific function."}
+,
+ {
+"chapter": 7,
+ "topic": "Electricity",
+ "difficulty": "Low",
+ "stem": "When two objects with opposite charges are brought close,
+ which statement is correct?",
+ "options": ["No force acts",
+ "They repel each other",
+ "Both become neutral",
+ "They attract each other"],
+ "answer": 3,
+ "explanation": "The answer follows the basic rules of charge and electrical measurement."}
+,
+ {
+"chapter": 4,
+ "topic": "Disease prevention",
+ "difficulty": "High",
+ "stem": "After heavy rain,
+ many uncovered containers around a housing area hold stagnant water. Which action most directly lowers dengue risk?",
+ "options": ["Increase sugar intake",
+ "Take antibiotics",
+ "Empty the stagnant water and remove mosquito breeding sites",
+ "Keep all indoor lights switched on"],
+ "answer": 2,
+ "explanation": "Aedes mosquitoes breed in stagnant water,
+ so removing breeding sites directly reduces the vector population."}
+,
+ {
+"chapter": 3,
+ "topic": "Food tests",
+ "difficulty": "Low",
+ "stem": "A food sample is tested and Benedict's solution forms a brick-red precipitate after heating. Which nutrient is present?",
+ "options": ["Protein",
+ "Reducing sugar",
+ "Fat",
+ "Starch"],
+ "answer": 1,
+ "explanation": "The observation matches the standard food test for this nutrient."}
+,
+ {
+"chapter": 8,
+ "topic": "Pressure and stability",
+ "difficulty": "Medium",
+ "stem": "Which change increases pressure for the same force?",
+ "options": ["Decrease the contact area",
+ "Increase area and reduce force",
+ "Use a wider base",
+ "Increase the contact area"],
+ "answer": 0,
+ "explanation": "Pressure depends on force and contact area,
+ while stability generally improves with a lower centre of gravity and wider base."}
+,
+ {
+"chapter": 8,
+ "topic": "Resultant force",
+ "difficulty": "Low",
+ "stem": "A force of 90 N acts to the right and a force of 25 N acts to the left. What is the resultant force?",
+ "options": ["115 N to the right",
+ "25 N to the right",
+ "65 N to the left",
+ "65 N to the right"],
+ "answer": 3,
+ "explanation": "For opposite forces,
+ subtract the smaller force from the larger one. The larger force gives the direction."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound applications",
+ "difficulty": "Medium",
+ "stem": "Why can sound not travel through a vacuum?",
+ "options": ["Gravity is absent",
+ "Sound is a type of light",
+ "Sound needs particles in a medium to transfer vibrations",
+ "A vacuum is always too cold"],
+ "answer": 2,
+ "explanation": "Sound is a mechanical wave;
+ its behaviour depends on the medium and on reflection or absorption."}
+],
+ [{
+"chapter": 2,
+ "topic": "Interactions",
+ "difficulty": "Low",
+ "stem": "Which type of interaction is shown when two plants grow close together and compete for sunlight?",
+ "options": ["Competition",
+ "Commensalism",
+ "Mutualism",
+ "Parasitism"],
+ "answer": 0,
+ "explanation": "The interaction is identified by whether each organism benefits,
+ is harmed or competes for the same resource."}
+,
+ {
+"chapter": 3,
+ "topic": "Nutrient functions",
+ "difficulty": "Medium",
+ "stem": "Which nutrient is mainly associated with adding bulk to faeces and helping prevent constipation?",
+ "options": ["Fibre",
+ "Vitamin C",
+ "Protein",
+ "Carbohydrate"],
+ "answer": 0,
+ "explanation": "Each nutrient has a specific major function in maintaining health."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound properties",
+ "difficulty": "Low",
+ "stem": "Sound is produced when an object does what?",
+ "options": ["Vibrates",
+ "Melts",
+ "Stops moving completely",
+ "Becomes electrically neutral"],
+ "answer": 0,
+ "explanation": "Sound is produced by vibrations;
+ loudness is related to amplitude and pitch to frequency."}
+,
+ {
+"chapter": 6,
+ "topic": "Acid-alkali application",
+ "difficulty": "High",
+ "stem": "A farmer finds that soil is too acidic for a crop. Which treatment is most suitable?",
+ "options": ["Add distilled water only and expect permanent neutralisation",
+ "Add sugar",
+ "Add a suitable alkaline material to reduce the acidity",
+ "Add more acid"],
+ "answer": 2,
+ "explanation": "An alkaline material can neutralise excess acidity in soil."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound applications",
+ "difficulty": "Medium",
+ "stem": "Which material is most suitable for reducing echoes?",
+ "options": ["Smooth concrete",
+ "Glass",
+ "Soft,
+ porous material",
+ "Polished metal"],
+ "answer": 2,
+ "explanation": "Sound is a mechanical wave;
+ its behaviour depends on the medium and on reflection or absorption."}
+,
+ {
+"chapter": 4,
+ "topic": "Pathogens",
+ "difficulty": "Low",
+ "stem": "Which type of pathogen causes Dengue?",
+ "options": ["Fungus",
+ "Bacterium",
+ "Protozoan",
+ "Virus"],
+ "answer": 3,
+ "explanation": "Dengue is caused by a virus."}
+,
+ {
+"chapter": 8,
+ "topic": "Pressure and stability",
+ "difficulty": "High",
+ "stem": "A heavy vehicle must move across soft ground without sinking easily. Which design is best?",
+ "options": ["Add more mass without changing tyre area",
+ "Use narrower tyres to increase pressure",
+ "Raise the centre of gravity",
+ "Use wider tyres to increase contact area and reduce pressure"],
+ "answer": 3,
+ "explanation": "Pressure decreases when the same force acts over a larger contact area."}
+,
+ {
+"chapter": 3,
+ "topic": "Food tests",
+ "difficulty": "Low",
+ "stem": "A food sample is tested and iodine solution turns blue-black. Which nutrient is present?",
+ "options": ["Reducing sugar",
+ "Fat",
+ "Protein",
+ "Starch"],
+ "answer": 3,
+ "explanation": "The observation matches the standard food test for this nutrient."}
+,
+ {
+"chapter": 5,
+ "topic": "Water and solutions",
+ "difficulty": "Low",
+ "stem": "Which term describes a mixture containing particles that can settle?",
+ "options": ["Solvent",
+ "Suspension",
+ "Solution",
+ "Surface tension"],
+ "answer": 1,
+ "explanation": "The term is identified from the stated property or behaviour."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat applications",
+ "difficulty": "Medium",
+ "stem": "Which surface is the best absorber of heat radiation?",
+ "options": ["Polished white surface",
+ "Dull black surface",
+ "Smooth reflective surface",
+ "Shiny silver surface"],
+ "answer": 1,
+ "explanation": "The answer follows thermal expansion,
+ convection and radiation principles."}
+,
+ {
+"chapter": 7,
+ "topic": "Circuits and electromagnets",
+ "difficulty": "High",
+ "stem": "A student reverses the direction of current in an electromagnet without changing the current magnitude. What happens?",
+ "options": ["The magnetic poles reverse but the strength is approximately unchanged",
+ "The electromagnet permanently loses magnetism",
+ "The strength must double",
+ "Only one pole remains"],
+ "answer": 0,
+ "explanation": "Reversing current reverses the magnetic poles;
+ with the same current and coil,
+ the strength is approximately unchanged."}
+,
+ {
+"chapter": 5,
+ "topic": "Water treatment analysis",
+ "difficulty": "High",
+ "stem": "Raw water contains leaves,
+ fine suspended particles and harmful microorganisms. Which sequence is most suitable?",
+ "options": ["Chlorination → screening → sedimentation → filtration",
+ "Sedimentation → chlorination → screening → filtration",
+ "Screening → sedimentation → filtration → chlorination",
+ "Filtration → screening → chlorination → sedimentation"],
+ "answer": 2,
+ "explanation": "Large debris is removed first,
+ heavier particles settle,
+ fine particles are filtered,
+ and disinfection is carried out near the end."}
+,
+ {
+"chapter": 7,
+ "topic": "Electricity",
+ "difficulty": "Low",
+ "stem": "When two objects with the same type of charge are brought close,
+ which statement is correct?",
+ "options": ["They attract each other",
+ "Both become neutral",
+ "They repel each other",
+ "No force acts"],
+ "answer": 2,
+ "explanation": "The answer follows the basic rules of charge and electrical measurement."}
+,
+ {
+"chapter": 8,
+ "topic": "Resultant force",
+ "difficulty": "Low",
+ "stem": "A force of 75 N acts to the right and a force of 30 N acts to the left. What is the resultant force?",
+ "options": ["30 N to the right",
+ "105 N to the right",
+ "45 N to the right",
+ "45 N to the left"],
+ "answer": 2,
+ "explanation": "For opposite forces,
+ subtract the smaller force from the larger one. The larger force gives the direction."}
+,
+ {
+"chapter": 1,
+ "topic": "Conservation",
+ "difficulty": "Medium",
+ "stem": "Which conservation method is best represented by protecting tigers in a national park?",
+ "options": ["In-situ conservation",
+ "Ex-situ conservation",
+ "Deforestation",
+ "Competition"],
+ "answer": 0,
+ "explanation": "In-situ conservation protects organisms in their natural habitat,
+ whereas ex-situ conservation protects them outside it."}
+,
+ {
+"chapter": 6,
+ "topic": "pH scale",
+ "difficulty": "Low",
+ "stem": "A solution has a pH of 12. How should it be classified?",
+ "options": ["Alkaline",
+ "Acidic",
+ "Neutral",
+ "Cannot be determined"],
+ "answer": 0,
+ "explanation": "A pH of 12 indicates an alkaline solution."}
+,
+ {
+"chapter": 4,
+ "topic": "Prevention",
+ "difficulty": "Medium",
+ "stem": "Which action best reduces the risk related to low immunity to a specific infectious disease?",
+ "options": ["Leave water containers uncovered",
+ "Ignore hygiene",
+ "Vaccination",
+ "Share utensils"],
+ "answer": 2,
+ "explanation": "The best prevention method targets the relevant transmission route or improves specific immunity."}
+,
+ {
+"chapter": 1,
+ "topic": "Classification",
+ "difficulty": "Low",
+ "stem": "Which group does a cat belong to?",
+ "options": ["Mammal",
+ "Arachnid",
+ "Mollusc",
+ "Insect"],
+ "answer": 0,
+ "explanation": "A cat is classified as a mammal based on characteristics such as hair or fur and mammary glands."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat transfer",
+ "difficulty": "Low",
+ "stem": "Which process or statement best describes heat from the Sun reaches Earth?",
+ "options": ["Radiation",
+ "Convection",
+ "Evaporation",
+ "Conduction"],
+ "answer": 0,
+ "explanation": "Heat may be transferred by conduction,
+ convection or radiation. At thermal equilibrium there is no net heat flow."}
+,
+ {
+"chapter": 2,
+ "topic": "Food chain",
+ "difficulty": "Medium",
+ "stem": "Study the food chain: Paddy → Rat → Snake → Eagle. If the snake population decreases,
+ what is most likely to happen to the rat population?",
+ "options": ["It increases",
+ "It decreases",
+ "It becomes extinct immediately",
+ "It remains exactly the same"],
+ "answer": 0,
+ "explanation": "Fewer snakes means less predation on the rat,
+ so its population is likely to increase."}
+],
+ [{
+"chapter": 3,
+ "topic": "Food tests",
+ "difficulty": "Low",
+ "stem": "A food sample is tested and a persistent translucent spot is seen on filter paper. Which nutrient is present?",
+ "options": ["Starch",
+ "Reducing sugar",
+ "Fat",
+ "Protein"],
+ "answer": 2,
+ "explanation": "The observation matches the standard food test for this nutrient."}
+,
+ {
+"chapter": 5,
+ "topic": "Water treatment",
+ "difficulty": "Medium",
+ "stem": "Which water-treatment process allows heavier suspended particles to settle?",
+ "options": ["Screening",
+ "Filtration",
+ "Chlorination",
+ "Sedimentation"],
+ "answer": 3,
+ "explanation": "Each water-treatment stage has a specific function."}
+,
+ {
+"chapter": 4,
+ "topic": "Prevention",
+ "difficulty": "Medium",
+ "stem": "Which action best reduces the risk related to Aedes mosquitoes?",
+ "options": ["Share utensils",
+ "Remove stagnant water",
+ "Leave water containers uncovered",
+ "Ignore hygiene"],
+ "answer": 1,
+ "explanation": "The best prevention method targets the relevant transmission route or improves specific immunity."}
+,
+ {
+"chapter": 2,
+ "topic": "Food web analysis",
+ "difficulty": "High",
+ "stem": "Study the food chain: Leaves → Caterpillar → Bird → Hawk. A disease causes the bird population to fall sharply. Which change is most likely to occur first?",
+ "options": ["The caterpillar population increases",
+ "Every population remains constant",
+ "The caterpillar population decreases",
+ "All producers disappear immediately"],
+ "answer": 0,
+ "explanation": "With fewer birds,
+ fewer caterpillars are eaten,
+ so the caterpillar population is likely to increase."}
+,
+ {
+"chapter": 8,
+ "topic": "Resultant force",
+ "difficulty": "Low",
+ "stem": "A force of 45 N acts to the right and a force of 15 N acts to the left. What is the resultant force?",
+ "options": ["60 N to the right",
+ "30 N to the left",
+ "30 N to the right",
+ "15 N to the right"],
+ "answer": 2,
+ "explanation": "For opposite forces,
+ subtract the smaller force from the larger one. The larger force gives the direction."}
+,
+ {
+"chapter": 2,
+ "topic": "Interactions",
+ "difficulty": "Low",
+ "stem": "Which type of interaction is shown when a remora obtains food scraps from a shark while the shark is unaffected?",
+ "options": ["Mutualism",
+ "Commensalism",
+ "Competition",
+ "Parasitism"],
+ "answer": 1,
+ "explanation": "The interaction is identified by whether each organism benefits,
+ is harmed or competes for the same resource."}
+,
+ {
+"chapter": 7,
+ "topic": "Circuits and electromagnets",
+ "difficulty": "Medium",
+ "stem": "What happens if one bulb in a simple series circuit burns out?",
+ "options": ["The broken bulb produces current",
+ "The battery becomes an electromagnet",
+ "All bulbs in that circuit go out",
+ "The remaining bulbs are unaffected"],
+ "answer": 2,
+ "explanation": "The answer follows the behaviour of series or parallel circuits and electromagnets."}
+,
+ {
+"chapter": 4,
+ "topic": "Pathogens",
+ "difficulty": "Low",
+ "stem": "Which type of pathogen causes Tuberculosis?",
+ "options": ["Bacterium",
+ "Protozoan",
+ "Virus",
+ "Fungus"],
+ "answer": 0,
+ "explanation": "Tuberculosis is caused by a bacterium."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat transfer",
+ "difficulty": "Low",
+ "stem": "Which process or statement best describes warm water rises while cooler water sinks in a beaker?",
+ "options": ["Radiation",
+ "Evaporation",
+ "Convection",
+ "Conduction"],
+ "answer": 2,
+ "explanation": "Heat may be transferred by conduction,
+ convection or radiation. At thermal equilibrium there is no net heat flow."}
+,
+ {
+"chapter": 6,
+ "topic": "Indicators and neutralisation",
+ "difficulty": "Medium",
+ "stem": "What is the expected result for universal indicator in a neutral solution?",
+ "options": ["Red",
+ "Green",
+ "Orange",
+ "Purple"],
+ "answer": 1,
+ "explanation": "Indicators show characteristic colours,
+ and acid-alkali neutralisation produces salt and water."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound application",
+ "difficulty": "High",
+ "stem": "A school hall produces too much echo. Which modification is most effective?",
+ "options": ["Cover the walls with polished metal",
+ "Remove all fabric from the room",
+ "Add curtains and other soft,
+ porous materials",
+ "Add more glass surfaces"],
+ "answer": 2,
+ "explanation": "Soft,
+ porous materials absorb sound and reduce reflections."}
+,
+ {
+"chapter": 8,
+ "topic": "Pressure and stability",
+ "difficulty": "Medium",
+ "stem": "Why do tractors use wide tyres on soft ground?",
+ "options": ["To increase pressure by reducing contact area",
+ "To increase gravitational force",
+ "To raise the centre of gravity",
+ "To reduce pressure by increasing contact area"],
+ "answer": 3,
+ "explanation": "Pressure depends on force and contact area,
+ while stability generally improves with a lower centre of gravity and wider base."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat application",
+ "difficulty": "High",
+ "stem": "A metal bridge has expansion joints. Why are the joints necessary?",
+ "options": ["They allow the bridge to expand when heated without buckling",
+ "They make the bridge lighter only",
+ "They stop all heat transfer",
+ "They increase friction between vehicles and the road"],
+ "answer": 0,
+ "explanation": "Solids expand when heated,
+ so expansion joints prevent damage."}
+,
+ {
+"chapter": 1,
+ "topic": "Classification",
+ "difficulty": "Low",
+ "stem": "Which group does a snail belong to?",
+ "options": ["Insect",
+ "Amphibian",
+ "Mollusc",
+ "Arachnid"],
+ "answer": 2,
+ "explanation": "A snail is classified as a mollusc based on characteristics such as soft body."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound properties",
+ "difficulty": "Low",
+ "stem": "A higher-pitched sound has which characteristic?",
+ "options": ["Lower frequency",
+ "Zero frequency",
+ "Smaller amplitude only",
+ "Higher frequency"],
+ "answer": 3,
+ "explanation": "Sound is produced by vibrations;
+ loudness is related to amplitude and pitch to frequency."}
+,
+ {
+"chapter": 7,
+ "topic": "Electricity",
+ "difficulty": "Low",
+ "stem": "When a voltmeter is connected across a bulb,
+ which statement is correct?",
+ "options": ["It measures temperature",
+ "It measures current",
+ "It measures mass",
+ "It measures potential difference"],
+ "answer": 3,
+ "explanation": "The answer follows the basic rules of charge and electrical measurement."}
+,
+ {
+"chapter": 3,
+ "topic": "Nutrient functions",
+ "difficulty": "Medium",
+ "stem": "Which nutrient is mainly associated with preventing scurvy?",
+ "options": ["Vitamin C",
+ "Protein",
+ "Fibre",
+ "Carbohydrate"],
+ "answer": 0,
+ "explanation": "Each nutrient has a specific major function in maintaining health."}
+,
+ {
+"chapter": 5,
+ "topic": "Water and solutions",
+ "difficulty": "Low",
+ "stem": "Which term describes a homogeneous mixture formed when a solute dissolves?",
+ "options": ["Suspension",
+ "Solution",
+ "Solvent",
+ "Surface tension"],
+ "answer": 1,
+ "explanation": "The term is identified from the stated property or behaviour."}
+,
+ {
+"chapter": 6,
+ "topic": "pH scale",
+ "difficulty": "Low",
+ "stem": "A solution has a pH of 7. How should it be classified?",
+ "options": ["Cannot be determined",
+ "Alkaline",
+ "Acidic",
+ "Neutral"],
+ "answer": 3,
+ "explanation": "A pH of 7 indicates a neutral solution."}
+,
+ {
+"chapter": 1,
+ "topic": "Biodiversity application",
+ "difficulty": "High",
+ "stem": "A rare orchid is protected in its natural forest,
+ while some seeds are also stored in a seed bank. Which statement is correct?",
+ "options": ["Only in-situ conservation is being used",
+ "Both in-situ and ex-situ conservation are being used",
+ "Only ex-situ conservation is being used",
+ "Neither method is conservation"],
+ "answer": 1,
+ "explanation": "Protection in the natural habitat is in-situ,
+ while a seed bank is ex-situ."}
+],
+ [{
+"chapter": 10,
+ "topic": "Sound applications",
+ "difficulty": "Medium",
+ "stem": "In which medium does sound generally travel fastest?",
+ "options": ["Gas",
+ "Solid",
+ "Empty space",
+ "Vacuum"],
+ "answer": 1,
+ "explanation": "Sound is a mechanical wave;
+ its behaviour depends on the medium and on reflection or absorption."}
+,
+ {
+"chapter": 8,
+ "topic": "Resultant force",
+ "difficulty": "Low",
+ "stem": "A force of 50 N acts to the right and a force of 80 N acts to the left. What is the resultant force?",
+ "options": ["30 N to the right",
+ "130 N to the right",
+ "30 N to the left",
+ "50 N to the right"],
+ "answer": 2,
+ "explanation": "For opposite forces,
+ subtract the smaller force from the larger one. The larger force gives the direction."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat applications",
+ "difficulty": "Medium",
+ "stem": "Why does hot air rise?",
+ "options": ["It expands and becomes less dense",
+ "Gravity stops acting",
+ "It contracts and becomes denser",
+ "Its mass becomes zero"],
+ "answer": 0,
+ "explanation": "The answer follows thermal expansion,
+ convection and radiation principles."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound properties",
+ "difficulty": "Low",
+ "stem": "A louder sound has which characteristic?",
+ "options": ["Larger amplitude",
+ "Lower frequency only",
+ "No vibration",
+ "Smaller amplitude"],
+ "answer": 0,
+ "explanation": "Sound is produced by vibrations;
+ loudness is related to amplitude and pitch to frequency."}
+,
+ {
+"chapter": 3,
+ "topic": "Food tests",
+ "difficulty": "Low",
+ "stem": "A food sample is tested and Biuret reagent turns purple. Which nutrient is present?",
+ "options": ["Starch",
+ "Protein",
+ "Fat",
+ "Reducing sugar"],
+ "answer": 1,
+ "explanation": "The observation matches the standard food test for this nutrient."}
+,
+ {
+"chapter": 2,
+ "topic": "Food chain",
+ "difficulty": "Medium",
+ "stem": "Study the food chain: Grass → Rabbit → Fox. If the rabbit population decreases,
+ what is most likely to happen to the grass population?",
+ "options": ["It increases",
+ "It decreases",
+ "It remains exactly the same",
+ "It becomes extinct immediately"],
+ "answer": 0,
+ "explanation": "Fewer rabbits feed on the grass,
+ so its population is likely to increase."}
+,
+ {
+"chapter": 1,
+ "topic": "Conservation",
+ "difficulty": "Medium",
+ "stem": "Which conservation method is best represented by storing seeds of rare plants in a seed bank?",
+ "options": ["In-situ conservation",
+ "Deforestation",
+ "Ex-situ conservation",
+ "Competition"],
+ "answer": 2,
+ "explanation": "In-situ conservation protects organisms in their natural habitat,
+ whereas ex-situ conservation protects them outside it."}
+,
+ {
+"chapter": 2,
+ "topic": "Interactions",
+ "difficulty": "Low",
+ "stem": "Which type of interaction is shown when a tapeworm lives in a human intestine?",
+ "options": ["Mutualism",
+ "Commensalism",
+ "Parasitism",
+ "Competition"],
+ "answer": 2,
+ "explanation": "The interaction is identified by whether each organism benefits,
+ is harmed or competes for the same resource."}
+,
+ {
+"chapter": 8,
+ "topic": "Pressure and stability",
+ "difficulty": "Medium",
+ "stem": "Why does a sharp knife cut more easily?",
+ "options": ["Its force becomes zero",
+ "A larger contact area produces greater pressure",
+ "A smaller contact area produces greater pressure",
+ "Its mass disappears"],
+ "answer": 2,
+ "explanation": "Pressure depends on force and contact area,
+ while stability generally improves with a lower centre of gravity and wider base."}
+,
+ {
+"chapter": 5,
+ "topic": "Water treatment analysis",
+ "difficulty": "High",
+ "stem": "Raw water contains leaves,
+ fine suspended particles and harmful microorganisms. Which sequence is most suitable?",
+ "options": ["Chlorination → screening → sedimentation → filtration",
+ "Screening → sedimentation → filtration → chlorination",
+ "Sedimentation → chlorination → screening → filtration",
+ "Filtration → screening → chlorination → sedimentation"],
+ "answer": 1,
+ "explanation": "Large debris is removed first,
+ heavier particles settle,
+ fine particles are filtered,
+ and disinfection is carried out near the end."}
+,
+ {
+"chapter": 5,
+ "topic": "Water and solutions",
+ "difficulty": "Low",
+ "stem": "Which term describes the substance that dissolves a solute?",
+ "options": ["Suspension",
+ "Solvent",
+ "Surface tension",
+ "Solution"],
+ "answer": 1,
+ "explanation": "The term is identified from the stated property or behaviour."}
+,
+ {
+"chapter": 4,
+ "topic": "Pathogens",
+ "difficulty": "Low",
+ "stem": "Which type of pathogen causes Malaria?",
+ "options": ["Bacterium",
+ "Virus",
+ "Protozoan",
+ "Fungus"],
+ "answer": 2,
+ "explanation": "Malaria is caused by a protozoan."}
+,
+ {
+"chapter": 7,
+ "topic": "Electricity",
+ "difficulty": "Low",
+ "stem": "When an ammeter is used in a circuit,
+ which statement is correct?",
+ "options": ["It measures electric current",
+ "It measures potential difference",
+ "It measures force",
+ "It measures temperature"],
+ "answer": 0,
+ "explanation": "The answer follows the basic rules of charge and electrical measurement."}
+,
+ {
+"chapter": 7,
+ "topic": "Circuits and electromagnets",
+ "difficulty": "Medium",
+ "stem": "Why are household appliances connected in parallel?",
+ "options": ["The potential difference becomes zero",
+ "All appliances must switch on together",
+ "Each appliance can operate independently",
+ "One faulty appliance stops all others"],
+ "answer": 2,
+ "explanation": "The answer follows the behaviour of series or parallel circuits and electromagnets."}
+,
+ {
+"chapter": 4,
+ "topic": "Disease prevention",
+ "difficulty": "High",
+ "stem": "After heavy rain,
+ many uncovered containers around a housing area hold stagnant water. Which action most directly lowers dengue risk?",
+ "options": ["Keep all indoor lights switched on",
+ "Empty the stagnant water and remove mosquito breeding sites",
+ "Increase sugar intake",
+ "Take antibiotics"],
+ "answer": 1,
+ "explanation": "Aedes mosquitoes breed in stagnant water,
+ so removing breeding sites directly reduces the vector population."}
+,
+ {
+"chapter": 3,
+ "topic": "Nutrition application",
+ "difficulty": "High",
+ "stem": "A student has difficulty passing faeces regularly. Which dietary change is most suitable?",
+ "options": ["Increase fat only",
+ "Reduce water intake",
+ "Increase fibre and water intake",
+ "Remove all carbohydrates"],
+ "answer": 2,
+ "explanation": "Fibre adds bulk while water helps soften faeces and supports movement through the intestine."}
+,
+ {
+"chapter": 1,
+ "topic": "Classification",
+ "difficulty": "Low",
+ "stem": "Which group does a pigeon belong to?",
+ "options": ["Bird",
+ "Insect",
+ "Mollusc",
+ "Arachnid"],
+ "answer": 0,
+ "explanation": "A pigeon is classified as a bird based on characteristics such as feathers."}
+,
+ {
+"chapter": 6,
+ "topic": "pH scale",
+ "difficulty": "Low",
+ "stem": "A solution has a pH of 2. How should it be classified?",
+ "options": ["Neutral",
+ "Alkaline",
+ "Cannot be determined",
+ "Acidic"],
+ "answer": 3,
+ "explanation": "A pH of 2 indicates a acidic solution."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat transfer",
+ "difficulty": "Low",
+ "stem": "Which process causes a metal spoon to become hot when one end is placed in hot water?",
+ "options": ["Conduction",
+ "Convection",
+ "Evaporation",
+ "Radiation"],
+ "answer": 0,
+ "explanation": "Heat may be transferred by conduction,
+ convection or radiation. At thermal equilibrium there is no net heat flow."}
+,
+ {
+"chapter": 6,
+ "topic": "Acid-alkali application",
+ "difficulty": "High",
+ "stem": "Blue litmus turns red in solution X,
+ while red litmus turns blue in solution Y. Which statement is correct?",
+ "options": ["X is acidic and Y is alkaline",
+ "Both are alkaline",
+ "X is neutral and Y is acidic",
+ "Both are acidic"],
+ "answer": 0,
+ "explanation": "Acids turn blue litmus red,
+ while alkalis turn red litmus blue."}
+],
+ [{
+"chapter": 6,
+ "topic": "Indicators and neutralisation",
+ "difficulty": "Medium",
+ "stem": "What is the expected result for blue litmus paper in an acid?",
+ "options": ["Turns red",
+ "Turns green",
+ "Remains blue",
+ "Turns blue"],
+ "answer": 0,
+ "explanation": "Indicators show characteristic colours,
+ and acid-alkali neutralisation produces salt and water."}
+,
+ {
+"chapter": 4,
+ "topic": "Prevention",
+ "difficulty": "Medium",
+ "stem": "Which action best reduces the risk related to contaminated food?",
+ "options": ["Share utensils",
+ "Ignore hygiene",
+ "Practise good food and hand hygiene",
+ "Leave water containers uncovered"],
+ "answer": 2,
+ "explanation": "The best prevention method targets the relevant transmission route or improves specific immunity."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat application",
+ "difficulty": "High",
+ "stem": "A black metal can and a shiny metal can are placed under the same heat lamp. Which one is expected to warm faster at first?",
+ "options": ["Both must always warm at exactly the same rate",
+ "The black can because dull black surfaces absorb radiation better",
+ "Neither can absorb radiation",
+ "The shiny can because shiny surfaces absorb radiation best"],
+ "answer": 1,
+ "explanation": "Dull black surfaces are better absorbers of thermal radiation."}
+,
+ {
+"chapter": 5,
+ "topic": "Water and solutions",
+ "difficulty": "Low",
+ "stem": "Which term describes the effect that allows some small insects to remain on the water surface?",
+ "options": ["Solution",
+ "Suspension",
+ "Solvent",
+ "Surface tension"],
+ "answer": 3,
+ "explanation": "The term is identified from the stated property or behaviour."}
+,
+ {
+"chapter": 4,
+ "topic": "Pathogens",
+ "difficulty": "Low",
+ "stem": "Which type of pathogen causes Ringworm?",
+ "options": ["Fungus",
+ "Protozoan",
+ "Bacterium",
+ "Virus"],
+ "answer": 0,
+ "explanation": "Ringworm is caused by a fungus."}
+,
+ {
+"chapter": 6,
+ "topic": "pH scale",
+ "difficulty": "Low",
+ "stem": "A solution has a pH of 9. How should it be classified?",
+ "options": ["Neutral",
+ "Alkaline",
+ "Acidic",
+ "Cannot be determined"],
+ "answer": 1,
+ "explanation": "A pH of 9 indicates an alkaline solution."}
+,
+ {
+"chapter": 3,
+ "topic": "Nutrient functions",
+ "difficulty": "Medium",
+ "stem": "Which nutrient is the body's main immediate source of energy?",
+ "options": ["Protein",
+ "Carbohydrate",
+ "Vitamin C",
+ "Fibre"],
+ "answer": 1,
+ "explanation": "Each nutrient has a specific major function in maintaining health."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound application",
+ "difficulty": "High",
+ "stem": "Two tuning forks produce different pitches. Fork X has a higher frequency than Fork Y. Which statement is correct?",
+ "options": ["Fork X must have a smaller amplitude",
+ "Pitch is unrelated to frequency",
+ "Fork X produces the higher-pitched sound",
+ "Fork Y must be louder"],
+ "answer": 2,
+ "explanation": "Higher frequency corresponds to higher pitch."}
+,
+ {
+"chapter": 8,
+ "topic": "Pressure and stability",
+ "difficulty": "High",
+ "stem": "A heavy vehicle must move across soft ground without sinking easily. Which design is best?",
+ "options": ["Add more mass without changing tyre area",
+ "Use narrower tyres to increase pressure",
+ "Use wider tyres to increase contact area and reduce pressure",
+ "Raise the centre of gravity"],
+ "answer": 2,
+ "explanation": "Pressure decreases when the same force acts over a larger contact area."}
+,
+ {
+"chapter": 3,
+ "topic": "Food tests",
+ "difficulty": "Low",
+ "stem": "A food sample is tested and Benedict's solution forms a brick-red precipitate after heating. Which nutrient is present?",
+ "options": ["Protein",
+ "Fat",
+ "Starch",
+ "Reducing sugar"],
+ "answer": 3,
+ "explanation": "The observation matches the standard food test for this nutrient."}
+,
+ {
+"chapter": 2,
+ "topic": "Food chain",
+ "difficulty": "Medium",
+ "stem": "Study the food chain: Grass → Grasshopper → Frog → Snake. If the frog population decreases,
+ what is most likely to happen to the grasshopper population?",
+ "options": ["It becomes extinct immediately",
+ "It increases",
+ "It remains exactly the same",
+ "It decreases"],
+ "answer": 1,
+ "explanation": "Fewer frogs means less predation on the grasshopper,
+ so its population is likely to increase."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound properties",
+ "difficulty": "Low",
+ "stem": "Which application uses reflection of sound waves?",
+ "options": ["SONAR",
+ "Thermometer",
+ "Electromagnet",
+ "Transformer"],
+ "answer": 0,
+ "explanation": "Sound is produced by vibrations;
+ loudness is related to amplitude and pitch to frequency."}
+,
+ {
+"chapter": 1,
+ "topic": "Conservation",
+ "difficulty": "Medium",
+ "stem": "Which conservation method is best represented by protecting mangrove species in a gazetted reserve?",
+ "options": ["Ex-situ conservation",
+ "Deforestation",
+ "In-situ conservation",
+ "Competition"],
+ "answer": 2,
+ "explanation": "In-situ conservation protects organisms in their natural habitat,
+ whereas ex-situ conservation protects them outside it."}
+,
+ {
+"chapter": 5,
+ "topic": "Water treatment",
+ "difficulty": "Medium",
+ "stem": "Which water-treatment process kills harmful microorganisms?",
+ "options": ["Sedimentation",
+ "Filtration",
+ "Screening",
+ "Chlorination"],
+ "answer": 3,
+ "explanation": "Each water-treatment stage has a specific function."}
+,
+ {
+"chapter": 7,
+ "topic": "Electricity",
+ "difficulty": "Low",
+ "stem": "When two objects with opposite charges are brought close,
+ which statement is correct?",
+ "options": ["They attract each other",
+ "No force acts",
+ "Both become neutral",
+ "They repel each other"],
+ "answer": 0,
+ "explanation": "The answer follows the basic rules of charge and electrical measurement."}
+,
+ {
+"chapter": 2,
+ "topic": "Interactions",
+ "difficulty": "Low",
+ "stem": "Which type of interaction is shown when a bee obtains nectar while pollinating a flower?",
+ "options": ["Mutualism",
+ "Commensalism",
+ "Parasitism",
+ "Competition"],
+ "answer": 0,
+ "explanation": "The interaction is identified by whether each organism benefits,
+ is harmed or competes for the same resource."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat transfer",
+ "difficulty": "Low",
+ "stem": "What happens when two objects at the same temperature are in contact?",
+ "options": ["Convection",
+ "Conduction",
+ "Radiation",
+ "There is no net heat flow"],
+ "answer": 3,
+ "explanation": "Heat may be transferred by conduction,
+ convection or radiation. At thermal equilibrium there is no net heat flow."}
+,
+ {
+"chapter": 8,
+ "topic": "Resultant force",
+ "difficulty": "Low",
+ "stem": "A force of 60 N acts to the right and a force of 20 N acts to the left. What is the resultant force?",
+ "options": ["40 N to the right",
+ "80 N to the right",
+ "40 N to the left",
+ "20 N to the right"],
+ "answer": 0,
+ "explanation": "For opposite forces,
+ subtract the smaller force from the larger one. The larger force gives the direction."}
+,
+ {
+"chapter": 1,
+ "topic": "Classification",
+ "difficulty": "Low",
+ "stem": "Which group does a spider belong to?",
+ "options": ["Arachnid",
+ "Mollusc",
+ "Amphibian",
+ "Insect"],
+ "answer": 0,
+ "explanation": "A spider is classified as a arachnid based on characteristics such as 4 pairs of legs."}
+,
+ {
+"chapter": 7,
+ "topic": "Circuits and electromagnets",
+ "difficulty": "High",
+ "stem": "A student reverses the direction of current in an electromagnet without changing the current magnitude. What happens?",
+ "options": ["The magnetic poles reverse but the strength is approximately unchanged",
+ "The strength must double",
+ "The electromagnet permanently loses magnetism",
+ "Only one pole remains"],
+ "answer": 0,
+ "explanation": "Reversing current reverses the magnetic poles;
+ with the same current and coil,
+ the strength is approximately unchanged."}
+],
+ [{
+"chapter": 9,
+ "topic": "Heat transfer",
+ "difficulty": "Low",
+ "stem": "Which process or statement best describes heat from the Sun reaches Earth?",
+ "options": ["Convection",
+ "Radiation",
+ "Conduction",
+ "Evaporation"],
+ "answer": 1,
+ "explanation": "Heat may be transferred by conduction,
+ convection or radiation. At thermal equilibrium there is no net heat flow."}
+,
+ {
+"chapter": 8,
+ "topic": "Pressure and stability",
+ "difficulty": "Medium",
+ "stem": "Which change generally makes an object more stable?",
+ "options": ["Lower the centre of gravity",
+ "Raise the centre of gravity",
+ "Reduce the base area",
+ "Make the base narrower"],
+ "answer": 0,
+ "explanation": "Pressure depends on force and contact area,
+ while stability generally improves with a lower centre of gravity and wider base."}
+,
+ {
+"chapter": 3,
+ "topic": "Food tests",
+ "difficulty": "Low",
+ "stem": "A food sample is tested and iodine solution turns blue-black. Which nutrient is present?",
+ "options": ["Protein",
+ "Reducing sugar",
+ "Starch",
+ "Fat"],
+ "answer": 2,
+ "explanation": "The observation matches the standard food test for this nutrient."}
+,
+ {
+"chapter": 2,
+ "topic": "Food web analysis",
+ "difficulty": "High",
+ "stem": "Study the food chain: Paddy → Rat → Snake → Eagle. A disease causes the snake population to fall sharply. Which change is most likely to occur first?",
+ "options": ["All producers disappear immediately",
+ "The rat population decreases",
+ "Every population remains constant",
+ "The rat population increases"],
+ "answer": 3,
+ "explanation": "With fewer snakes,
+ fewer rats are eaten,
+ so the rat population is likely to increase."}
+,
+ {
+"chapter": 6,
+ "topic": "pH scale",
+ "difficulty": "Low",
+ "stem": "A solution has a pH of 4. How should it be classified?",
+ "options": ["Cannot be determined",
+ "Acidic",
+ "Alkaline",
+ "Neutral"],
+ "answer": 1,
+ "explanation": "A pH of 4 indicates a acidic solution."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound applications",
+ "difficulty": "Medium",
+ "stem": "Which material is most suitable for reducing echoes?",
+ "options": ["Soft,
+ porous material",
+ "Glass",
+ "Polished metal",
+ "Smooth concrete"],
+ "answer": 0,
+ "explanation": "Sound is a mechanical wave;
+ its behaviour depends on the medium and on reflection or absorption."}
+,
+ {
+"chapter": 4,
+ "topic": "Disease prevention",
+ "difficulty": "High",
+ "stem": "A student with influenza coughs openly in a crowded room. Which combination best reduces transmission?",
+ "options": ["Share drinking bottles and close all windows",
+ "Cover coughs,
+ improve ventilation and avoid close contact",
+ "Take antibiotics without medical advice",
+ "Touch the face frequently"],
+ "answer": 1,
+ "explanation": "Respiratory infections spread through droplets and close contact,
+ so cough hygiene and ventilation reduce transmission."}
+,
+ {
+"chapter": 2,
+ "topic": "Interactions",
+ "difficulty": "Low",
+ "stem": "Which type of interaction is shown when two plants grow close together and compete for sunlight?",
+ "options": ["Commensalism",
+ "Parasitism",
+ "Mutualism",
+ "Competition"],
+ "answer": 3,
+ "explanation": "The interaction is identified by whether each organism benefits,
+ is harmed or competes for the same resource."}
+,
+ {
+"chapter": 1,
+ "topic": "Classification",
+ "difficulty": "Low",
+ "stem": "Which group does a lizard belong to?",
+ "options": ["Reptile",
+ "Arachnid",
+ "Insect",
+ "Mollusc"],
+ "answer": 0,
+ "explanation": "A lizard is classified as a reptile based on characteristics such as dry scaly skin."}
+,
+ {
+"chapter": 8,
+ "topic": "Resultant force",
+ "difficulty": "Low",
+ "stem": "A force of 90 N acts to the right and a force of 25 N acts to the left. What is the resultant force?",
+ "options": ["25 N to the right",
+ "65 N to the left",
+ "115 N to the right",
+ "65 N to the right"],
+ "answer": 3,
+ "explanation": "For opposite forces,
+ subtract the smaller force from the larger one. The larger force gives the direction."}
+,
+ {
+"chapter": 5,
+ "topic": "Water treatment",
+ "difficulty": "Medium",
+ "stem": "Which water-treatment process removes large floating debris?",
+ "options": ["Chlorination",
+ "Filtration",
+ "Sedimentation",
+ "Screening"],
+ "answer": 3,
+ "explanation": "Each water-treatment stage has a specific function."}
+,
+ {
+"chapter": 1,
+ "topic": "Biodiversity application",
+ "difficulty": "High",
+ "stem": "A rare orchid is protected in its natural forest,
+ while some seeds are also stored in a seed bank. Which statement is correct?",
+ "options": ["Neither method is conservation",
+ "Only in-situ conservation is being used",
+ "Both in-situ and ex-situ conservation are being used",
+ "Only ex-situ conservation is being used"],
+ "answer": 2,
+ "explanation": "Protection in the natural habitat is in-situ,
+ while a seed bank is ex-situ."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat applications",
+ "difficulty": "Medium",
+ "stem": "Which surface is the best absorber of heat radiation?",
+ "options": ["Shiny silver surface",
+ "Smooth reflective surface",
+ "Polished white surface",
+ "Dull black surface"],
+ "answer": 3,
+ "explanation": "The answer follows thermal expansion,
+ convection and radiation principles."}
+,
+ {
+"chapter": 7,
+ "topic": "Electricity",
+ "difficulty": "Low",
+ "stem": "When two objects with the same type of charge are brought close,
+ which statement is correct?",
+ "options": ["Both become neutral",
+ "They attract each other",
+ "They repel each other",
+ "No force acts"],
+ "answer": 2,
+ "explanation": "The answer follows the basic rules of charge and electrical measurement."}
+,
+ {
+"chapter": 5,
+ "topic": "Water and solutions",
+ "difficulty": "Low",
+ "stem": "Which term describes a mixture containing particles that can settle?",
+ "options": ["Suspension",
+ "Solution",
+ "Solvent",
+ "Surface tension"],
+ "answer": 0,
+ "explanation": "The term is identified from the stated property or behaviour."}
+,
+ {
+"chapter": 3,
+ "topic": "Nutrition application",
+ "difficulty": "High",
+ "stem": "A student eats enough carbohydrate but very little protein for several months. Which effect is most likely?",
+ "options": ["Immediate scurvy",
+ "Stronger bones from extra calcium",
+ "Excessive blood clotting",
+ "Poor growth and slower tissue repair"],
+ "answer": 3,
+ "explanation": "Protein is required for growth and repair of body tissues."}
+,
+ {
+"chapter": 7,
+ "topic": "Circuits and electromagnets",
+ "difficulty": "Medium",
+ "stem": "What happens to an electromagnet when the switch is opened?",
+ "options": ["Its poles become electrically charged",
+ "It becomes a stronger permanent magnet",
+ "Its current increases",
+ "It loses most of its magnetism"],
+ "answer": 3,
+ "explanation": "The answer follows the behaviour of series or parallel circuits and electromagnets."}
+,
+ {
+"chapter": 6,
+ "topic": "Indicators and neutralisation",
+ "difficulty": "Medium",
+ "stem": "What is the expected result for red litmus paper in an alkali?",
+ "options": ["Turns blue",
+ "Turns red",
+ "Remains red",
+ "Turns green"],
+ "answer": 0,
+ "explanation": "Indicators show characteristic colours,
+ and acid-alkali neutralisation produces salt and water."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound properties",
+ "difficulty": "Low",
+ "stem": "Sound is produced when an object does what?",
+ "options": ["Melts",
+ "Stops moving completely",
+ "Vibrates",
+ "Becomes electrically neutral"],
+ "answer": 2,
+ "explanation": "Sound is produced by vibrations;
+ loudness is related to amplitude and pitch to frequency."}
+,
+ {
+"chapter": 4,
+ "topic": "Pathogens",
+ "difficulty": "Low",
+ "stem": "Which type of pathogen causes Dengue?",
+ "options": ["Virus",
+ "Fungus",
+ "Bacterium",
+ "Protozoan"],
+ "answer": 0,
+ "explanation": "Dengue is caused by a virus."}
+],
+ [{
+"chapter": 7,
+ "topic": "Circuits and electromagnets",
+ "difficulty": "High",
+ "stem": "Two identical bulbs are connected in parallel to a battery. One bulb burns out. What happens to the other bulb?",
+ "options": ["It remains lit because its branch is still complete",
+ "It becomes an open switch",
+ "The battery voltage becomes zero",
+ "It also goes out because all current stops"],
+ "answer": 0,
+ "explanation": "In a parallel circuit,
+ each branch provides an independent path for current."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat transfer",
+ "difficulty": "Low",
+ "stem": "Which process or statement best describes warm water rises while cooler water sinks in a beaker?",
+ "options": ["Evaporation",
+ "Conduction",
+ "Radiation",
+ "Convection"],
+ "answer": 3,
+ "explanation": "Heat may be transferred by conduction,
+ convection or radiation. At thermal equilibrium there is no net heat flow."}
+,
+ {
+"chapter": 3,
+ "topic": "Food tests",
+ "difficulty": "Low",
+ "stem": "A food sample is tested and a persistent translucent spot is seen on filter paper. Which nutrient is present?",
+ "options": ["Reducing sugar",
+ "Starch",
+ "Fat",
+ "Protein"],
+ "answer": 2,
+ "explanation": "The observation matches the standard food test for this nutrient."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat applications",
+ "difficulty": "Medium",
+ "stem": "Why are gaps left between railway-track sections?",
+ "options": ["To allow thermal expansion",
+ "To stop conduction completely",
+ "To reduce the mass of the rail",
+ "To increase friction"],
+ "answer": 0,
+ "explanation": "The answer follows thermal expansion,
+ convection and radiation principles."}
+,
+ {
+"chapter": 7,
+ "topic": "Electricity",
+ "difficulty": "Low",
+ "stem": "When a voltmeter is connected across a bulb,
+ which statement is correct?",
+ "options": ["It measures potential difference",
+ "It measures mass",
+ "It measures temperature",
+ "It measures current"],
+ "answer": 0,
+ "explanation": "The answer follows the basic rules of charge and electrical measurement."}
+,
+ {
+"chapter": 4,
+ "topic": "Pathogens",
+ "difficulty": "Low",
+ "stem": "Which type of pathogen causes Tuberculosis?",
+ "options": ["Fungus",
+ "Virus",
+ "Protozoan",
+ "Bacterium"],
+ "answer": 3,
+ "explanation": "Tuberculosis is caused by a bacterium."}
+,
+ {
+"chapter": 5,
+ "topic": "Water and solutions",
+ "difficulty": "Low",
+ "stem": "Which term describes a homogeneous mixture formed when a solute dissolves?",
+ "options": ["Surface tension",
+ "Suspension",
+ "Solvent",
+ "Solution"],
+ "answer": 3,
+ "explanation": "The term is identified from the stated property or behaviour."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound properties",
+ "difficulty": "Low",
+ "stem": "A higher-pitched sound has which characteristic?",
+ "options": ["Zero frequency",
+ "Higher frequency",
+ "Smaller amplitude only",
+ "Lower frequency"],
+ "answer": 1,
+ "explanation": "Sound is produced by vibrations;
+ loudness is related to amplitude and pitch to frequency."}
+,
+ {
+"chapter": 1,
+ "topic": "Classification",
+ "difficulty": "Low",
+ "stem": "Which group does a butterfly belong to?",
+ "options": ["Amphibian",
+ "Insect",
+ "Mollusc",
+ "Arachnid"],
+ "answer": 1,
+ "explanation": "A butterfly is classified as an insect based on characteristics such as 3 pairs of legs."}
+,
+ {
+"chapter": 8,
+ "topic": "Resultant force",
+ "difficulty": "Low",
+ "stem": "A force of 75 N acts to the right and a force of 30 N acts to the left. What is the resultant force?",
+ "options": ["30 N to the right",
+ "45 N to the left",
+ "45 N to the right",
+ "105 N to the right"],
+ "answer": 2,
+ "explanation": "For opposite forces,
+ subtract the smaller force from the larger one. The larger force gives the direction."}
+,
+ {
+"chapter": 6,
+ "topic": "Acid-alkali application",
+ "difficulty": "High",
+ "stem": "Blue litmus turns red in solution X,
+ while red litmus turns blue in solution Y. Which statement is correct?",
+ "options": ["X is acidic and Y is alkaline",
+ "X is neutral and Y is acidic",
+ "Both are acidic",
+ "Both are alkaline"],
+ "answer": 0,
+ "explanation": "Acids turn blue litmus red,
+ while alkalis turn red litmus blue."}
+,
+ {
+"chapter": 2,
+ "topic": "Interactions",
+ "difficulty": "Low",
+ "stem": "Which type of interaction is shown when a remora obtains food scraps from a shark while the shark is unaffected?",
+ "options": ["Mutualism",
+ "Parasitism",
+ "Commensalism",
+ "Competition"],
+ "answer": 2,
+ "explanation": "The interaction is identified by whether each organism benefits,
+ is harmed or competes for the same resource."}
+,
+ {
+"chapter": 4,
+ "topic": "Prevention",
+ "difficulty": "Medium",
+ "stem": "Which action best reduces the risk related to Aedes mosquitoes?",
+ "options": ["Leave water containers uncovered",
+ "Ignore hygiene",
+ "Share utensils",
+ "Remove stagnant water"],
+ "answer": 3,
+ "explanation": "The best prevention method targets the relevant transmission route or improves specific immunity."}
+,
+ {
+"chapter": 5,
+ "topic": "Water treatment analysis",
+ "difficulty": "High",
+ "stem": "A muddy water sample is left undisturbed and some particles settle at the bottom. Which statement is correct?",
+ "options": ["The sample is a suspension and can be partly separated by sedimentation",
+ "The sample is a pure substance",
+ "Chlorination alone removes all suspended solids",
+ "The particles are completely dissolved"],
+ "answer": 0,
+ "explanation": "Suspended particles can settle,
+ so sedimentation can remove part of the solid matter."}
+,
+ {
+"chapter": 1,
+ "topic": "Conservation",
+ "difficulty": "Medium",
+ "stem": "Which conservation method is best represented by keeping endangered turtles in a conservation centre?",
+ "options": ["Ex-situ conservation",
+ "Deforestation",
+ "Competition",
+ "In-situ conservation"],
+ "answer": 0,
+ "explanation": "In-situ conservation protects organisms in their natural habitat,
+ whereas ex-situ conservation protects them outside it."}
+,
+ {
+"chapter": 6,
+ "topic": "pH scale",
+ "difficulty": "Low",
+ "stem": "A solution has a pH of 12. How should it be classified?",
+ "options": ["Cannot be determined",
+ "Alkaline",
+ "Acidic",
+ "Neutral"],
+ "answer": 1,
+ "explanation": "A pH of 12 indicates an alkaline solution."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound applications",
+ "difficulty": "Medium",
+ "stem": "What causes an echo?",
+ "options": ["Chemical reaction",
+ "Conduction of heat",
+ "Reflection of sound",
+ "Electric current"],
+ "answer": 2,
+ "explanation": "Sound is a mechanical wave;
+ its behaviour depends on the medium and on reflection or absorption."}
+,
+ {
+"chapter": 8,
+ "topic": "Pressure and stability",
+ "difficulty": "High",
+ "stem": "Two blocks have the same weight. Block X rests on a smaller base area than Block Y. Which statement is correct?",
+ "options": ["Both exert zero pressure",
+ "Block Y exerts greater pressure",
+ "Pressure is independent of contact area",
+ "Block X exerts greater pressure"],
+ "answer": 3,
+ "explanation": "For the same force,
+ a smaller contact area produces greater pressure."}
+,
+ {
+"chapter": 3,
+ "topic": "Nutrient functions",
+ "difficulty": "Medium",
+ "stem": "Which nutrient is mainly associated with preventing scurvy?",
+ "options": ["Carbohydrate",
+ "Vitamin C",
+ "Protein",
+ "Fibre"],
+ "answer": 1,
+ "explanation": "Each nutrient has a specific major function in maintaining health."}
+,
+ {
+"chapter": 2,
+ "topic": "Food chain",
+ "difficulty": "Medium",
+ "stem": "Study the food chain: Leaves → Caterpillar → Bird → Hawk. If the bird population decreases,
+ what is most likely to happen to the caterpillar population?",
+ "options": ["It remains exactly the same",
+ "It increases",
+ "It decreases",
+ "It becomes extinct immediately"],
+ "answer": 1,
+ "explanation": "Fewer birds means less predation on the caterpillar,
+ so its population is likely to increase."}
+],
+ [{
+"chapter": 1,
+ "topic": "Biodiversity application",
+ "difficulty": "High",
+ "stem": "Scientists find two animals with jointed legs. Animal X has three pairs of legs and Animal Y has four pairs. Which classification is correct?",
+ "options": ["Both are arachnids",
+ "X is an arachnid and Y is an insect",
+ "X is an insect and Y is an arachnid",
+ "Both are insects"],
+ "answer": 2,
+ "explanation": "Insects have three pairs of legs,
+ while arachnids have four pairs."}
+,
+ {
+"chapter": 6,
+ "topic": "pH scale",
+ "difficulty": "Low",
+ "stem": "A solution has a pH of 7. How should it be classified?",
+ "options": ["Cannot be determined",
+ "Neutral",
+ "Acidic",
+ "Alkaline"],
+ "answer": 1,
+ "explanation": "A pH of 7 indicates a neutral solution."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat application",
+ "difficulty": "High",
+ "stem": "A black metal can and a shiny metal can are placed under the same heat lamp. Which one is expected to warm faster at first?",
+ "options": ["The shiny can because shiny surfaces absorb radiation best",
+ "Neither can absorb radiation",
+ "Both must always warm at exactly the same rate",
+ "The black can because dull black surfaces absorb radiation better"],
+ "answer": 3,
+ "explanation": "Dull black surfaces are better absorbers of thermal radiation."}
+,
+ {
+"chapter": 3,
+ "topic": "Food tests",
+ "difficulty": "Low",
+ "stem": "A food sample is tested and Biuret reagent turns purple. Which nutrient is present?",
+ "options": ["Starch",
+ "Fat",
+ "Protein",
+ "Reducing sugar"],
+ "answer": 2,
+ "explanation": "The observation matches the standard food test for this nutrient."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat transfer",
+ "difficulty": "Low",
+ "stem": "Which process causes a metal spoon to become hot when one end is placed in hot water?",
+ "options": ["Convection",
+ "Radiation",
+ "Conduction",
+ "Evaporation"],
+ "answer": 2,
+ "explanation": "Heat may be transferred by conduction,
+ convection or radiation. At thermal equilibrium there is no net heat flow."}
+,
+ {
+"chapter": 7,
+ "topic": "Circuits and electromagnets",
+ "difficulty": "Medium",
+ "stem": "Why are household appliances connected in parallel?",
+ "options": ["Each appliance can operate independently",
+ "One faulty appliance stops all others",
+ "All appliances must switch on together",
+ "The potential difference becomes zero"],
+ "answer": 0,
+ "explanation": "The answer follows the behaviour of series or parallel circuits and electromagnets."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound properties",
+ "difficulty": "Low",
+ "stem": "A louder sound has which characteristic?",
+ "options": ["Larger amplitude",
+ "No vibration",
+ "Smaller amplitude",
+ "Lower frequency only"],
+ "answer": 0,
+ "explanation": "Sound is produced by vibrations;
+ loudness is related to amplitude and pitch to frequency."}
+,
+ {
+"chapter": 8,
+ "topic": "Pressure and stability",
+ "difficulty": "Medium",
+ "stem": "Why does a sharp knife cut more easily?",
+ "options": ["A smaller contact area produces greater pressure",
+ "A larger contact area produces greater pressure",
+ "Its force becomes zero",
+ "Its mass disappears"],
+ "answer": 0,
+ "explanation": "Pressure depends on force and contact area,
+ while stability generally improves with a lower centre of gravity and wider base."}
+,
+ {
+"chapter": 8,
+ "topic": "Resultant force",
+ "difficulty": "Low",
+ "stem": "A force of 45 N acts to the right and a force of 15 N acts to the left. What is the resultant force?",
+ "options": ["15 N to the right",
+ "30 N to the left",
+ "60 N to the right",
+ "30 N to the right"],
+ "answer": 3,
+ "explanation": "For opposite forces,
+ subtract the smaller force from the larger one. The larger force gives the direction."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound application",
+ "difficulty": "High",
+ "stem": "Two tuning forks produce different pitches. Fork X has a higher frequency than Fork Y. Which statement is correct?",
+ "options": ["Fork X must have a smaller amplitude",
+ "Fork Y must be louder",
+ "Fork X produces the higher-pitched sound",
+ "Pitch is unrelated to frequency"],
+ "answer": 2,
+ "explanation": "Higher frequency corresponds to higher pitch."}
+,
+ {
+"chapter": 1,
+ "topic": "Classification",
+ "difficulty": "Low",
+ "stem": "Which group does a frog belong to?",
+ "options": ["Insect",
+ "Mollusc",
+ "Amphibian",
+ "Arachnid"],
+ "answer": 2,
+ "explanation": "A frog is classified as a amphibian based on characteristics such as moist skin."}
+,
+ {
+"chapter": 3,
+ "topic": "Nutrient functions",
+ "difficulty": "Medium",
+ "stem": "Which nutrient is mainly associated with growth and repair of body tissues?",
+ "options": ["Fibre",
+ "Vitamin C",
+ "Carbohydrate",
+ "Protein"],
+ "answer": 3,
+ "explanation": "Each nutrient has a specific major function in maintaining health."}
+,
+ {
+"chapter": 5,
+ "topic": "Water treatment",
+ "difficulty": "Medium",
+ "stem": "Which water-treatment process removes fine suspended particles through filter layers?",
+ "options": ["Chlorination",
+ "Screening",
+ "Filtration",
+ "Sedimentation"],
+ "answer": 2,
+ "explanation": "Each water-treatment stage has a specific function."}
+,
+ {
+"chapter": 2,
+ "topic": "Interactions",
+ "difficulty": "Low",
+ "stem": "Which type of interaction is shown when a tapeworm lives in a human intestine?",
+ "options": ["Commensalism",
+ "Parasitism",
+ "Mutualism",
+ "Competition"],
+ "answer": 1,
+ "explanation": "The interaction is identified by whether each organism benefits,
+ is harmed or competes for the same resource."}
+,
+ {
+"chapter": 5,
+ "topic": "Water and solutions",
+ "difficulty": "Low",
+ "stem": "Which term describes the substance that dissolves a solute?",
+ "options": ["Solution",
+ "Surface tension",
+ "Suspension",
+ "Solvent"],
+ "answer": 3,
+ "explanation": "The term is identified from the stated property or behaviour."}
+,
+ {
+"chapter": 2,
+ "topic": "Food web analysis",
+ "difficulty": "High",
+ "stem": "Study the food chain: Grass → Rabbit → Fox. A disease causes the rabbit population to fall sharply. Which change is most likely to occur first?",
+ "options": ["The grass population increases",
+ "Every population remains constant",
+ "The grass population decreases",
+ "All producers disappear immediately"],
+ "answer": 0,
+ "explanation": "With fewer rabbits,
+ fewer grasss are eaten,
+ so the grass population is likely to increase."}
+,
+ {
+"chapter": 4,
+ "topic": "Pathogens",
+ "difficulty": "Low",
+ "stem": "Which type of pathogen causes Malaria?",
+ "options": ["Bacterium",
+ "Protozoan",
+ "Fungus",
+ "Virus"],
+ "answer": 1,
+ "explanation": "Malaria is caused by a protozoan."}
+,
+ {
+"chapter": 7,
+ "topic": "Electricity",
+ "difficulty": "Low",
+ "stem": "When an ammeter is used in a circuit,
+ which statement is correct?",
+ "options": ["It measures potential difference",
+ "It measures electric current",
+ "It measures force",
+ "It measures temperature"],
+ "answer": 1,
+ "explanation": "The answer follows the basic rules of charge and electrical measurement."}
+,
+ {
+"chapter": 4,
+ "topic": "Prevention",
+ "difficulty": "Medium",
+ "stem": "Which action best reduces the risk related to droplets from coughing?",
+ "options": ["Ignore hygiene",
+ "Leave water containers uncovered",
+ "Cover the mouth and nose when coughing or sneezing",
+ "Share utensils"],
+ "answer": 2,
+ "explanation": "The best prevention method targets the relevant transmission route or improves specific immunity."}
+,
+ {
+"chapter": 6,
+ "topic": "Indicators and neutralisation",
+ "difficulty": "Medium",
+ "stem": "What is the expected result for an acid reacting with an alkali?",
+ "options": ["Oxygen only",
+ "Carbon dioxide only",
+ "Hydrogen only",
+ "Salt and water"],
+ "answer": 3,
+ "explanation": "Indicators show characteristic colours,
+ and acid-alkali neutralisation produces salt and water."}
+],
+ [{
+"chapter": 4,
+ "topic": "Disease prevention",
+ "difficulty": "High",
+ "stem": "A student with influenza coughs openly in a crowded room. Which combination best reduces transmission?",
+ "options": ["Cover coughs,
+ improve ventilation and avoid close contact",
+ "Share drinking bottles and close all windows",
+ "Touch the face frequently",
+ "Take antibiotics without medical advice"],
+ "answer": 0,
+ "explanation": "Respiratory infections spread through droplets and close contact,
+ so cough hygiene and ventilation reduce transmission."}
+,
+ {
+"chapter": 5,
+ "topic": "Water and solutions",
+ "difficulty": "Low",
+ "stem": "Which term describes the effect that allows some small insects to remain on the water surface?",
+ "options": ["Solvent",
+ "Solution",
+ "Surface tension",
+ "Suspension"],
+ "answer": 2,
+ "explanation": "The term is identified from the stated property or behaviour."}
+,
+ {
+"chapter": 1,
+ "topic": "Classification",
+ "difficulty": "Low",
+ "stem": "Which group does a cat belong to?",
+ "options": ["Mollusc",
+ "Mammal",
+ "Arachnid",
+ "Insect"],
+ "answer": 1,
+ "explanation": "A cat is classified as a mammal based on characteristics such as hair or fur and mammary glands."}
+,
+ {
+"chapter": 7,
+ "topic": "Circuits and electromagnets",
+ "difficulty": "Medium",
+ "stem": "How can an electromagnet be made stronger?",
+ "options": ["Use a wooden core",
+ "Remove the current",
+ "Open the switch",
+ "Increase the number of turns in the coil"],
+ "answer": 3,
+ "explanation": "The answer follows the behaviour of series or parallel circuits and electromagnets."}
+,
+ {
+"chapter": 6,
+ "topic": "Acid-alkali application",
+ "difficulty": "High",
+ "stem": "Equal volumes of an acid and an alkali are mixed and the final solution has pH 7. What has most likely occurred?",
+ "options": ["Only hydrogen gas has formed",
+ "The solution must contain no ions",
+ "Neutralisation has produced salt and water",
+ "The acid has become a metal"],
+ "answer": 2,
+ "explanation": "A neutralisation reaction between an acid and an alkali produces salt and water."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound properties",
+ "difficulty": "Low",
+ "stem": "Which application uses reflection of sound waves?",
+ "options": ["SONAR",
+ "Transformer",
+ "Thermometer",
+ "Electromagnet"],
+ "answer": 0,
+ "explanation": "Sound is produced by vibrations;
+ loudness is related to amplitude and pitch to frequency."}
+,
+ {
+"chapter": 6,
+ "topic": "pH scale",
+ "difficulty": "Low",
+ "stem": "A solution has a pH of 2. How should it be classified?",
+ "options": ["Cannot be determined",
+ "Acidic",
+ "Alkaline",
+ "Neutral"],
+ "answer": 1,
+ "explanation": "A pH of 2 indicates a acidic solution."}
+,
+ {
+"chapter": 2,
+ "topic": "Interactions",
+ "difficulty": "Low",
+ "stem": "Which type of interaction is shown when a bee obtains nectar while pollinating a flower?",
+ "options": ["Mutualism",
+ "Parasitism",
+ "Commensalism",
+ "Competition"],
+ "answer": 0,
+ "explanation": "The interaction is identified by whether each organism benefits,
+ is harmed or competes for the same resource."}
+,
+ {
+"chapter": 5,
+ "topic": "Water treatment analysis",
+ "difficulty": "High",
+ "stem": "A muddy water sample is left undisturbed and some particles settle at the bottom. Which statement is correct?",
+ "options": ["Chlorination alone removes all suspended solids",
+ "The particles are completely dissolved",
+ "The sample is a pure substance",
+ "The sample is a suspension and can be partly separated by sedimentation"],
+ "answer": 3,
+ "explanation": "Suspended particles can settle,
+ so sedimentation can remove part of the solid matter."}
+,
+ {
+"chapter": 7,
+ "topic": "Electricity",
+ "difficulty": "Low",
+ "stem": "When two objects with opposite charges are brought close,
+ which statement is correct?",
+ "options": ["They attract each other",
+ "Both become neutral",
+ "They repel each other",
+ "No force acts"],
+ "answer": 0,
+ "explanation": "The answer follows the basic rules of charge and electrical measurement."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat transfer",
+ "difficulty": "Low",
+ "stem": "What happens when two objects at the same temperature are in contact?",
+ "options": ["Conduction",
+ "There is no net heat flow",
+ "Convection",
+ "Radiation"],
+ "answer": 1,
+ "explanation": "Heat may be transferred by conduction,
+ convection or radiation. At thermal equilibrium there is no net heat flow."}
+,
+ {
+"chapter": 3,
+ "topic": "Food tests",
+ "difficulty": "Low",
+ "stem": "A food sample is tested and Benedict's solution forms a brick-red precipitate after heating. Which nutrient is present?",
+ "options": ["Starch",
+ "Protein",
+ "Reducing sugar",
+ "Fat"],
+ "answer": 2,
+ "explanation": "The observation matches the standard food test for this nutrient."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat applications",
+ "difficulty": "Medium",
+ "stem": "Which vacuum-flask feature reduces heat transfer by radiation?",
+ "options": ["An open lid",
+ "A metal bridge between walls",
+ "Shiny silver surfaces",
+ "A black rough inner wall"],
+ "answer": 2,
+ "explanation": "The answer follows thermal expansion,
+ convection and radiation principles."}
+,
+ {
+"chapter": 2,
+ "topic": "Food chain",
+ "difficulty": "Medium",
+ "stem": "Study the food chain: Grass → Grasshopper → Frog → Snake. If the frog population decreases,
+ what is most likely to happen to the grasshopper population?",
+ "options": ["It increases",
+ "It remains exactly the same",
+ "It becomes extinct immediately",
+ "It decreases"],
+ "answer": 0,
+ "explanation": "Fewer frogs means less predation on the grasshopper,
+ so its population is likely to increase."}
+,
+ {
+"chapter": 8,
+ "topic": "Pressure and stability",
+ "difficulty": "Medium",
+ "stem": "Which change increases pressure for the same force?",
+ "options": ["Increase area and reduce force",
+ "Increase the contact area",
+ "Use a wider base",
+ "Decrease the contact area"],
+ "answer": 3,
+ "explanation": "Pressure depends on force and contact area,
+ while stability generally improves with a lower centre of gravity and wider base."}
+,
+ {
+"chapter": 1,
+ "topic": "Conservation",
+ "difficulty": "Medium",
+ "stem": "Which conservation method is best represented by protecting mangrove species in a gazetted reserve?",
+ "options": ["Competition",
+ "Ex-situ conservation",
+ "In-situ conservation",
+ "Deforestation"],
+ "answer": 2,
+ "explanation": "In-situ conservation protects organisms in their natural habitat,
+ whereas ex-situ conservation protects them outside it."}
+,
+ {
+"chapter": 8,
+ "topic": "Resultant force",
+ "difficulty": "Low",
+ "stem": "A force of 50 N acts to the right and a force of 80 N acts to the left. What is the resultant force?",
+ "options": ["130 N to the right",
+ "30 N to the left",
+ "30 N to the right",
+ "50 N to the right"],
+ "answer": 1,
+ "explanation": "For opposite forces,
+ subtract the smaller force from the larger one. The larger force gives the direction."}
+,
+ {
+"chapter": 4,
+ "topic": "Pathogens",
+ "difficulty": "Low",
+ "stem": "Which type of pathogen causes Ringworm?",
+ "options": ["Virus",
+ "Bacterium",
+ "Protozoan",
+ "Fungus"],
+ "answer": 3,
+ "explanation": "Ringworm is caused by a fungus."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound applications",
+ "difficulty": "Medium",
+ "stem": "Why can sound not travel through a vacuum?",
+ "options": ["Sound is a type of light",
+ "Gravity is absent",
+ "A vacuum is always too cold",
+ "Sound needs particles in a medium to transfer vibrations"],
+ "answer": 3,
+ "explanation": "Sound is a mechanical wave;
+ its behaviour depends on the medium and on reflection or absorption."}
+,
+ {
+"chapter": 3,
+ "topic": "Nutrition application",
+ "difficulty": "High",
+ "stem": "A student eats enough carbohydrate but very little protein for several months. Which effect is most likely?",
+ "options": ["Excessive blood clotting",
+ "Poor growth and slower tissue repair",
+ "Stronger bones from extra calcium",
+ "Immediate scurvy"],
+ "answer": 1,
+ "explanation": "Protein is required for growth and repair of body tissues."}
+],
+ [{
+"chapter": 2,
+ "topic": "Food chain",
+ "difficulty": "Medium",
+ "stem": "Study the food chain: Paddy → Rat → Snake → Eagle. If the snake population decreases,
+ what is most likely to happen to the rat population?",
+ "options": ["It becomes extinct immediately",
+ "It decreases",
+ "It remains exactly the same",
+ "It increases"],
+ "answer": 3,
+ "explanation": "Fewer snakes means less predation on the rat,
+ so its population is likely to increase."}
+,
+ {
+"chapter": 4,
+ "topic": "Prevention",
+ "difficulty": "Medium",
+ "stem": "Which action best reduces the risk related to low immunity to a specific infectious disease?",
+ "options": ["Leave water containers uncovered",
+ "Ignore hygiene",
+ "Share utensils",
+ "Vaccination"],
+ "answer": 3,
+ "explanation": "The best prevention method targets the relevant transmission route or improves specific immunity."}
+,
+ {
+"chapter": 1,
+ "topic": "Classification",
+ "difficulty": "Low",
+ "stem": "Which group does a snail belong to?",
+ "options": ["Arachnid",
+ "Amphibian",
+ "Mollusc",
+ "Insect"],
+ "answer": 2,
+ "explanation": "A snail is classified as a mollusc based on characteristics such as soft body."}
+,
+ {
+"chapter": 6,
+ "topic": "pH scale",
+ "difficulty": "Low",
+ "stem": "A solution has a pH of 9. How should it be classified?",
+ "options": ["Cannot be determined",
+ "Acidic",
+ "Alkaline",
+ "Neutral"],
+ "answer": 2,
+ "explanation": "A pH of 9 indicates an alkaline solution."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound application",
+ "difficulty": "High",
+ "stem": "A ship sends a sound pulse downward and detects the reflected pulse later. What principle is being used?",
+ "options": ["Reflection of sound to determine distance",
+ "Conduction of heat",
+ "Refraction of light only",
+ "Electrostatic attraction"],
+ "answer": 0,
+ "explanation": "SONAR uses reflected sound and the time delay to determine distance."}
+,
+ {
+"chapter": 5,
+ "topic": "Water treatment",
+ "difficulty": "Medium",
+ "stem": "Which water-treatment process removes large floating debris?",
+ "options": ["Sedimentation",
+ "Screening",
+ "Filtration",
+ "Chlorination"],
+ "answer": 1,
+ "explanation": "Each water-treatment stage has a specific function."}
+,
+ {
+"chapter": 3,
+ "topic": "Food tests",
+ "difficulty": "Low",
+ "stem": "A food sample is tested and iodine solution turns blue-black. Which nutrient is present?",
+ "options": ["Reducing sugar",
+ "Fat",
+ "Starch",
+ "Protein"],
+ "answer": 2,
+ "explanation": "The observation matches the standard food test for this nutrient."}
+,
+ {
+"chapter": 3,
+ "topic": "Nutrient functions",
+ "difficulty": "Medium",
+ "stem": "Which nutrient is mainly associated with adding bulk to faeces and helping prevent constipation?",
+ "options": ["Protein",
+ "Fibre",
+ "Carbohydrate",
+ "Vitamin C"],
+ "answer": 1,
+ "explanation": "Each nutrient has a specific major function in maintaining health."}
+,
+ {
+"chapter": 8,
+ "topic": "Pressure and stability",
+ "difficulty": "High",
+ "stem": "Two blocks have the same weight. Block X rests on a smaller base area than Block Y. Which statement is correct?",
+ "options": ["Pressure is independent of contact area",
+ "Both exert zero pressure",
+ "Block X exerts greater pressure",
+ "Block Y exerts greater pressure"],
+ "answer": 2,
+ "explanation": "For the same force,
+ a smaller contact area produces greater pressure."}
+,
+ {
+"chapter": 5,
+ "topic": "Water and solutions",
+ "difficulty": "Low",
+ "stem": "Which term describes a mixture containing particles that can settle?",
+ "options": ["Solvent",
+ "Solution",
+ "Surface tension",
+ "Suspension"],
+ "answer": 3,
+ "explanation": "The term is identified from the stated property or behaviour."}
+,
+ {
+"chapter": 7,
+ "topic": "Circuits and electromagnets",
+ "difficulty": "High",
+ "stem": "Two identical bulbs are connected in parallel to a battery. One bulb burns out. What happens to the other bulb?",
+ "options": ["It becomes an open switch",
+ "It also goes out because all current stops",
+ "The battery voltage becomes zero",
+ "It remains lit because its branch is still complete"],
+ "answer": 3,
+ "explanation": "In a parallel circuit,
+ each branch provides an independent path for current."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat application",
+ "difficulty": "High",
+ "stem": "Warm air rises above a heater. What causes this movement?",
+ "options": ["The air expands,
+ becomes less dense and rises",
+ "The air becomes denser and rises",
+ "Air changes into a solid",
+ "The heater removes gravity"],
+ "answer": 0,
+ "explanation": "Heating causes air to expand and become less dense,
+ producing convection."}
+,
+ {
+"chapter": 9,
+ "topic": "Heat transfer",
+ "difficulty": "Low",
+ "stem": "Which process or statement best describes heat from the Sun reaches Earth?",
+ "options": ["Conduction",
+ "Evaporation",
+ "Convection",
+ "Radiation"],
+ "answer": 3,
+ "explanation": "Heat may be transferred by conduction,
+ convection or radiation. At thermal equilibrium there is no net heat flow."}
+,
+ {
+"chapter": 10,
+ "topic": "Sound properties",
+ "difficulty": "Low",
+ "stem": "Sound is produced when an object does what?",
+ "options": ["Vibrates",
+ "Stops moving completely",
+ "Melts",
+ "Becomes electrically neutral"],
+ "answer": 0,
+ "explanation": "Sound is produced by vibrations;
+ loudness is related to amplitude and pitch to frequency."}
+,
+ {
+"chapter": 6,
+ "topic": "Indicators and neutralisation",
+ "difficulty": "Medium",
+ "stem": "What is the expected result for red litmus paper in an alkali?",
+ "options": ["Turns blue",
+ "Turns red",
+ "Turns green",
+ "Remains red"],
+ "answer": 0,
+ "explanation": "Indicators show characteristic colours,
+ and acid-alkali neutralisation produces salt and water."}
+,
+ {
+"chapter": 8,
+ "topic": "Resultant force",
+ "difficulty": "Low",
+ "stem": "A force of 60 N acts to the right and a force of 20 N acts to the left. What is the resultant force?",
+ "options": ["40 N to the left",
+ "80 N to the right",
+ "20 N to the right",
+ "40 N to the right"],
+ "answer": 3,
+ "explanation": "For opposite forces,
+ subtract the smaller force from the larger one. The larger force gives the direction."}
+,
+ {
+"chapter": 4,
+ "topic": "Pathogens",
+ "difficulty": "Low",
+ "stem": "Which type of pathogen causes Dengue?",
+ "options": ["Bacterium",
+ "Protozoan",
+ "Virus",
+ "Fungus"],
+ "answer": 2,
+ "explanation": "Dengue is caused by a virus."}
+,
+ {
+"chapter": 7,
+ "topic": "Electricity",
+ "difficulty": "Low",
+ "stem": "When two objects with the same type of charge are brought close,
+ which statement is correct?",
+ "options": ["Both become neutral",
+ "They attract each other",
+ "No force acts",
+ "They repel each other"],
+ "answer": 3,
+ "explanation": "The answer follows the basic rules of charge and electrical measurement."}
+,
+ {
+"chapter": 1,
+ "topic": "Conservation",
+ "difficulty": "Medium",
+ "stem": "Which conservation method is best represented by protecting tigers in a national park?",
+ "options": ["Deforestation",
+ "Competition",
+ "Ex-situ conservation",
+ "In-situ conservation"],
+ "answer": 3,
+ "explanation": "In-situ conservation protects organisms in their natural habitat,
+ whereas ex-situ conservation protects them outside it."}
+,
+ {
+"chapter": 2,
+ "topic": "Interactions",
+ "difficulty": "Low",
+ "stem": "Which type of interaction is shown when two plants grow close together and compete for sunlight?",
+ "options": ["Commensalism",
+ "Competition",
+ "Parasitism",
+ "Mutualism"],
+ "answer": 1,
+ "explanation": "The interaction is identified by whether each organism benefits,
+ is harmed or competes for the same resource."}
+]];
+
+const SET1_VISUALS={
+"1": "[IMG]",
+ "3": "[IMG]",
+ "4": "[IMG]",
+ "5": "[IMG]",
+ "6": "[IMG]",
+ "7": "[IMG]",
+ "8": "[IMG]",
+ "9": "[IMG]",
+ "10": "[IMG]",
+ "11": "[IMG]",
+ "12": "[IMG]",
+ "13": "[IMG]",
+ "17": "[IMG]",
+ "20": "[IMG]",
+ "15": "[IMG]",
+ "16": "[IMG]"}
+;
+
+const SET2_VISUALS={
+"2": "[IMG]",
+ "3": "[IMG]",
+ "5": "[IMG]",
+ "6": "[IMG]",
+ "7": "[IMG]",
+ "8": "[IMG]",
+ "10": "[IMG]",
+ "11": "[IMG]",
+ "12": "[IMG]",
+ "13": "[IMG]",
+ "14": "[IMG]",
+ "15": "[IMG]",
+ "16": "[IMG]",
+ "18": "[IMG]",
+ "19": "[IMG]",
+ "20": "[IMG]"}
+;
+
+const chapterNames={
+1:'Biodiversity',
+2:'Ecosystem',
+3:'Nutrition',
+4:'Human Health',
+5:'Water and Solution',
+6:'Acid and Alkali',
+7:'Electricity and Magnetism',
+8:'Force and Motion',
+9:'Heat',
+10:'Sound Waves'}
+;
+
+const praise=["Excellent work!",
+"Well done!",
+"Correct. Nice reasoning!",
+"Great job!",
+"Strong answer!",
+"Correct. Keep it up!"];
+
+const encourage=["Not quite,
+ but good attempt.",
+"Almost there. Keep going.",
+"Good try. Use the explanation and try the next one.",
+"That one was tricky. You can get the next one.",
+"Keep going. Mistakes are useful when you correct them."];
+
+let current=0,
+state={
+}
+;
+
+const sel=document.getElementById('setSel');
+
+for(let i=0;
+i<20;
+i++){
+let o=document.createElement('option');
+o.value=i;
+o.textContent=`Set ${
+i+1}
+`;
+sel.appendChild(o)}
+
+const key=()=>`f2sci_secA_v2_${
+current}
+`;
+
+const SET3_VISUALS={
+"4": "[IMG]",
+ "6": "[IMG]",
+ "9": "[IMG]",
+ "10": "[IMG]",
+ "12": "[IMG]",
+ "13": "[IMG]",
+ "14": "[IMG]",
+ "15": "[IMG]",
+ "16": "[IMG]",
+ "17": "[IMG]",
+ "18": "[IMG]",
+ "19": "[IMG]",
+ "20": "[IMG]"}
+;
+
+
+const CN_EXPLANATIONS={
+"The answer follows the behaviour of series or parallel circuits and electromagnets.": "串联电路只有一条电流路径；并联电路各支路有独立路径。电磁铁的强弱则与线圈匝数、电流等因素有关。",
+ "The term is identified from the stated property or behaviour.": "根据题目给出的性质或现象来辨认正确的科学术语。",
+ "A spider is classified as a arachnid based on characteristics such as 4 pairs of legs.": "蜘蛛属于蛛形纲，因为它具有四对足等特征。",
+ "Protection in the natural habitat is in-situ,
+ while a seed bank is ex-situ.": "在生物原本的自然栖息地进行保护属于原地保护（in-situ）；种子库是在自然栖息地以外保存，因此属于迁地保护（ex-situ）。",
+ "The interaction is identified by whether each organism benefits,
+ is harmed or competes for the same resource.": "判断生物之间的关系时，要看双方是否受益、受害，或是否争夺相同的资源。",
+ "Pressure depends on force and contact area,
+ while stability generally improves with a lower centre of gravity and wider base.": "压强取决于作用力和接触面积。相同作用力下，接触面积越小，压强越大；较低的重心和较宽的底面通常能提高稳定性。",
+ "Each water-treatment stage has a specific function.": "水处理的每一个步骤都有特定作用，例如去除大型杂物、让悬浮颗粒沉淀、过滤细小杂质及消毒。",
+ "A pH of 4 indicates a acidic solution.": "pH 4 小于 7，因此该溶液属于酸性溶液。",
+ "Sound is produced by vibrations;
+ loudness is related to amplitude and pitch to frequency.": "声音由振动产生。响度与振幅有关，而音调高低与频率有关。频率越高，音调越高。",
+ "The answer follows thermal expansion,
+ convection and radiation principles.": "这题需要应用热胀冷缩、对流或热辐射的原理来判断现象。",
+ "Sound is a mechanical wave;
+ its behaviour depends on the medium and on reflection or absorption.": "声音属于机械波，需要介质传播，并会发生反射或被材料吸收。",
+ "The answer follows the basic rules of charge and electrical measurement.": "这题应用电荷及电学测量的基本规律。电流用安培计测量，电势差用伏特计测量。",
+ "Heat may be transferred by conduction,
+ convection or radiation. At thermal equilibrium there is no net heat flow.": "热可以通过传导、对流或辐射传递。当两个物体达到热平衡时，两者之间没有净热量传递。",
+ "Indicators show characteristic colours,
+ and acid-alkali neutralisation produces salt and water.": "酸碱指示剂在不同性质的溶液中会呈现特定颜色；酸和碱发生中和反应会生成盐和水。",
+ "For opposite forces,
+ subtract the smaller force from the larger one. The larger force gives the direction.": "两个力方向相反时，用较大的力减去较小的力；合力方向跟随较大的力。",
+ "The observation matches the standard food test for this nutrient.": "根据标准食物检验出现的颜色或现象，可以判断食物中所含的营养素。",
+ "With fewer birds,
+ fewer caterpillars are eaten,
+ so the caterpillar population is likely to increase.": "鸟的数量减少后，被鸟捕食的毛毛虫减少，因此毛毛虫的数量可能增加。",
+ "Protein is required for growth and repair of body tissues.": "蛋白质是身体生长以及修复受损组织所需要的重要营养素。",
+ "Tuberculosis is caused by a bacterium.": "结核病（tuberculosis）是由细菌引起的传染病。",
+ "Respiratory infections spread through droplets and close contact,
+ so cough hygiene and ventilation reduce transmission.": "呼吸道感染可通过飞沫及近距离接触传播，因此遮掩咳嗽、保持通风和减少密切接触可以降低传播风险。",
+ "The best prevention method targets the relevant transmission route or improves specific immunity.": "预防传染病时，应针对它实际的传播途径采取措施，或通过特定免疫方式提高保护能力。",
+ "For the same force,
+ a smaller contact area produces greater pressure.": "在作用力相同的情况下，接触面积越小，产生的压强越大。",
+ "In a parallel circuit,
+ each branch provides an independent path for current.": "并联电路的每一条支路都有独立的电流路径，因此其中一条支路断开时，其他完整支路仍可工作。",
+ "A lizard is classified as a reptile based on characteristics such as dry scaly skin.": "蜥蜴属于爬行动物，因为它具有干燥、有鳞片的皮肤等特征。",
+ "Malaria is caused by a protozoan.": "疟疾（malaria）是由原生动物（protozoan）引起的。",
+ "Large debris is removed first,
+ heavier particles settle,
+ fine particles are filtered,
+ and disinfection is carried out near the end.": "水处理时先去除大型杂物，再让较重颗粒沉淀，之后过滤细小颗粒，并在后段进行消毒。",
+ "In-situ conservation protects organisms in their natural habitat,
+ whereas ex-situ conservation protects them outside it.": "原地保护（in-situ）是在生物的自然栖息地保护它们；迁地保护（ex-situ）则是在自然栖息地之外进行保护。",
+ "Acids turn blue litmus red,
+ while alkalis turn red litmus blue.": "酸会使蓝色石蕊试纸变红；碱会使红色石蕊试纸变蓝。",
+ "Fewer rabbits feed on the grass,
+ so its population is likely to increase.": "兔子的数量减少后，吃草的兔子也减少，因此草的数量可能增加。",
+ "A pH of 12 indicates an alkaline solution.": "pH 12 大于 7，因此该溶液属于碱性溶液。",
+ "Each nutrient has a specific major function in maintaining health.": "不同营养素在人体中具有不同的主要功能，例如供给能量、生长与修复组织或维持健康。",
+ "Ringworm is caused by a fungus.": "癣（ringworm）是由真菌（fungus）引起的。",
+ "A pH of 7 indicates a neutral solution.": "pH 7 表示该溶液呈中性。",
+ "Dull black surfaces are better absorbers of thermal radiation.": "暗黑色、无光泽的表面比浅色或有光泽的表面更容易吸收热辐射。",
+ "A butterfly is classified as an insect based on characteristics such as 3 pairs of legs.": "蝴蝶属于昆虫，因为昆虫具有三对足等特征。",
+ "With fewer frogs,
+ fewer grasshoppers are eaten,
+ so the grasshopper population is likely to increase.": "青蛙数量减少后，被捕食的蚱蜢减少，因此蚱蜢数量可能增加。",
+ "Insects have three pairs of legs,
+ while arachnids have four pairs.": "昆虫有三对足，而蛛形纲动物有四对足。",
+ "Higher frequency corresponds to higher pitch.": "声音的频率越高，音调越高；频率越低，音调越低。"}
+;
+
+function load(){
+try{
+state=JSON.parse(localStorage.getItem(key())||'{
+}
+')}
+catch{
+state={
+}
+}
+}
+
+function save(){
+localStorage.setItem(key(),
+JSON.stringify(state))}
+
+function msg(arr,
+i){
+return arr[(i+current)%arr.length]}
+
+function render(){
+
+  load();
+
+  document.getElementById('setLabel').textContent=`Set ${
+current+1}
+`;
+
+  let box=document.getElementById('questions');
+box.innerHTML='';
+
+  let pal=document.getElementById('palette');
+pal.innerHTML='';
+
+  SETS[current].forEach((it,
+i)=>{
+
+    let chosen=state[i]?.chosen,
+checked=state[i]?.checked,
+opts='';
+
+    it.options.forEach((op,
+oi)=>{
+
+      let cls='option';
+
+      if(checked){
+if(oi===it.answer)cls+=' correct';
+else if(oi===chosen)cls+=' wrong'}
+
+      opts+=`<label class="${
+cls}
+"><input type="radio" name="q${
+i}
+" value="${
+oi}
+" ${
+chosen===oi?'checked':''}
+ ${
+checked?'disabled':''}
+><span><b>${
+String.fromCharCode(65+oi)}
+.</b> ${
+op}
+</span></label>`;
+
+    }
+);
+
+    let fb='';
+
+    if(checked && chosen!==it.answer){
+
+      const zh=CN_EXPLANATIONS[it.explanation] || `正确答案是 ${
+String.fromCharCode(65+it.answer)}
+. ${
+it.options[it.answer]}
+。本题考查 Chapter ${
+it.chapter}
+：${
+it.topic}
+。请根据题目关键词和相关科学概念重新判断。`;
+
+      fb=`<div class="feedback bad"><div><b>Correct answer:</b> ${
+String.fromCharCode(65+it.answer)}
+. ${
+it.options[it.answer]}
+</div><div style="margin-top:8px"><b>English explanation:</b> ${
+it.explanation}
+</div><div style="margin-top:8px"><b>华语解释：</b>${
+zh}
+</div><small style="display:block;
+margin-top:8px">Chapter ${
+it.chapter}
+ · ${
+it.topic}
+</small></div>`;
+
+    }
+else if(checked && chosen===it.answer){
+
+      fb=`<div class="feedback ok"><span class="tag">${
+msg(praise,
+i)}
+</span> Correct.</div>`;
+
+    }
+else fb='<div class="feedback"></div>';
+
+    let c=document.createElement('div');
+c.className='qcard';
+c.id='q'+i;
+
+    c.innerHTML=`<div class="qnum">Question ${
+i+1}
+</div><div class="stem">${
+it.stem}
+</div>${
+((current===0?SET1_VISUALS:(current===1?SET2_VISUALS:(current===2?SET3_VISUALS:{
+}
+)))[String(i+1)])?`<div class="qvisual"><img src="${
+(current===0?SET1_VISUALS:(current===1?SET2_VISUALS:SET3_VISUALS))[String(i+1)]}
+" alt="Question ${
+i+1}
+ visual"></div>`:""}
+${
+opts}
+${
+fb}
+`;
+
+    box.appendChild(c);
+
+    let p=document.createElement('div');
+p.className='pill';
+p.textContent=i+1;
+
+    if(checked)p.classList.add(chosen===it.answer?'right':'wrong');
+else if(chosen!==undefined)p.classList.add('done');
+
+    p.onclick=()=>document.getElementById('q'+i).scrollIntoView({
+behavior:'smooth',
+block:'center'}
+);
+
+    pal.appendChild(p);
+
+  }
+);
+
+  document.querySelectorAll('input[type=radio]').forEach(r=>r.onchange=e=>{
+
+    let i=+e.target.name.slice(1);
+state[i]=state[i]||{
+}
+;
+state[i].chosen=+e.target.value;
+save();
+update();
+renderPal();
+
+  }
+);
+
+  update();
+
+}
+
+function renderPal(){
+document.querySelectorAll('.pill').forEach((p,
+i)=>{
+p.className='pill';
+if(state[i]?.checked)p.classList.add(state[i].chosen===SETS[current][i].answer?'right':'wrong');
+else if(state[i]?.chosen!==undefined)p.classList.add('done')}
+)}
+
+function update(){
+
+  let answered=0,
+correct=0,
+ch={
+}
+;
+for(let c=1;
+c<=10;
+c++)ch[c]={
+right:0,
+checked:0}
+;
+
+  SETS[current].forEach((it,
+i)=>{
+if(state[i]?.chosen!==undefined)answered++;
+if(state[i]?.checked){
+ch[it.chapter].checked++;
+if(state[i].chosen===it.answer){
+correct++;
+ch[it.chapter].right++}
+}
+}
+);
+
+  document.getElementById('progText').textContent=`${
+answered}
+ / 20 answered`;
+document.getElementById('progBar').style.width=(answered*5)+'%';
+document.getElementById('scoreNow').textContent=correct;
+const sb=document.getElementById('submitBtn');
+if(sb){
+sb.disabled=answered<20;
+sb.textContent=answered<20?`Answer all questions (${
+answered}
+/20)`:'Submit & Check Answers';
+sb.style.opacity=answered<20?'0.55':'1';
+sb.style.cursor=answered<20?'not-allowed':'pointer';
+}
+
+  let h='';
+for(let c=1;
+c<=10;
+c++){
+let pct=ch[c].right*50;
+h+=`<div class="chapter"><div class="chrow"><span>Ch ${
+c}
+ · ${
+chapterNames[c]}
+</span><span>${
+ch[c].right}
+/2</span></div><div class="mini"><div style="width:${
+pct}
+%"></div></div></div>`}
+
+  document.getElementById('chapterStats').innerHTML=h;
+
+}
+
+function submit(){
+
+  let miss=[];
+for(let i=0;
+i<20;
+i++)if(state[i]?.chosen===undefined)miss.push(i+1);
+
+  if(miss.length){
+
+    let f=document.getElementById('finalBox');
+f.style.display='block';
+
+    f.innerHTML=`<h3>Not submitted yet</h3><div><b>Answered:</b> ${
+20-miss.length}
+ / 20</div><div><b>Unanswered:</b> ${
+miss.length}
+</div><div style="margin-top:10px">Please answer every question before submitting. Unanswered questions: ${
+miss.join(',
+ ')}
+</div>`;
+
+    document.getElementById('q'+(miss[0]-1))?.scrollIntoView({
+behavior:'smooth',
+block:'center'}
+);
+
+    return;
+
+  }
+
+  for(let i=0;
+i<20;
+i++){
+state[i]=state[i]||{
+}
+;
+state[i].checked=true}
+save();
+render();
+
+  let correct=0,
+ch={
+}
+;
+for(let c=1;
+c<=10;
+c++)ch[c]=0;
+
+  SETS[current].forEach((it,
+i)=>{
+if(state[i].chosen===it.answer){
+correct++;
+ch[it.chapter]++}
+}
+);
+
+  let wrong=20-correct,
+accuracy=Math.round(correct/20*100);
+
+  let weak=Object.entries(ch).filter(([c,
+n])=>n<2).sort((a,
+b)=>a[1]-b[1]);
+
+  let finalMsg=correct>=18?"Excellent result. Your understanding is very strong."
+    :correct>=16?"Well done. A strong result. Review the few questions you missed."
+    :correct>=12?"Good effort. You have a solid base,
+ and targeted revision can raise this quickly."
+    :"Keep going. Review the weaker chapters,
+ correct the mistakes,
+ and try another set.";
+
+  let f=document.getElementById('finalBox');
+f.style.display='block';
+
+  f.innerHTML=`<h3>Set ${
+current+1}
+ Result</h3><div class="result-grid"><div class="result-card"><b>Total Questions</b><span>20</span></div><div class="result-card"><b>Correct</b><span>${
+correct}
+</span></div><div class="result-card"><b>Wrong</b><span>${
+wrong}
+</span></div><div class="result-card"><b>Accuracy</b><span>${
+accuracy}
+%</span></div></div><div><b>Completed:</b> 20 / 20 questions answered.</div><div style="margin-top:10px">${
+finalMsg}
+</div><div style="margin-top:12px;
+font-size:15px">${
+weak.length?'Priority review: '+weak.map(x=>'Chapter '+x[0]+' ('+chapterNames[x[0]]+')').join(',
+ '):'Excellent. No weak chapter was detected in this set.'}
+</div>`;
+
+  f.scrollIntoView({
+behavior:'smooth',
+block:'center'}
+);
+
+}
+
+sel.onchange=e=>{
+current=+e.target.value;
+document.getElementById('finalBox').style.display='none';
+render();
+scrollTo({
+top:0,
+behavior:'smooth'}
+)}
+;
+
+document.getElementById('saveBtn').onclick=()=>{
+save();
+alert('Progress saved on this device.')}
+;
+
+document.getElementById('resetBtn').onclick=()=>{
+if(confirm('Reset this set?')){
+localStorage.removeItem(key());
+state={
+}
+;
+document.getElementById('finalBox').style.display='none';
+render()}
+}
+;
+
+document.getElementById('submitBtn').onclick=submit;
+
+render();
+
+</script></body></html>
