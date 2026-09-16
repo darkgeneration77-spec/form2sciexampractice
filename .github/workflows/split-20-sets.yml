@@ -1,6 +1,8 @@
 name: Split 20 Sets Safely
 on:
-  workflow_dispatch:
+  push:
+    paths:
+      - 'split-trigger.txt'
 permissions:
   contents: write
 jobs:
@@ -12,78 +14,51 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-          import json, re
-
+          import json
           src = Path('index.html').read_text(encoding='utf-8')
           marker = 'const SETS='
           start = src.find(marker)
-          if start < 0:
-              raise SystemExit('const SETS not found')
+          if start < 0: raise SystemExit('const SETS not found')
           arr_start = src.find('[', start + len(marker))
-          if arr_start < 0:
-              raise SystemExit('SETS array start not found')
-
-          depth = 0
-          in_str = False
-          esc = False
-          quote = ''
-          arr_end = None
+          if arr_start < 0: raise SystemExit('SETS array start not found')
+          depth=0; in_str=False; esc=False; quote=''; arr_end=None
           for i in range(arr_start, len(src)):
-              ch = src[i]
+              ch=src[i]
               if in_str:
-                  if esc:
-                      esc = False
-                  elif ch == '\\':
-                      esc = True
-                  elif ch == quote:
-                      in_str = False
+                  if esc: esc=False
+                  elif ch=='\\': esc=True
+                  elif ch==quote: in_str=False
                   continue
-              if ch in ('"', "'"):
-                  in_str = True
-                  quote = ch
-              elif ch == '[':
-                  depth += 1
-              elif ch == ']':
-                  depth -= 1
-                  if depth == 0:
-                      arr_end = i + 1
-                      break
-          if arr_end is None:
-              raise SystemExit('SETS array end not found')
-
-          raw = src[arr_start:arr_end]
-          sets = json.loads(raw)
-          assert len(sets) == 20, f'Expected 20 sets, got {len(sets)}'
-          for n, questions in enumerate(sets, 1):
-              assert len(questions) == 20, f'Set {n} has {len(questions)} questions'
-
-          prefix = src[:arr_start]
-          suffix = src[arr_end:]
-
-          for n, questions in enumerate(sets, 1):
-              one = json.dumps([questions], ensure_ascii=False, separators=(',', ':'))
-              page = prefix + one + suffix
-              page = page.replace('20 Interactive Sets', f'Set {n} · Interactive Practice')
-              page = page.replace('20 interactive sets ·', f'Set {n} ·')
-              page = page.replace('English student version · self-contained HTML', f'Set {n} · English student version · independent HTML')
-              page = page.replace('"assets/', '"../assets/').replace("'assets/", "'../assets/")
-              out = Path(f'set{n}/index.html')
-              out.parent.mkdir(parents=True, exist_ok=True)
-              out.write_text(page, encoding='utf-8')
-
-          # Structural verification before anything is committed.
-          for n in range(1, 21):
-              p = Path(f'set{n}/index.html')
-              text = p.read_text(encoding='utf-8')
+              if ch in ('"', "'"): in_str=True; quote=ch
+              elif ch=='[': depth+=1
+              elif ch==']':
+                  depth-=1
+                  if depth==0: arr_end=i+1; break
+          if arr_end is None: raise SystemExit('SETS array end not found')
+          sets=json.loads(src[arr_start:arr_end])
+          assert len(sets)==20, f'Expected 20 sets, got {len(sets)}'
+          for n,q in enumerate(sets,1): assert len(q)==20, f'Set {n} has {len(q)} questions'
+          prefix=src[:arr_start]; suffix=src[arr_end:]
+          for n,questions in enumerate(sets,1):
+              one=json.dumps([questions],ensure_ascii=False,separators=(',',':'))
+              page=prefix+one+suffix
+              page=page.replace('20 Interactive Sets',f'Set {n} · Interactive Practice')
+              page=page.replace('20 interactive sets ·',f'Set {n} ·')
+              page=page.replace('English student version · self-contained HTML',f'Set {n} · English student version · independent HTML')
+              page=page.replace('"assets/','"../assets/').replace("'assets/","'../assets/")
+              out=Path(f'set{n}/index.html'); out.parent.mkdir(parents=True,exist_ok=True); out.write_text(page,encoding='utf-8')
+          for n in range(1,21):
+              p=Path(f'set{n}/index.html'); text=p.read_text(encoding='utf-8')
               assert 'const SETS=' in text
               assert f'Set {n} · Interactive Practice' in text
-              assert p.stat().st_size > 50000
-          print('Verified: 20 independent pages, each containing exactly one 20-question set.')
+              assert p.stat().st_size>50000
+          print('Verified 20 independent pages; each source set contains exactly 20 questions.')
           PY
       - name: Commit independent Set 1-20 pages
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add set1 set2 set3 set4 set5 set6 set7 set8 set9 set10 set11 set12 set13 set14 set15 set16 set17 set18 set19 set20
+          git diff --cached --quiet && exit 0
           git commit -m "Split exam into 20 independent set pages [skip ci]"
           git push
