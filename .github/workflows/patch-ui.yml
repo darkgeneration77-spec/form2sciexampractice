@@ -1,4 +1,4 @@
-name: Prepare Set 5 visual rendering
+name: Implant Set 5 visuals
 on:
   push:
     paths:
@@ -10,24 +10,34 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Patch visual renderer for Sets 1-5
+      - name: Map Set 5 question visuals
         run: |
           python - <<'PY'
           from pathlib import Path
+          import re, json
           p=Path('index.html')
           s=p.read_text(encoding='utf-8')
-          old='((current===0?SET1_VISUALS:(current===1?SET2_VISUALS:(current===2?SET3_VISUALS:{})))[String(i+1)])?`<div class="qvisual"><img src="${(current===0?SET1_VISUALS:(current===1?SET2_VISUALS:SET3_VISUALS))[String(i+1)]}" alt="Question ${i+1} visual"></div>`:""'
-          new='(([SET1_VISUALS,SET2_VISUALS,SET3_VISUALS,typeof SET4_VISUALS!=="undefined"?SET4_VISUALS:{},typeof SET5_VISUALS!=="undefined"?SET5_VISUALS:{}][current]||{})[String(i+1)])?`<div class="qvisual"><img src="${([SET1_VISUALS,SET2_VISUALS,SET3_VISUALS,typeof SET4_VISUALS!=="undefined"?SET4_VISUALS:{},typeof SET5_VISUALS!=="undefined"?SET5_VISUALS:{}][current]||{})[String(i+1)]}" alt="Question ${i+1} visual"></div>`:""'
-          if old not in s:
-              raise SystemExit('Expected visual renderer not found; refusing unsafe patch')
-          s=s.replace(old,new,1)
+          mapping={"1":"assets/set5-q1.jpg","2":"assets/set5-q2.jpg","3":"assets/set5-q3.jpg","5":"assets/set5-q5.jpg","7":"assets/set5-q7.jpg"}
+          m=re.search(r'const SET5_VISUALS=(\{.*?\});',s)
+          if m:
+              try: old=json.loads(m.group(1))
+              except: old={}
+              old.update(mapping)
+              rep='const SET5_VISUALS='+json.dumps(old,separators=(',',':'))+';'
+              s=s[:m.start()]+rep+s[m.end():]
+          else:
+              marker='const SET4_VISUALS='
+              pos=s.find(marker)
+              if pos<0: raise SystemExit('SET4_VISUALS marker not found')
+              end=s.find(';',pos)+1
+              s=s[:end]+'\nconst SET5_VISUALS='+json.dumps(mapping,separators=(',',':'))+';'+s[end:]
           p.write_text(s,encoding='utf-8')
           PY
-      - name: Commit renderer patch
+      - name: Commit Set 5 mapping
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
           git diff --cached --quiet && exit 0
-          git commit -m "Support Set 4 and Set 5 visual rendering [skip ci]"
+          git commit -m "Map Set 5 question visuals [skip ci]"
           git push
