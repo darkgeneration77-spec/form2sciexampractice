@@ -1,4 +1,4 @@
-name: Integrate Set 4 batch 2 visuals
+name: Integrate Set 4 batch 3 visuals
 on:
   push:
     paths:
@@ -16,9 +16,8 @@ jobs:
           from pathlib import Path
           import re
           p=Path('index.html'); s=p.read_text(encoding='utf-8')
-          new='const SET4_VISUALS={"2":"assets/set4-q2.jpg","4":"assets/set4-q4.jpg","5":"assets/set4-q5.jpg","7":"assets/set4-q7.jpg","11":"assets/set4-q11.svg","12":"assets/set4-q12.svg","13":"assets/set4-q13.svg"};'
-          if 'const SET4_VISUALS=' not in s:
-              raise SystemExit('SET4_VISUALS not found')
+          new='const SET4_VISUALS={"2":"assets/set4-q2.jpg","4":"assets/set4-q4.jpg","5":"assets/set4-q5.jpg","7":"assets/set4-q7.jpg","11":"assets/set4-q11.svg","12":"assets/set4-q12.svg","13":"assets/set4-q13.svg","14":"assets/set4-q14.svg","15":"assets/set4-q15.svg","16":"assets/set4-q16.svg"};'
+          if 'const SET4_VISUALS=' not in s: raise SystemExit('SET4_VISUALS not found')
           s,n=re.subn(r'const SET4_VISUALS=\{.*?\};',new,s,count=1)
           if n!=1: raise SystemExit('Set 4 visual map patch failed')
           p.write_text(s,encoding='utf-8')
@@ -27,7 +26,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html assets/set4-q11.svg assets/set4-q12.svg assets/set4-q13.svg
+          git add index.html assets/set4-q14.svg assets/set4-q15.svg assets/set4-q16.svg
           git diff --cached --quiet && exit 0
-          git commit -m "Add Set 4 batch 2 question visuals [skip ci]"
+          git commit -m "Add Set 4 batch 3 question visuals [skip ci]"
           git push
