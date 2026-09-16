@@ -1,4 +1,4 @@
-name: Inspect image integration
+name: Integrate Set 4 batch 1 visuals
 on:
   push:
     paths:
@@ -6,32 +6,40 @@ on:
 permissions:
   contents: write
 jobs:
-  inspect:
+  patch:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Extract image and renderer contexts
+      - name: Decode visuals and patch Set 4
         run: |
           python - <<'PY'
           from pathlib import Path
-          import re
-          s=Path('index.html').read_text(encoding='utf-8')
-          # Remove large image payloads but preserve attribute/property surroundings.
-          t=re.sub(r'data:image/[^;]+;base64,[A-Za-z0-9+/=]+','[IMG]',s)
-          out=[]
-          for i,m in enumerate(re.finditer(r'\[IMG\]',t)):
-              if i>=8: break
-              out.append('\n===== IMG %d =====\n'% (i+1))
-              out.append(t[max(0,m.start()-700):min(len(t),m.end()+700)])
-          out.append('\n===== SCRIPT TAIL =====\n')
-          out.append(t[-30000:])
-          Path('image-integration-context.txt').write_text(''.join(out),encoding='utf-8')
+          import base64,re
+          Path('assets').mkdir(exist_ok=True)
+          for q in (2,4,5,7):
+              src=Path(f'tmp/set4-q{q}.b64')
+              Path(f'assets/set4-q{q}.jpg').write_bytes(base64.b64decode(src.read_text().strip()))
+          p=Path('index.html'); s=p.read_text(encoding='utf-8')
+          marker='const SET2_VISUALS='
+          if 'const SET4_VISUALS=' not in s:
+              pos=s.index(marker)
+              end=s.index(';',pos)+1
+              s=s[:end]+'\nconst SET4_VISUALS={"2":"assets/set4-q2.jpg","4":"assets/set4-q4.jpg","5":"assets/set4-q5.jpg","7":"assets/set4-q7.jpg"};'+s[end:]
+          else:
+              s=re.sub(r'const SET4_VISUALS=\{.*?\};','const SET4_VISUALS={"2":"assets/set4-q2.jpg","4":"assets/set4-q4.jpg","5":"assets/set4-q5.jpg","7":"assets/set4-q7.jpg"};',s,count=1)
+          old='${((current===0?SET1_VISUALS:(current===1?SET2_VISUALS:(current===2?SET3_VISUALS:{})))[String(i+1)])?`<div class="qvisual"><img src="${(current===0?SET1_VISUALS:(current===1?SET2_VISUALS:SET3_VISUALS))[String(i+1)]}" alt="Question ${i+1} visual"></div>`:""}'
+          new='${(({0:SET1_VISUALS,1:SET2_VISUALS,2:SET3_VISUALS,3:SET4_VISUALS}[current]||{})[String(i+1)])?`<div class="qvisual"><img src="${({0:SET1_VISUALS,1:SET2_VISUALS,2:SET3_VISUALS,3:SET4_VISUALS}[current]||{})[String(i+1)]}" alt="Question ${i+1} visual"></div>`:""}'
+          if old in s:
+              s=s.replace(old,new,1)
+          elif 'SET4_VISUALS}[current]' not in s:
+              raise SystemExit('Renderer pattern not found; refusing unsafe patch')
+          p.write_text(s,encoding='utf-8')
           PY
-      - name: Commit inspection
+      - name: Commit integration
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add image-integration-context.txt
+          git add index.html assets/set4-q2.jpg assets/set4-q4.jpg assets/set4-q5.jpg assets/set4-q7.jpg
           git diff --cached --quiet && exit 0
-          git commit -m "Add image integration context [skip ci]"
+          git commit -m "Add Set 4 batch 1 question visuals"
           git push
