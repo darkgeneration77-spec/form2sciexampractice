@@ -13,28 +13,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Extract Set 4 readable context
+      - name: Build text-only exam source
         run: |
           python - <<'PY'
           from pathlib import Path
           import re
           s=Path('index.html').read_text(encoding='utf-8')
-          s=re.sub(r'data:image/[^;]+;base64,[A-Za-z0-9+/=]+','[IMAGE_DATA_REMOVED]',s)
-          hits=list(re.finditer(r'(?i)set\s*4',s))
-          out=[f'Found {len(hits)} occurrences of Set 4 after stripping images\n']
-          for i,m in enumerate(hits[:20],1):
-              a=max(0,m.start()-20000)
-              b=min(len(s),m.end()+120000)
-              chunk=s[a:b]
-              chunk=re.sub(r'([{};,])',r'\1\n',chunk)
-              out.append(f'\n===== OCCURRENCE {i} =====\n{chunk}\n')
-          Path('set4-readable.txt').write_text(''.join(out),encoding='utf-8')
+          s=re.sub(r'data:image/[^;]+;base64,[A-Za-z0-9+/=]+','[IMG]',s)
+          s=re.sub(r'([{};,])',r'\1\n',s)
+          Path('exam-text-source.txt').write_text(s,encoding='utf-8')
           PY
       - name: Commit extraction
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add set4-readable.txt
+          git add exam-text-source.txt
           git diff --cached --quiet && exit 0
-          git commit -m "Extract readable Set 4 question context [skip ci]"
+          git commit -m "Add text-only exam source for review [skip ci]"
           git push
