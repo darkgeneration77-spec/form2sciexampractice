@@ -1,4 +1,4 @@
-name: Inspect visual integration
+name: Prepare Set 5 visual rendering
 on:
   push:
     paths:
@@ -6,32 +6,28 @@ on:
 permissions:
   contents: write
 jobs:
-  inspect:
+  patch:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Extract visual integration context
+      - name: Patch visual renderer for Sets 1-5
         run: |
           python - <<'PY'
           from pathlib import Path
-          s=Path('index.html').read_text(encoding='utf-8')
-          needles=['SET4_VISUALS','set4-q','visualMap','question-visual','questionVisual','visual']
-          chunks=[]
-          for needle in needles:
-              start=0
-              while True:
-                  i=s.find(needle,start)
-                  if i<0: break
-                  chunks.append(f'===== {needle} @ {i} =====\n'+s[max(0,i-1000):i+1800])
-                  start=i+len(needle)
-                  if len(chunks)>=20: break
-          Path('visual-integration-inspect.txt').write_text('\n\n'.join(chunks),encoding='utf-8')
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          old='((current===0?SET1_VISUALS:(current===1?SET2_VISUALS:(current===2?SET3_VISUALS:{})))[String(i+1)])?`<div class="qvisual"><img src="${(current===0?SET1_VISUALS:(current===1?SET2_VISUALS:SET3_VISUALS))[String(i+1)]}" alt="Question ${i+1} visual"></div>`:""'
+          new='(([SET1_VISUALS,SET2_VISUALS,SET3_VISUALS,typeof SET4_VISUALS!=="undefined"?SET4_VISUALS:{},typeof SET5_VISUALS!=="undefined"?SET5_VISUALS:{}][current]||{})[String(i+1)])?`<div class="qvisual"><img src="${([SET1_VISUALS,SET2_VISUALS,SET3_VISUALS,typeof SET4_VISUALS!=="undefined"?SET4_VISUALS:{},typeof SET5_VISUALS!=="undefined"?SET5_VISUALS:{}][current]||{})[String(i+1)]}" alt="Question ${i+1} visual"></div>`:""'
+          if old not in s:
+              raise SystemExit('Expected visual renderer not found; refusing unsafe patch')
+          s=s.replace(old,new,1)
+          p.write_text(s,encoding='utf-8')
           PY
-      - name: Commit inspection
+      - name: Commit renderer patch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add visual-integration-inspect.txt
+          git add index.html
           git diff --cached --quiet && exit 0
-          git commit -m "Inspect visual integration context [skip ci]"
+          git commit -m "Support Set 4 and Set 5 visual rendering [skip ci]"
           git push
